@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b48ysbfadag51"]
+
+[ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="1_i2sou"]
+
+[node name="Oli" type="Node2D"]
+
+[node name="LogicIf" type="Node" parent="."]
+script = ExtResource("1_i2sou")
+value_type = "string"
+value_name = "dasdawd"
+interaction_type = null
