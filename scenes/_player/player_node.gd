@@ -4,9 +4,6 @@ class_name Player_Node
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 
-#### DEBUG OBJECTS
-@export var _position_label : Label
-@export var _input_label : Label
 ### Global Variables, can be changed by Object Manager
 var player_speed : float = 350
 var player_gravity : float  = 33
@@ -46,16 +43,14 @@ func _input(event: InputEvent) -> void:
 ### Main Process
 func _physics_process(_delta: float) -> void:
     if player_died:
-        return
+        died()
     _handle_gravity()
     if !player_enabled:
         return
     _handle_movement()
     _was_on_floor = is_on_floor()
     move_and_slide()
-    _handle_coyote_time()
-    _position_label.text = _pos_string % [position.x, position.y]
-    
+    _handle_coyote_time()    
 
 func _handle_gravity()-> void:
     if !is_on_floor() and !_can_still_jump:
@@ -80,7 +75,6 @@ func _jump():
 func _handle_coyote_time() -> void:
     if _was_on_floor and  !is_on_floor() and velocity.y >= 0:
         _can_still_jump = true
-        _input_label.text = "CAN STILL JUMP"
         _player_coyote_timer.start()
     ## Touched ground
     if !_was_on_floor and is_on_floor():
@@ -91,7 +85,6 @@ func _handle_coyote_time() -> void:
 ### function for timertimeout on coyote time
 func _on_coyote_timer_timeout() -> void:
     _can_still_jump = false
-    _input_label.text = ""
 ### function for timertimeout on buffered jump
 func _on_jumped_buffered_timer_timeout()-> void:
     _jump_buffered = false
@@ -103,5 +96,7 @@ func on_collision_layer_change(_value : int) -> void:
 
 func on_death()-> void:
     player_died = true
+func died() -> void :
     # Animation
     # respawn
+    player_enabled  =false
