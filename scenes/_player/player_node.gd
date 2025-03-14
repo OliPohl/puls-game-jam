@@ -9,10 +9,10 @@ class_name Player_Node
 @export var _input_label : Label
 ### Global Variables, can be changed by Object Manager
 var player_speed : float = 350
-var player_gravity : float  = 25
+var player_gravity : float  = 33
 var player_size : float  = 1
-var player_coyote_time : float = 0.5
-var player_jump_power : float  =650
+var player_coyote_time : float = 0.23
+var player_jump_power : float  =800
 var player_collision_layer : int  = 0
 var player_Jump_enabled : bool  = true
 var player_enabled : bool =  true
@@ -33,14 +33,10 @@ func _ready() -> void:
 ######### INPUT
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("left"):
-        _move_dir = -1
         _looks_left = true
         _player_visuals.flip_h = _looks_left
     ## on release stop moving
-    if event.is_action_released("left") || event.is_action_released("right"):
-        _move_dir = 0
     if event.is_action_pressed("right"):
-        _move_dir = 1
         _looks_left = false
         _player_visuals.flip_h = _looks_left
     ## jump mechanic
@@ -66,6 +62,7 @@ func _handle_gravity()-> void:
         velocity.y += player_gravity
 
 func _handle_movement() -> void:
+    _move_dir = Input.get_axis("left","right")
     velocity.x  = player_speed * _move_dir
 
 func _jump():

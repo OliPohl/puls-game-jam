@@ -12,18 +12,21 @@ colors = PackedColorArray(0, 0, 0, 1, 0.294167, 5.79013e-05, 0.294164, 1)
 gradient = SubResource("Gradient_w7cvy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7fpr"]
-size = Vector2(311, 56)
+size = Vector2(311, 40.5)
 
 [node name="Game_Node" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(636, 494)
-offset = Vector2(0, -127.395)
 
 [node name="Player_Node" parent="." node_paths=PackedStringArray("_position_label", "_input_label") instance=ExtResource("1_n7fpr")]
 position = Vector2(885, 202)
 _position_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/position_label")
 _input_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/input_label")
+
+[node name="Camera2D" type="Camera2D" parent="Player_Node"]
+position = Vector2(-3, 7)
+offset = Vector2(0, -127.395)
+position_smoothing_enabled = true
+position_smoothing_speed = 12.0
+drag_horizontal_enabled = true
 
 [node name="Ground_Plattform" type="Node2D" parent="."]
 position = Vector2(671, 421)
@@ -46,7 +49,7 @@ position = Vector2(892, 286)
 position = Vector2(496, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plattform_A/StaticBody2D"]
-position = Vector2(-495.5, -15)
+position = Vector2(-495.5, -20.5)
 shape = SubResource("RectangleShape2D_n7fpr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Plattform_A"]
@@ -60,7 +63,7 @@ position = Vector2(1319, 216)
 position = Vector2(496, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plattform_A2/StaticBody2D"]
-position = Vector2(-495.5, -15)
+position = Vector2(-495.5, -17.25)
 shape = SubResource("RectangleShape2D_n7fpr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Plattform_A2"]
