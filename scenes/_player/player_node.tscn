@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d35gq840pcm2l"]
+
+[ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="1_abu21"]
+[ext_resource type="Texture2D" uid="uid://diwdq5ln7l3fx" path="res://assets/images/_debug/player.png" id="2_abu21"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
+radius = 52.345
+
+[node name="Player_Node" type="CharacterBody2D"]
+script = ExtResource("1_abu21")
+
+[node name="Visuals_Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_abu21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_abu21")
+
+[node name="Coyote_Timer" type="Timer" parent="."]
+wait_time = 0.12
+one_shot = true
+
+[node name="Jump_buffered_Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
