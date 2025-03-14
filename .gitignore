@@ -1,15 +1,13 @@
-# Godot 4+ specific ignores
+# Ignore Godot project files
 .godot/
+/android/
 
-# Godot-specific ignores
-.import/
-export.cfg
-export_credentials.cfg
+# Ignore all blender backup files
+*.blend1
 
-# Imported translations (automatically generated from CSV files)
-*.translation
+# Ignore all files in the .builds directory except the .keep file to push the directory
+.builds/*
+!.builds/.keep
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# Ignore all files that are local vscode settings
+.vscode/

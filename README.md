@@ -1,1 +1,1 @@
-# puls-game-jam
+# Puls Game Jam
