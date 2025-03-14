@@ -11,3 +11,8 @@
 
 # Ignore all files that are local vscode settings
 .vscode/
+*.code-workspace
+
+# Afinity
+*.afdesign~lock~
+*.afphoto~lock~
