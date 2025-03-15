@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cl5bdaaqifthi"]
 
 [ext_resource type="PackedScene" uid="uid://d35gq840pcm2l" path="res://scenes/_player/player_node.tscn" id="1_n7fpr"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="2_gmedv"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="2_gmedv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmedv"]
 size = Vector2(3197, 50)

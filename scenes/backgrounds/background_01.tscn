@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://mkr8jexkunje"]
+
+[ext_resource type="Shader" uid="uid://cspibxc3nf76f" path="res://resources/shader/background_shader.gdshader" id="1_y0upd"]
+[ext_resource type="Texture2D" uid="uid://bq40jaqw0c4l8" path="res://assets/images/env/bg5.png" id="2_6wu2m"]
+[ext_resource type="Texture2D" uid="uid://bf0maatlv6d0n" path="res://assets/images/_debug/light_gradient.png" id="3_m6o1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noxre"]
+shader = ExtResource("1_y0upd")
+shader_parameter/direction = Vector2(-0.075, -0.115)
+shader_parameter/speed = 0.77
+
+[node name="TextureRect" type="TextureRect"]
+modulate = Color(1, 1, 0.843137, 1)
+material = SubResource("ShaderMaterial_noxre")
+custom_minimum_size = Vector2(5000, 3000)
+offset_left = -1632.0
+offset_top = -1492.0
+offset_right = 3368.0
+offset_bottom = 1508.0
+texture = ExtResource("2_6wu2m")
+stretch_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2506, 1480)
+energy = 0.55
+texture = ExtResource("3_m6o1v")
+texture_scale = 1.94
