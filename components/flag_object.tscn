@@ -106,4 +106,5 @@ texture = ExtResource("1_wdv2b")
 modulate = Color(0.634666, 0, 0.195131, 1)
 position = Vector2(73.505, -127.415)
 sprite_frames = SubResource("SpriteFrames_ihpxj")
+autoplay = "default"
 frame_progress = 0.632235

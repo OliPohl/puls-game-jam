@@ -44,8 +44,9 @@ func add_ui(_node: Node) -> void:
 
 
 func confirm(_activate : bool) -> void:
-  var _ui_element = ui_element as LogicTimerUi
-  variable_seconds = _ui_element.variable_seconds
+  if ui_element:
+    var _ui_element = ui_element as LogicTimerUi
+    variable_seconds = _ui_element.variable_seconds
   start = _activate
   if not _activate:
     for child in get_children():

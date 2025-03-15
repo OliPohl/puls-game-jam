@@ -64,8 +64,9 @@ func add_ui(_node: Node) -> void:
 
 
 func confirm(_activate : bool) -> void:
-  var _ui_element = ui_element as LogicIfUi
-  value_name = _ui_element.value_name
+  if ui_element:
+    var _ui_element = ui_element as LogicIfUi
+    value_name = _ui_element.value_name
 
   if compare(variable_node.get(variable_name), type_cast(value_type, value_name), comparator):
     for child in get_children():
