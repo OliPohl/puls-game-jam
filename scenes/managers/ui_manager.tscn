@@ -74,7 +74,6 @@ _data = {
 
 [node name="UI_Manager" type="CanvasLayer"]
 process_mode = 3
-visible = false
 script = ExtResource("1_xetle")
 
 [node name="Game_HUD" type="Control" parent="."]
