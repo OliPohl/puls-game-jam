@@ -7,6 +7,8 @@ class_name LogicBase extends Logic
 @onready var parent: CanvasItem = get_parent()
 var logic_used: int = 0
 
+func _ready() -> void:
+  confirm(true)
 
 func show_logic() -> void:
   logic_ui.reset()
