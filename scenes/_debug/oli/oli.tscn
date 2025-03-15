@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b48ysbfadag51"]
+
+[ext_resource type="Script" uid="uid://8dnto8le51vc" path="res://scenes/_debug/oli/oli.gd" id="1_65hc3"]
+[ext_resource type="PackedScene" uid="uid://cinxsrrhjh7a5" path="res://scenes/objects/wall/wall.tscn" id="3_8ldes"]
+[ext_resource type="Texture2D" uid="uid://c6fcxit0nse8c" path="res://assets/_debug/sample_31.png" id="6_65hc3"]
+
+[node name="Oli" type="Node2D"]
+script = ExtResource("1_65hc3")
+
+[node name="Sample31" type="Sprite2D" parent="."]
+modulate = Color(0.201527, 0.201527, 0.201527, 1)
+position = Vector2(699, 371)
+scale = Vector2(1.32422, 1.18125)
+texture = ExtResource("6_65hc3")
+
+[node name="giant_wall" parent="." instance=ExtResource("3_8ldes")]
+position = Vector2(934, 713)
+scale = Vector2(0.766, 4)

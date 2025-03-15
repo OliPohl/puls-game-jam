@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dbnj3ju17wocq"]
+
+[ext_resource type="FontFile" uid="uid://bg7axeetwx866" path="res://assets/fonts/cascadia-code/Cascadia.ttf" id="1_x2ts5"]
+[ext_resource type="StyleBox" uid="uid://cg4d8coflhxu1" path="res://resources/logic/edit_active.tres" id="2_klf2n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkg8a"]
+bg_color = Color(0.0781754, 0.0895827, 0.106694, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+TextEdit/colors/font_color = Color(0.780392, 0.603922, 0.4, 1)
+TextEdit/colors/font_readonly_color = Color(0.58837, 0.437671, 0.25995, 1)
+TextEdit/constants/line_spacing = 7
+TextEdit/fonts/font = ExtResource("1_x2ts5")
+TextEdit/styles/focus = ExtResource("2_klf2n")
+TextEdit/styles/normal = ExtResource("2_klf2n")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_gkg8a")

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2odaa16eyw08"]
+
+[ext_resource type="FontFile" uid="uid://bg7axeetwx866" path="res://assets/fonts/cascadia-code/Cascadia.ttf" id="1_hjdlh"]
+
+[resource]
+Label/fonts/font = ExtResource("1_hjdlh")
+TextEdit/fonts/font = ExtResource("1_hjdlh")

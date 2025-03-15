@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dundr3w3xvcdt"]
+
+[ext_resource type="Script" uid="uid://d2e5mv7yamke7" path="res://global/logic/logic-items/logic-if/logic_if_ui.gd" id="1_kgwin"]
+[ext_resource type="Theme" uid="uid://d2odaa16eyw08" path="res://resources/logic/text.tres" id="2_yv385"]
+[ext_resource type="Theme" uid="uid://b4vkbmm6ayi0q" path="res://resources/logic/edit_var.tres" id="3_g2l5j"]
+[ext_resource type="Theme" uid="uid://dbnj3ju17wocq" path="res://resources/logic/edit_bool.tres" id="4_4085q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv385"]
+bg_color = Color(0.254611, 0.275634, 0.30927, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_g2l5j"]
+Panel/styles/panel = SubResource("StyleBoxFlat_yv385")
+
+[node name="LogicIf" type="VBoxContainer" node_paths=PackedStringArray("var_node", "condition_node", "value_node", "then_parent")]
+script = ExtResource("1_kgwin")
+var_node = NodePath("LogicIfItems/VarName")
+condition_node = NodePath("LogicIfItems/Condition")
+value_node = NodePath("LogicIfItems/ValueName")
+then_parent = NodePath("ThenItems/ThenParent")
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="LogicIfItems" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="If" type="Label" parent="LogicIfItems"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme = ExtResource("2_yv385")
+text = "If"
+vertical_alignment = 1
+
+[node name="VarName" type="TextEdit" parent="LogicIfItems"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 8
+theme = ExtResource("3_g2l5j")
+text = " jump_power"
+editable = false
+selecting_enabled = false
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="Condition" type="Label" parent="LogicIfItems"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("2_yv385")
+text = "=="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueName" type="TextEdit" parent="LogicIfItems"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_4085q")
+text = "100"
+scroll_fit_content_width = true
+
+[node name="Colon" type="Label" parent="LogicIfItems"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme = ExtResource("2_yv385")
+text = ":"
+horizontal_alignment = 2
+
+[node name="ThenItems" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="ParagraphHighlight" type="Panel" parent="ThenItems"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_g2l5j")
+
+[node name="Spacer" type="Control" parent="ThenItems"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="ThenParent" type="VBoxContainer" parent="ThenItems"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
