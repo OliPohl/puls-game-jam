@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=6 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
+[ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
 texture = ExtResource("3_oo2yl")
 
 [node name="UI_Manager" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_xetle")
 
 [node name="Game_HUD" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,6 +129,7 @@ text = "16°"
 wait_time = 0.5
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,10 +140,10 @@ mouse_filter = 2
 
 [node name="Logo_Header_VBox" type="VBoxContainer" parent="Menu"]
 layout_mode = 2
-offset_left = 493.0
-offset_top = 144.0
-offset_right = 877.0
-offset_bottom = 472.0
+offset_left = 449.0
+offset_top = 146.0
+offset_right = 833.0
+offset_bottom = 474.0
 size_flags_horizontal = 4
 
 [node name="Logo" type="Sprite2D" parent="Menu/Logo_Header_VBox"]
@@ -206,11 +208,6 @@ text = "Select Level"
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Credits"
-
-[node name="Button_Tutorial" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Tutorial"
 
 [node name="Button_Quit" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
@@ -320,8 +317,357 @@ text = "V-Sync"
 wait_time = 8.0
 one_shot = true
 
+[node name="Win_Control" type="Control" parent="." node_paths=PackedStringArray("_time_label", "_object_label", "_death_label")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_7rmiq")
+_time_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer/time_s_value")
+_object_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2/used_objects_value")
+_death_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3/death_count_value")
+
+[node name="Content_Margin" type="MarginContainer" parent="Win_Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -115.5
+offset_right = 150.0
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Setting_Margin" type="MarginContainer" parent="Win_Control/Content_Margin"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin"]
+layout_mode = 2
+
+[node name="Settings_Header" type="Panel" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
+
+[node name="Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
+text = "GAME RESULT                                       WIN"
+
+[node name="Setting_P" type="Panel" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(310, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 304.0
+offset_bottom = 231.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="time_s_header" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+layout_mode = 2
+text = "Time Score:"
+
+[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 105
+
+[node name="time_s_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(85.68, 0)
+layout_mode = 2
+text = "9999"
+horizontal_alignment = 2
+
+[node name="time_slider" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="used_objects_header" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+layout_mode = 2
+text = "Used Objects:"
+
+[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="used_objects_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(104.38, 0)
+layout_mode = 2
+text = "9999"
+horizontal_alignment = 2
+
+[node name="used_objects_silder" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator2" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="death_count_Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+layout_mode = 2
+text = "Deaths:"
+
+[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="death_count_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(61.575, 0)
+layout_mode = 2
+text = "9999"
+horizontal_alignment = 2
+
+[node name="death_count_slider" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator3" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Total:  9999"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button_restart" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="Button_menu" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Menu"
+
+[node name="PanelContainer" type="PanelContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_next" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "NEXT LEVEL"
+
+[node name="Game_Over_Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content_Margin" type="MarginContainer" parent="Game_Over_Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -115.5
+offset_right = 150.0
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Setting_Margin" type="MarginContainer" parent="Game_Over_Control/Content_Margin"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin"]
+layout_mode = 2
+
+[node name="Settings_Header" type="Panel" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
+
+[node name="Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
+text = "GAME RESULT                                      LOSE"
+
+[node name="Setting_P" type="Panel" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(310, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 304.0
+offset_bottom = 231.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="time_s_header" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+layout_mode = 2
+text = "Time Score:"
+
+[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 105
+
+[node name="time_s_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(85.68, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="time_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="HSeparator" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="used_objects_header" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+layout_mode = 2
+text = "Used Objects:"
+
+[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="used_objects_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(104.38, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="used_objects_silder" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="HSeparator2" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="death_count_Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+layout_mode = 2
+text = "Deaths:"
+
+[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="death_count_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(61.575, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="death_count_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="HSeparator3" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Total:  0"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button_restart" type="Button" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "Restart"
+
+[node name="Button_menu" type="Button" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "menu"
+
+[node name="PanelContainer" type="PanelContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Start" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Resume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Select_lvl" to="." method="_on_button_select_lvl_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Credits" to="." method="_on_button_credits_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/master_v_slider" to="." method="_on_master_v_slider_drag_ended"]
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/sound_v_silder" to="." method="_on_sound_v_silder_drag_ended"]
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
+[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]
+[connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]

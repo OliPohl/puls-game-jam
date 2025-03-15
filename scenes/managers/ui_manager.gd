@@ -7,6 +7,10 @@ extends CanvasLayer
 #####################################################################
 @onready var _game_hud : Control = $Game_HUD
 @onready var _menu : Control = $Menu
+## SETTINGS
+@onready var _setting_control : Control = $Menu/Content_Margin/Setting_Margin
+## CREDITS
+
 #timer
 @onready var _game_timer :Timer  =$Game_Timer
 @onready var _game_timer_text : Label  =$Game_HUD/Timer_Margin/Panel/VBoxContainer/Timer_value
@@ -27,6 +31,10 @@ extends CanvasLayer
 ### Checkboxes
 @onready var _fullscreen_checkbutton : CheckButton =$Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/fullscreen_toggle
 @onready var _vsync_checkbutton : CheckButton = $Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/vsync_toggle
+### Win panel
+@onready var _win_control : Control  =$Win_Control
+### Game over panel
+@onready var _game_over_control : Control =$Game_Over_Control
 ###Privates 
 var _is_timer_running : bool  = false
 var _is_debug_running : bool = true
@@ -52,7 +60,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _is_timer_running:
 		_game_timer_text.text = _format_decimal_float(_game_timer.time_left)
-
+func _on_game_in_level_selection() -> void:
+	_game_hud.visible= false
+	_menu.visible =false
 ### if game paused _resume button on and gamehud off and opposite ///
 func _on_game_paused(_value : bool)->void:
 	_button_change_paused(_value)
@@ -63,18 +73,22 @@ func _button_change_paused(_value :bool) ->void:
 	_button_start.visible = !_value
 ### format timer time
 func _format_decimal_float(_float : float) ->String:
-	var _format_text : String  = str(_float)
-	var _decimal_index : int = _format_text.find(".")
-	if _decimal_index >0:
-		_format_text = _format_text.left(_decimal_index + 3)
-	return _format_text
+	var _minutes = _float /60
+	var _seconds = fmod(_float, 60)
+	var  _milliseconds = fmod(_float, 1) * 100
+	var _text = "%02d:%02d:%02d" % [_minutes, _seconds, _milliseconds]
+	return _text
 ### set game hud on and menu off and toggle 
 func set_game_hud(_value : bool) ->void :
 	_game_hud.visible= (_value)
 	_menu.visible =(!_value)
 	if _value:
+		_win_control.visible =false
+		_game_over_control.visible = false
+		_game_timer.stop()
 		_game_timer.start()
 		_is_timer_running =true
+		
 ### if gametimer timeout -> loos
 func _on_gametimer_timeout() -> void:
 	##signal player death
@@ -100,12 +114,19 @@ func _debug_data_update() -> void:
 	_debug_gpu_value.text = "13," + str(randi_range(0,9))+ "°"
 
 func _on_game_over() ->void:
-	## show gameover panel 
-	pass
+	_game_timer.stop()
+	_win_control.visible =false
+	_game_over_control.visible = true
+	_game_hud.visible= false
+	_menu.visible =false
 
 func _on_game_win() -> void:
-	## show gamewin panel
-	pass
+	_game_timer.stop()
+	_win_control.visible =true
+	_game_over_control.visible = false
+	_game_hud.visible= false
+	_menu.visible =false
+	_win_control.set_sliders()
 
 
 func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
@@ -132,3 +153,43 @@ func _on_music_v_slider_drag_ended(value_changed:bool) -> void:
 	if value_changed:
 		ConfigManager.save_audio_settings("music_volume", _music_v_slider.value)
 		## change audio_manager bus volume
+#############################################  MENU BUTTONS###############
+func _on_button_start_pressed() -> void:
+	GameManager.start_level(1)
+
+
+func _on_button_resume_pressed() -> void:
+	GameManager.change_game_state(GameManager.GameState.GAME_RUNNING)
+
+
+func _on_button_settings_pressed() -> void:
+	_setting_control.visible =  !_setting_control.visible
+
+
+func _on_button_select_lvl_pressed() -> void:
+	_win_control.visible =false
+	_game_over_control.visible = false
+	_setting_control.visible = false
+	GameManager.start_level(6)
+
+
+func _on_button_quit_pressed() -> void:
+	### SOUND SCHREI
+	get_tree().quit()
+
+####################################### MENU BUTTONS END ######################
+############# WIN CONTROL BUTTONS##########
+func _on_button_WIN_next_pressed() -> void:
+	_win_control.visible =false
+	_game_over_control.visible = false
+	GameManager.start_level(GameManager.current_level+1)
+	
+func _on_button_restart_pressed() -> void:
+	_win_control.visible =false
+	_game_over_control.visible = false
+	GameManager.start_level(GameManager.current_level)
+
+func _on_button_menu_pressed() ->void:
+	_win_control.visible =false
+	_game_over_control.visible = false
+	GameManager.start_level(0)  ### Start Scene

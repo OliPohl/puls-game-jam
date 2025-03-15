@@ -3,6 +3,7 @@ class_name Player_Node
 @onready var _player_visuals : AnimatedSprite2D =$Visuals_Sprite
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
+@onready var _collect_area : Area2D = $Hurt_Box_Component
 
 ### Global Variables, can be changed by Object Manager
 var player_speed : float = 350
@@ -20,13 +21,13 @@ var _looks_left : bool  = true
 var _was_on_floor : bool  = true
 var _can_still_jump :bool  = true
 var _jump_buffered :bool = false
-##debug
-var _pos_string : String = "x: %s2, y:%s2"
+
 ### Ready connect signal to coyote timer
 func _ready() -> void:
 	_player_coyote_timer.timeout.connect(_on_coyote_timer_timeout)
 	_jump_buffered_timer.timeout.connect(_on_jumped_buffered_timer_timeout)
 	_player_coyote_timer.wait_time = player_coyote_time
+	_collect_area.area_entered.connect(on_collect_area_entered)
 ######### INPUT
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
@@ -109,3 +110,6 @@ func died() -> void :
 	# Animation
 	# respawn
 	player_enabled  =false
+
+func on_collect_area_entered(_area : Area2D)-> void:
+	GameManager.Win_Game()

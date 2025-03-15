@@ -1,5 +1,5 @@
 extends Node
-
+@onready var _scene_manager : Scene_Manager =$Scene_Manager
 signal game_started()
 signal game_paused(_value : bool)
 signal game_over()
@@ -7,12 +7,20 @@ signal game_win()
 
 enum GameState {
     MENU,# only menu scene
+    LEVEL_SELECTION, ## on game level selection
     GAME_RUNNING, # on every level and still running
+    GAME_RESUME, # short step to switch to running
     GAME_OVER, # after game  lose
     GAME_WIN, # after game  win
     PAUSE # on every level and still paused
 }
-
+### public variables
+var gameresult_time : float  = 0
+var gameresult_objects : int = 0
+var gameresult_deaths : int = 0
+### current variables
+var current_scene : Node2D
+var current_level  : int = 0
 var current_game_state : GameState = GameState.MENU
 func on_game_win() -> void:
     ## SHOW UI WIN PANEL
@@ -27,8 +35,28 @@ func on_game_over() -> void:
     ## PAUSE GAME
     get_tree().paused = true
     current_game_state = GameState.GAME_OVER
-    ## SAVE VARIABLES
 
+###############################################
+####
+####             START LEVEL MECHANIC
+####
+###############################################
+func start_level(_level_id : int):
+    current_level = _level_id
+    if _level_id == 6:
+        ## LEVEL SELECTER
+        current_level= 0
+        _scene_manager.start_level(6)
+        change_game_state(GameState.LEVEL_SELECTION)
+    else:
+        current_level= _level_id
+        _scene_manager.start_level(_level_id)
+        change_game_state(GameState.GAME_RUNNING)
+###############################################
+func Win_Game():
+    change_game_state(GameState.GAME_WIN)
+
+## CHANGE GAMESTATE (MENU,LEVEL_SELECTION,GAME_RUNNING,GAME_RESUME,GAME_OVER,GAME_WIN, PAUSE)
 func change_game_state( _gamestate: GameState) -> void:
     match _gamestate:
         GameState.MENU:
@@ -45,7 +73,12 @@ func change_game_state( _gamestate: GameState) -> void:
             current_game_state = GameState.GAME_RUNNING
             ## scenemanager
             game_started.emit()
-            
+        GameState.GAME_RESUME:
+            get_tree().paused = false
+            game_paused.emit(false)
+            ## Set UI to Game
+            UiManager.set_game_hud(true)
+            current_game_state = GameState.GAME_RUNNING
         GameState.PAUSE:
             current_game_state = GameState.PAUSE
             get_tree().paused = true
@@ -60,7 +93,11 @@ func change_game_state( _gamestate: GameState) -> void:
             current_game_state = GameState.GAME_WIN
             get_tree().paused = true
             game_win.emit()
-        
+        GameState.LEVEL_SELECTION:
+            current_game_state = GameState.LEVEL_SELECTION
+            ### set all menus false
+            UiManager._on_game_in_level_selection()
+            get_tree().paused = false
         _:
             ## Set Default Ui to Menu
             UiManager.set_game_hud(false)

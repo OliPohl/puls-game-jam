@@ -60,8 +60,8 @@ func save_level_settings(_key : String, _value) -> void:
 
 func load_level_setting():
     var level_settings = {}
-    for _key in config.get_section_keys("audio"):
-        level_settings[_key] = config.get_value("audio", _key)
+    for _key in config.get_section_keys("level"):
+        level_settings[_key] = config.get_value("level", _key)
     return level_settings
 
 ### main func highscore
@@ -71,6 +71,6 @@ func save_highscore_settings(_key : String, _value) -> void:
 
 func load_highscore_setting():
     var highscore_settings = {}
-    for _key in config.get_section_keys("audio"):
-        highscore_settings[_key] = config.get_value("audio", _key)
+    for _key in config.get_section_keys("highscore"):
+        highscore_settings[_key] = config.get_value("highscore", _key)
     return highscore_settings

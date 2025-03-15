@@ -1,4 +1,5 @@
 extends MarginContainer
+signal level_selected()
 
 ### references 
 @onready var level_label : Label =$PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer/level_Label
@@ -19,6 +20,7 @@ func _ready() -> void:
 func on_button_pressed() -> void :
     if !_is_allready_pressed:
         _is_allready_pressed = true
-        Scene_Manager.start_level(level_id)
+        level_selected.emit()
+        GameManager.start_level(level_id)
         ##CLICK_SOUND
         ##Animation

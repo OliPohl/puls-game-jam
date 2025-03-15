@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pulse-game-jam"
-run/main_scene="uid://cl5bdaaqifthi"
+run/main_scene="uid://b0bymo0j8qc27"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,6 @@ buses/default_bus_layout="res://resources/audio/default_bus_layout.tres"
 [autoload]
 
 ConfigManager="*res://scenes/managers/config_manager.tscn"
-SceneManager="*res://scenes/managers/scene_manager.tscn"
 UiManager="*res://scenes/managers/ui_manager.tscn"
 GameManager="*res://scenes/managers/game_manager.tscn"
 
@@ -89,6 +88,13 @@ jump={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Obstacles"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Flag"
 
 [rendering]
 
