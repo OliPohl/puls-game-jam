@@ -18,8 +18,8 @@ var player_died : bool  = false
 ### Privates 
 var _move_dir : float = 0
 var _looks_left : bool  = true
-var _was_on_floor : bool  = true
-var _can_still_jump :bool  = true
+var _was_on_floor : bool  = false
+var _can_still_jump :bool  = false
 var _jump_buffered :bool = false
 
 ### Ready connect signal to coyote timer
