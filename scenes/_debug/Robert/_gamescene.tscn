@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl5bdaaqifthi"]
+[gd_scene load_steps=7 format=3 uid="uid://cl5bdaaqifthi"]
 
 [ext_resource type="PackedScene" uid="uid://d35gq840pcm2l" path="res://scenes/_player/player_node.tscn" id="1_n7fpr"]
+[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="2_gmedv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmedv"]
 size = Vector2(3197, 50)
@@ -19,13 +20,8 @@ size = Vector2(311, 40.5)
 [node name="Player_Node" parent="." instance=ExtResource("1_n7fpr")]
 position = Vector2(885, 202)
 
-[node name="Camera2D" type="Camera2D" parent="Player_Node"]
+[node name="Camera2D" parent="Player_Node" instance=ExtResource("2_gmedv")]
 position = Vector2(-3, 7)
-offset = Vector2(0, -127.395)
-process_callback = 0
-position_smoothing_enabled = true
-position_smoothing_speed = 12.0
-drag_horizontal_enabled = true
 
 [node name="Ground_Plattform" type="Node2D" parent="."]
 position = Vector2(671, 421)

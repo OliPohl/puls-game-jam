@@ -75,3 +75,10 @@ func confirm(_activate : bool) -> void:
     for child in get_children():
       if child is Logic:
         child.confirm(false)
+
+
+func _process(_delta: float) -> void:
+  if compare(variable_node.get(variable_name), type_cast(value_type, value_name), comparator):
+    for child in get_children():
+      if child is Logic:
+        child.confirm(true)
