@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsrkfo1jedrm6"]
+
+[ext_resource type="Script" uid="uid://ctvdv4eu4g85j" path="res://scenes/managers/audio_manager.gd" id="1_aybmh"]
+
+[node name="Audio_Manager" type="Node"]
+script = ExtResource("1_aybmh")
+
+[node name="Player_Hit_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Player_flag_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Player_Click_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Player_Interact_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Player_Win_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Player_Lose_Sound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Music_Menu" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="Music_Game" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
