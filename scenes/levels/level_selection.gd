@@ -55,3 +55,7 @@ func _format_decimal_float(_float : float) ->String:
     var  _milliseconds = fmod(_float, 1) * 100
     var _text = "%02d:%02d:%02d" % [_minutes, _seconds, _milliseconds]
     return _text
+
+func _on_button_menu_pressed() -> void: 
+    GameManager.start_level(0)
+    # UiManager._on_button_menu_pressed()

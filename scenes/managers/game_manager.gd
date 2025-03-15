@@ -48,6 +48,10 @@ func start_level(_level_id : int):
         current_level= 0
         _scene_manager.start_level(6)
         change_game_state(GameState.LEVEL_SELECTION)
+    if _level_id == 0:
+        current_level= _level_id
+        _scene_manager.start_level(_level_id)
+        change_game_state(GameState.MENU)
     else:
         current_level= _level_id
         _scene_manager.start_level(_level_id)

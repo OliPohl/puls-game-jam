@@ -15,7 +15,7 @@ func _ready() -> void:
         config.set_value("audio", "sound_volume", 0.4)
         config.set_value("audio","music_volume", 0.4)
 
-        config.set_value("level","level_01", false)
+        config.set_value("level","level_01", true)
         config.set_value("level","level_02", false)
         config.set_value("level","level_03", false)
         config.set_value("level","level_04", false)

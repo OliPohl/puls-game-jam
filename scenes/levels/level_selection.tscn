@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=8 format=3 uid="uid://fb2g7h1t7r8k"]
 
 [ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_8v1rd"]
 [ext_resource type="PackedScene" uid="uid://d1ubnvlhyen4y" path="res://components/level_item.tscn" id="2_sk6ii"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://qranu7is4cgp" path="res://assets/images/_debug/level_item_Frame.png" id="3_lt37b"]
 [ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="4_hjfbo"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_lt37b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exv5h"]
 
 [node name="Level_Selection" type="Node2D"]
 script = ExtResource("1_8v1rd")
@@ -15,7 +17,7 @@ script = ExtResource("1_8v1rd")
 [node name="Player_anim" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_anim"]
-position = Vector2(130, 205)
+position = Vector2(133, 216)
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("4_lt37b")
 animation = &"idle"
@@ -115,3 +117,28 @@ horizontal_alignment = 1
 [node name="level5_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item5"]
 layout_mode = 2
 texture = ExtResource("4_hjfbo")
+
+[node name="Panel" type="Panel" parent="Level_button_Control"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 200.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_exv5h")
+
+[node name="PanelContainer" type="PanelContainer" parent="Level_button_Control/Panel"]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 63.0
+offset_right = 731.0
+offset_bottom = 106.0
+
+[node name="Button" type="Button" parent="Level_button_Control/Panel/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Back to Menu"
+
+[connection signal="pressed" from="Level_button_Control/Panel/PanelContainer/Button" to="." method="_on_button_menu_pressed"]

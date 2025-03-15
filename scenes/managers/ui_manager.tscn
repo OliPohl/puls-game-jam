@@ -1,12 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=11 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
+[ext_resource type="Texture2D" uid="uid://diwdq5ln7l3fx" path="res://assets/images/_debug/player.png" id="3_3t4xl"]
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
+[ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
 [ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
 texture = ExtResource("3_oo2yl")
+
+[sub_resource type="Animation" id="Animation_3t4xl"]
+resource_name = "sprite_anim"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 12.1931, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-67, 695), Vector2(1352, 695), Vector2(1352, 695), Vector2(-67, 695)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.06667, 19.9667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_mai3r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-67, 695)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_etnpp"]
+_data = {
+&"RESET": SubResource("Animation_mai3r"),
+&"sprite_anim": SubResource("Animation_3t4xl")
+}
 
 [node name="UI_Manager" type="CanvasLayer"]
 process_mode = 3
@@ -129,7 +193,6 @@ text = "16°"
 wait_time = 0.5
 
 [node name="Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,6 +212,9 @@ size_flags_horizontal = 4
 [node name="Logo" type="Sprite2D" parent="Menu/Logo_Header_VBox"]
 position = Vector2(194, -68)
 texture = ExtResource("1_aag8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu/Logo_Header_VBox/Logo"]
+texture = ExtResource("3_3t4xl")
 
 [node name="Label_Game_Head" type="Label" parent="Menu/Logo_Header_VBox"]
 layout_mode = 2
@@ -199,15 +265,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
-[node name="Button_Select_lvl" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Select Level"
-
 [node name="Button_Credits" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Credits"
+
+[node name="Button_Select_lvl" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select Level"
 
 [node name="Button_Quit" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
@@ -233,9 +299,10 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="Setting_Margin" type="MarginContainer" parent="Menu/Content_Margin"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
@@ -312,6 +379,121 @@ text = "Fullscreen "
 layout_mode = 2
 button_pressed = true
 text = "V-Sync"
+
+[node name="Credits_Margin" type="MarginContainer" parent="Menu/Content_Margin"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin"]
+layout_mode = 2
+
+[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
+
+[node name="Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Settings_Header"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
+text = "Credits"
+
+[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(310, 141.51)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 304.0
+offset_bottom = 136.0
+
+[node name="oli_Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Oliver Pohl - Programing and UI"
+
+[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="phillip_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Philipp Becker - Artist 2D - Animation"
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="robert_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Quang Nguyen - Artist"
+
+[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="robert_v_label2" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Robert Mögenburg - Programming"
+
+[node name="HSeparator4" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Content_Margin/Credits_Margin"]
+layout_mode = 2
+
+[node name="Phillip_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+position = Vector2(75.36, -30.18)
+scale = Vector2(0.245, 0.245)
+sprite_frames = ExtResource("4_7f570")
+animation = &"win"
+autoplay = "win"
+frame_progress = 0.771356
+
+[node name="Oliver_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+modulate = Color(0.372549, 0.682353, 1, 1)
+position = Vector2(136, -18.5)
+scale = Vector2(0.155, 0.155)
+sprite_frames = ExtResource("4_7f570")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0331982
+
+[node name="Quang_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+modulate = Color(0.592157, 1, 1, 1)
+position = Vector2(202, -19.5)
+scale = Vector2(0.18, 0.18)
+sprite_frames = ExtResource("4_7f570")
+animation = &"win"
+autoplay = "win"
+frame_progress = 0.505682
+flip_h = true
+
+[node name="Robert_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+modulate = Color(0.164706, 1, 0.266667, 1)
+position = Vector2(277.36, -29.18)
+scale = Vector2(0.26, 0.26)
+sprite_frames = ExtResource("4_7f570")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.53418
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Menu"]
+position = Vector2(-67, 695)
+scale = Vector2(0.215, 0.215)
+sprite_frames = ExtResource("4_7f570")
+animation = &"run"
+autoplay = "run"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
+libraries = {
+&"": SubResource("AnimationLibrary_etnpp")
+}
+autoplay = "sprite_anim"
 
 [node name="Game_Timer" type="Timer" parent="."]
 wait_time = 8.0
@@ -658,8 +840,8 @@ layout_mode = 2
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Start" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Resume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Select_lvl" to="." method="_on_button_select_lvl_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Credits" to="." method="_on_button_credits_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Select_lvl" to="." method="_on_button_select_lvl_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/master_v_slider" to="." method="_on_master_v_slider_drag_ended"]
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/sound_v_silder" to="." method="_on_sound_v_silder_drag_ended"]

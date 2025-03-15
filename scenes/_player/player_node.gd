@@ -28,6 +28,7 @@ func _ready() -> void:
 	_jump_buffered_timer.timeout.connect(_on_jumped_buffered_timer_timeout)
 	_player_coyote_timer.wait_time = player_coyote_time
 	_collect_area.area_entered.connect(on_collect_area_entered)
+	
 ######### INPUT
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
