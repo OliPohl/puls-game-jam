@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwx82eaemqbm3"]
+
+[ext_resource type="Script" uid="uid://bx2qx4nqg7eub" path="res://global/logic/logic-items/logic-timer/logic_timer_ui.gd" id="1_p68nk"]
+[ext_resource type="Theme" uid="uid://b4vkbmm6ayi0q" path="res://resources/logic/edit_var.tres" id="2_cnqig"]
+[ext_resource type="Theme" uid="uid://d2odaa16eyw08" path="res://resources/logic/text.tres" id="3_7y3tb"]
+[ext_resource type="Theme" uid="uid://b3h4bwbxkclku" path="res://resources/logic/edit_float_int.tres" id="4_8hwe4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv385"]
+bg_color = Color(0.254611, 0.275634, 0.30927, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="Theme" id="Theme_7y3tb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_yv385")
+
+[node name="LogicTimer" type="VBoxContainer" node_paths=PackedStringArray("var_node", "value_node", "then_parent")]
+script = ExtResource("1_p68nk")
+var_node = NodePath("LogicTimerItems/VarName")
+value_node = NodePath("LogicTimerItems/ValueName")
+then_parent = NodePath("ThenItems/ThenParent")
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="LogicTimerItems" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VarName" type="TextEdit" parent="LogicTimerItems"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 8
+theme = ExtResource("2_cnqig")
+text = " After"
+editable = false
+selecting_enabled = false
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="arrow" type="Label" parent="LogicTimerItems"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("3_7y3tb")
+text = "=>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueName" type="TextEdit" parent="LogicTimerItems"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_8hwe4")
+text = "100"
+placeholder_text = "int"
+selecting_enabled = false
+scroll_fit_content_width = true
+
+[node name="Colon" type="Label" parent="LogicTimerItems"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme = ExtResource("3_7y3tb")
+text = "seconds:"
+horizontal_alignment = 2
+
+[node name="ThenItems" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="ParagraphHighlight" type="Panel" parent="ThenItems"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_7y3tb")
+
+[node name="Spacer" type="Control" parent="ThenItems"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="ThenParent" type="VBoxContainer" parent="ThenItems"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2

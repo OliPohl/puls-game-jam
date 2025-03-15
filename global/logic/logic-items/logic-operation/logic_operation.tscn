@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://by3dtdkkeqmw8"]
+
+[ext_resource type="Script" uid="uid://vma14tgytuxw" path="res://global/logic/logic-items/logic-operation/logic_operation_ui.gd" id="1_a754e"]
+[ext_resource type="Theme" uid="uid://cato0bso8wldb" path="res://resources/logic/edit_string.tres" id="2_o6xcr"]
+[ext_resource type="Theme" uid="uid://b4vkbmm6ayi0q" path="res://resources/logic/edit_var.tres" id="2_w8xqm"]
+
+[node name="Logic_Operation" type="HBoxContainer" node_paths=PackedStringArray("var_node", "operator_node", "value_node")]
+custom_minimum_size = Vector2(0, 35)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_a754e")
+var_node = NodePath("VarName")
+operator_node = NodePath("Operator")
+value_node = NodePath("ValueName")
+
+[node name="VarName" type="TextEdit" parent="."]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 8
+theme = ExtResource("2_w8xqm")
+text = " jump_power"
+editable = false
+selecting_enabled = false
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="Operator" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueName" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_o6xcr")
+text = "100"
+placeholder_text = "int"
+selecting_enabled = false
+scroll_fit_content_width = true

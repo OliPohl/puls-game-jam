@@ -1,0 +1,230 @@
+[gd_scene load_steps=26 format=3 uid="uid://db3ux7c2i4esj"]
+
+[ext_resource type="Script" uid="uid://b0q45mpoi6c8j" path="res://global/logic/logic_ui.gd" id="1_abewi"]
+[ext_resource type="PackedScene" uid="uid://by3dtdkkeqmw8" path="res://global/logic/logic-items/logic-operation/logic_operation.tscn" id="2_b3fq7"]
+[ext_resource type="PackedScene" uid="uid://dundr3w3xvcdt" path="res://global/logic/logic-items/logic-if/logic_if.tscn" id="2_nhb37"]
+[ext_resource type="Theme" uid="uid://dbnj3ju17wocq" path="res://resources/logic/edit_bool.tres" id="2_paat3"]
+[ext_resource type="Theme" uid="uid://cu3nrlos83hou" path="res://resources/logic/panel_background.tres" id="2_r2j0x"]
+[ext_resource type="PackedScene" uid="uid://cwx82eaemqbm3" path="res://global/logic/logic-items/logic-timer/logic_timer.tscn" id="2_umfss"]
+[ext_resource type="Shader" uid="uid://du4dot134awbp" path="res://global/logic/pause.gdshader" id="2_v2vjs"]
+[ext_resource type="Theme" uid="uid://b3h4bwbxkclku" path="res://resources/logic/edit_float_int.tres" id="3_8hdcv"]
+[ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="3_cpdbk"]
+[ext_resource type="Theme" uid="uid://d2odaa16eyw08" path="res://resources/logic/text.tres" id="3_xoayi"]
+[ext_resource type="Theme" uid="uid://bhg1wofoadso6" path="res://resources/logic/panel_button_hover.tres" id="4_5y5nk"]
+[ext_resource type="Theme" uid="uid://blgny2nx24f0g" path="res://resources/logic/panel_scroll.tres" id="4_6mfqj"]
+[ext_resource type="Script" uid="uid://r3wcjrfbqhqb" path="res://global/logic/buttons.gd" id="4_8sbe4"]
+[ext_resource type="Script" uid="uid://bq23ajjqldtbr" path="res://global/logic/pause_shader.gd" id="4_jqd4f"]
+[ext_resource type="Theme" uid="uid://cato0bso8wldb" path="res://resources/logic/edit_string.tres" id="4_w8q1u"]
+[ext_resource type="Theme" uid="uid://llmd1pmxn323" path="res://resources/logic/panel_empty.tres" id="4_xoayi"]
+[ext_resource type="Theme" uid="uid://b4vkbmm6ayi0q" path="res://resources/logic/edit_var.tres" id="5_7gfis"]
+[ext_resource type="Texture2D" uid="uid://bii8bsocc634o" path="res://assets/images/logic/cancel_button.png" id="5_d6jg3"]
+[ext_resource type="Theme" uid="uid://dgo4718a3si5u" path="res://resources/logic/btn_cancel.tres" id="6_6mfqj"]
+[ext_resource type="Texture2D" uid="uid://7bsyc74hly2l" path="res://assets/images/logic/confrim_button.png" id="7_d6jg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v2vjs"]
+shader = ExtResource("2_v2vjs")
+shader_parameter/lod = 1.0
+shader_parameter/mix_percentage = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_d6jg3"]
+font_size = 20
+font_color = Color(0.722279, 0.746935, 0.796093, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d6jg3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6jg3"]
+bg_color = Color(0.261329, 0.257218, 0.275084, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_8sbe4"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_d6jg3")
+Button/styles/focus = SubResource("StyleBoxFlat_d6jg3")
+Button/styles/hover = SubResource("StyleBoxFlat_d6jg3")
+Button/styles/normal = SubResource("StyleBoxEmpty_d6jg3")
+Button/styles/pressed = SubResource("StyleBoxFlat_d6jg3")
+
+[node name="LogicUI" type="CanvasLayer" node_paths=PackedStringArray("title_node", "cancel_button", "confirm_button", "logic_holder", "logic_holder_bottom_spacer", "logic_template_holder", "pause_shader", "logic_if_ui_node", "logic_operation_ui_node", "logic_timer_ui_node")]
+process_mode = 3
+offset = Vector2(0, 700)
+transform = Transform2D(1, 0, 0, 1, 0, 700)
+script = ExtResource("1_abewi")
+title_node = NodePath("Background/Title")
+cancel_button = NodePath("Background/Buttons/CancelBtn")
+confirm_button = NodePath("Background/Buttons/ConfirmBtn")
+logic_holder = NodePath("Background/LogicSpace/ScrollContainer/LogicHolder")
+logic_holder_bottom_spacer = NodePath("Background/LogicSpace/ScrollContainer/LogicHolder/Spacer2")
+logic_template_holder = NodePath("LogicTemplatesHolder")
+pause_shader = NodePath("PauseShader")
+logic_if_ui_node = NodePath("LogicTemplatesHolder/LogicIf")
+logic_operation_ui_node = NodePath("LogicTemplatesHolder/LogicOperation")
+logic_timer_ui_node = NodePath("LogicTemplatesHolder/LogicTimer")
+edit_bool = ExtResource("2_paat3")
+edit_int = ExtResource("3_8hdcv")
+edit_float = ExtResource("3_8hdcv")
+edit_string = ExtResource("4_w8q1u")
+edit_var = ExtResource("5_7gfis")
+
+[node name="PauseShader" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_v2vjs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1397.0
+offset_top = -1298.0
+offset_right = 1570.0
+offset_bottom = 528.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cpdbk")
+script = ExtResource("4_jqd4f")
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_top = 54.0
+offset_right = -335.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_r2j0x")
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme = ExtResource("3_xoayi")
+text = "Item.name"
+label_settings = SubResource("LabelSettings_d6jg3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.0
+offset_top = 13.0
+offset_right = -27.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme = ExtResource("4_xoayi")
+script = ExtResource("4_8sbe4")
+nomal_theme = ExtResource("4_xoayi")
+focus_theme = ExtResource("4_5y5nk")
+
+[node name="CancelBtn" type="Button" parent="Background/Buttons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_right = 31.0
+offset_bottom = 13.5
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_6mfqj")
+icon = ExtResource("5_d6jg3")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ConfirmBtn" type="Button" parent="Background/Buttons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_8sbe4")
+icon = ExtResource("7_d6jg3")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LogicSpace" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -255.0
+offset_right = 281.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_xoayi")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/LogicSpace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_6mfqj")
+horizontal_scroll_mode = 0
+
+[node name="LogicHolder" type="VBoxContainer" parent="Background/LogicSpace/ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Spacer" type="Control" parent="Background/LogicSpace/ScrollContainer/LogicHolder"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="Background/LogicSpace/ScrollContainer/LogicHolder"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LogicTemplatesHolder" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="LogicIf" parent="LogicTemplatesHolder" instance=ExtResource("2_nhb37")]
+layout_mode = 2
+offset_left = 380.0
+offset_top = 129.0
+offset_right = 900.0
+offset_bottom = 203.0
+
+[node name="LogicOperation" parent="LogicTemplatesHolder" instance=ExtResource("2_b3fq7")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 380.0
+offset_top = 105.0
+offset_right = 612.0
+offset_bottom = 140.0
+grow_horizontal = 1
+
+[node name="LogicTimer" parent="LogicTemplatesHolder" instance=ExtResource("2_umfss")]
+layout_mode = 2
+offset_left = 380.0
+offset_top = 129.0
+offset_right = 900.0
+offset_bottom = 203.0

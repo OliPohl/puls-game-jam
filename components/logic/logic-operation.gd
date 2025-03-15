@@ -25,10 +25,10 @@ class_name LogicOperation extends Logic
 
 
 @export_group("Interation")
-## The type of interaction to use.
-@export_enum("string", "dropdown") var interaction_type = "string";
-## The Dropdown options for the value if the interaction type is "dropdown".
-@export var dropdown_options: Array[String] = [];
+# ## The type of interaction to use.
+# @export_enum("string", "dropdown") var interaction_type = "string";
+# ## The Dropdown options for the value if the interaction type is "dropdown".
+# @export var dropdown_options: Array[String] = [];
 ## Is the value interactable by the player?
 @export var interactable: bool = false;
 # endregion Export
@@ -48,4 +48,11 @@ func operate(a: Variant, b: Variant, _operator: String) -> Variant:
     "*=" : return a * b
     "%" : return a % b
   return a
+
+
+func create_ui() -> void:
+  ui_element = logic_ui.create_logic_operation_ui(variable_name, operator, value_name, value_type, interactable)
+  var parent = get_parent() as Logic
+
+  parent.add_ui(ui_element)
 # endregion Utils
