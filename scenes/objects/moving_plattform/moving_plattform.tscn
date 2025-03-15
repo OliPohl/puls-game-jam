@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://b03lr3iaacsg8"]
+
+[ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="1_d2elh"]
+[ext_resource type="Script" uid="uid://bcsgsnu8u0j23" path="res://scenes/objects/moving_plattform/moving_plattform.gd" id="1_geq86"]
+[ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="2_q1hbw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2elh"]
+size = Vector2(507, 502)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1hbw"]
+radius = 134.78
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1hbw"]
+atlas = ExtResource("1_d2elh")
+region = Rect2(768, 0, 256, 512)
+
+[sub_resource type="Animation" id="Animation_geq86"]
+resource_name = "move"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moving_plattform:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y084x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moving_plattform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y084x"]
+_data = {
+&"RESET": SubResource("Animation_y084x"),
+&"move": SubResource("Animation_geq86")
+}
+
+[node name="Moving_mother" type="Node2D"]
+script = ExtResource("1_geq86")
+
+[node name="Moving_plattform" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_plattform"]
+position = Vector2(128.5, -1)
+shape = SubResource("RectangleShape2D_d2elh")
+disabled = true
+
+[node name="Death_Zone" type="Area2D" parent="Moving_plattform"]
+collision_layer = 0
+script = ExtResource("2_q1hbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_plattform/Death_Zone"]
+position = Vector2(129, -3)
+shape = SubResource("CircleShape2D_q1hbw")
+
+[node name="Visuals" type="Node2D" parent="Moving_plattform"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving_plattform/Visuals"]
+texture = SubResource("AtlasTexture_q1hbw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Moving_plattform/Visuals"]
+position = Vector2(256, 0)
+texture = SubResource("AtlasTexture_q1hbw")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y084x")
+}
