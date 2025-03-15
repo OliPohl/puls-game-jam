@@ -1,4 +1,3 @@
-@tool
 @icon("res://components/logic/icons/logic-gray.png")
 class_name Logic extends Node
 ## Abstract Logic class for creating custom logic nodes.
@@ -26,4 +25,8 @@ func create_ui() -> void:
   pass
 
 func add_ui(_node: Node) -> void:
+  pass
+
+
+func confirm(_activate : bool) -> void:
   pass

@@ -47,7 +47,12 @@ var value_name = "":
 func _ready() -> void:
   var_node.text_changed.connect(_on_var_node_text_changed)
   value_node.text_changed.connect(_on_value_node_text_changed)
-
+  var_node.focus_entered.connect(_on_var_node_focus_entered)
+  value_node.focus_entered.connect(_on_value_node_focus_entered)
+func _on_var_node_focus_entered() -> void:
+  LogicUiNode.current_focus = var_node
+func _on_value_node_focus_entered() -> void:
+  LogicUiNode.current_focus = value_node
 
 func _on_var_node_text_changed() -> void:
   var_name = var_node.text

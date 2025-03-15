@@ -55,7 +55,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_8hwe4")
 text = "100"
-placeholder_text = "int"
 selecting_enabled = false
 scroll_fit_content_width = true
 

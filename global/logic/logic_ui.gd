@@ -14,6 +14,7 @@ class_name LogicUi extends CanvasLayer
 ## A node that holds templates and temp logic nodes
 @export var logic_template_holder: Node
 @export var pause_shader: PauseShader
+@export var background : Panel = null
 
 
 @export_group("Tempaltes")
@@ -31,8 +32,11 @@ class_name LogicUi extends CanvasLayer
 @export var edit_float: Theme
 @export var edit_string: Theme
 @export var edit_var: Theme
+@export var interaction_mat : ShaderMaterial
 
-var i : int = 2
+var current_logic_base : LogicBase = null
+var current_focus: TextEdit = null
+var animating: bool = false
 
 
 func _ready() -> void:
@@ -41,7 +45,9 @@ func _ready() -> void:
 
 
 func _on_confirm_button_pressed() -> void:
-  #TODO: Send confirmation to creator
+  if current_logic_base != null:
+    current_logic_base.confirm()
+    current_logic_base.show_logic()
   change_visibility(false)
 
 
@@ -90,7 +96,6 @@ func create_logic_operation_ui(var_name: String, operator: String, value_name: S
   new_logic_operation_ui.set_deferred("interactable", interactable)
 
   new_logic_operation_ui.set_deferred("visible", true)
-  print("Created Logic Operation")
   return new_logic_operation_ui
 
 
@@ -109,15 +114,41 @@ func create_logic_timer_ui(var_name: String, value_name: String, interactable:bo
 
 func change_visibility(value :bool) -> void:
   if value:
+    animating = true
     offset.y = 700.0
     visible = true
     var tween = get_tree().create_tween()
+    tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
     tween.tween_property(self, "offset:y", 0, 0.2)
     pause_shader.change_visibility(true)
+    get_tree().paused = true
+    await tween.finished
+    animating = false
   else:
+    animating = true
     offset.y = 0.0
     var tween = get_tree().create_tween()
+    tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
     tween.tween_property(self, "offset:y", 700.0, 0.2)
     pause_shader.change_visibility(false)
     await tween.finished
+    get_tree().paused = false
     visible = false
+    animating = false
+
+
+
+func _input(event: InputEvent) -> void:
+  if animating or not visible:
+    return
+  if event is InputEventKey and event.pressed:
+    if event.keycode == KEY_ENTER:
+      current_focus.release_focus()
+    elif event.keycode == KEY_ESCAPE:
+      change_visibility(false)
+  if event is InputEventMouseButton and event.pressed:
+    var mouse_pos = get_viewport().get_mouse_position()
+    if not background.get_global_rect().has_point(mouse_pos):
+      change_visibility(false)
+    elif current_focus and current_focus.get_global_rect().has_point(mouse_pos):
+      current_focus.release_focus()

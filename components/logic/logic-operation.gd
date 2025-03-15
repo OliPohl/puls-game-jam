@@ -1,4 +1,3 @@
-@tool
 @icon("res://components/logic/icons/logic-green.png")
 class_name LogicOperation extends Logic
 ## Logic node that performs a logical operation
@@ -51,8 +50,17 @@ func operate(a: Variant, b: Variant, _operator: String) -> Variant:
 
 
 func create_ui() -> void:
+  value_name = str(variable_node.get(variable_name))
   ui_element = logic_ui.create_logic_operation_ui(variable_name, operator, value_name, value_type, interactable)
   var parent = get_parent() as Logic
 
   parent.add_ui(ui_element)
+
+
+func confirm(_activate : bool) -> void:
+  var _ui_element = ui_element as LogicOperationUi
+  value_name = _ui_element.value_name
+  if _activate:
+    variable_node.set(variable_name, operate(variable_node.get(variable_name), type_cast(value_type, value_name), operator))
+
 # endregion Utils

@@ -1,4 +1,3 @@
-@tool
 @icon("res://components/logic/icons/logic-purple.png")
 class_name LogicTimer extends Logic
 ## Logic node that performs a for loop operation

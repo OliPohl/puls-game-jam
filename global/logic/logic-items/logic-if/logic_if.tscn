@@ -63,7 +63,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_4085q")
 text = "100"
-placeholder_text = "int"
 scroll_fit_content_width = true
 
 [node name="Colon" type="Label" parent="LogicIfItems"]

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ix3v5ctoqvoo"]
+
+[ext_resource type="Shader" uid="uid://ebbc7cvv02dn" path="res://components/logic/interaction.gdshader" id="1_ms5q2"]
+
+[resource]
+shader = ExtResource("1_ms5q2")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 1.0
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false

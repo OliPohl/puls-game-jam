@@ -1,4 +1,3 @@
-@tool
 @icon("res://components/logic/icons/logic-red.png")
 class_name LogicIf extends Logic
 ## Logic node that performs a conditional check on the input value and returns a boolean output.
@@ -62,3 +61,17 @@ func create_ui() -> void:
 func add_ui(_node: Node) -> void:
   var _ui_element = ui_element as LogicIfUi
   _ui_element.add_then_node(_node)
+
+
+func confirm(_activate : bool) -> void:
+  var _ui_element = ui_element as LogicIfUi
+  value_name = _ui_element.value_name
+
+  if compare(variable_node.get(variable_name), type_cast(value_type, value_name), comparator):
+    for child in get_children():
+      if child is Logic:
+        child.confirm(true)
+  else:
+    for child in get_children():
+      if child is Logic:
+        child.confirm(false)

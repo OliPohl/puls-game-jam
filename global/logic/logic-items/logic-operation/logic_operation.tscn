@@ -38,6 +38,5 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_o6xcr")
 text = "100"
-placeholder_text = "int"
 selecting_enabled = false
 scroll_fit_content_width = true

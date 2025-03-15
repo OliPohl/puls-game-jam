@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://db3ux7c2i4esj"]
+[gd_scene load_steps=27 format=3 uid="uid://db3ux7c2i4esj"]
 
 [ext_resource type="Script" uid="uid://b0q45mpoi6c8j" path="res://global/logic/logic_ui.gd" id="1_abewi"]
 [ext_resource type="PackedScene" uid="uid://by3dtdkkeqmw8" path="res://global/logic/logic-items/logic-operation/logic_operation.tscn" id="2_b3fq7"]
@@ -19,6 +19,7 @@
 [ext_resource type="Theme" uid="uid://b4vkbmm6ayi0q" path="res://resources/logic/edit_var.tres" id="5_7gfis"]
 [ext_resource type="Texture2D" uid="uid://bii8bsocc634o" path="res://assets/images/logic/cancel_button.png" id="5_d6jg3"]
 [ext_resource type="Theme" uid="uid://dgo4718a3si5u" path="res://resources/logic/btn_cancel.tres" id="6_6mfqj"]
+[ext_resource type="Material" uid="uid://ix3v5ctoqvoo" path="res://resources/logic/interaction.tres" id="6_8hdcv"]
 [ext_resource type="Texture2D" uid="uid://7bsyc74hly2l" path="res://assets/images/logic/confrim_button.png" id="7_d6jg3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v2vjs"]
@@ -46,8 +47,9 @@ Button/styles/hover = SubResource("StyleBoxFlat_d6jg3")
 Button/styles/normal = SubResource("StyleBoxEmpty_d6jg3")
 Button/styles/pressed = SubResource("StyleBoxFlat_d6jg3")
 
-[node name="LogicUI" type="CanvasLayer" node_paths=PackedStringArray("title_node", "cancel_button", "confirm_button", "logic_holder", "logic_holder_bottom_spacer", "logic_template_holder", "pause_shader", "logic_if_ui_node", "logic_operation_ui_node", "logic_timer_ui_node")]
+[node name="LogicUI" type="CanvasLayer" node_paths=PackedStringArray("title_node", "cancel_button", "confirm_button", "logic_holder", "logic_holder_bottom_spacer", "logic_template_holder", "pause_shader", "background", "logic_if_ui_node", "logic_operation_ui_node", "logic_timer_ui_node")]
 process_mode = 3
+visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("1_abewi")
@@ -58,6 +60,7 @@ logic_holder = NodePath("Background/LogicSpace/ScrollContainer/LogicHolder")
 logic_holder_bottom_spacer = NodePath("Background/LogicSpace/ScrollContainer/LogicHolder/Spacer2")
 logic_template_holder = NodePath("LogicTemplatesHolder")
 pause_shader = NodePath("PauseShader")
+background = NodePath("Background")
 logic_if_ui_node = NodePath("LogicTemplatesHolder/LogicIf")
 logic_operation_ui_node = NodePath("LogicTemplatesHolder/LogicOperation")
 logic_timer_ui_node = NodePath("LogicTemplatesHolder/LogicTimer")
@@ -66,6 +69,7 @@ edit_int = ExtResource("3_8hdcv")
 edit_float = ExtResource("3_8hdcv")
 edit_string = ExtResource("4_w8q1u")
 edit_var = ExtResource("5_7gfis")
+interaction_mat = ExtResource("6_8hdcv")
 
 [node name="PauseShader" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_v2vjs")
