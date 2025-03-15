@@ -149,11 +149,13 @@ func _on_game_win() -> void:
 	_win_control.set_sliders()
 
 func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	ConfigManager.save_video_settings("fullscreen", _toggled_on)
 	## change to full screen
 
 
 func _on_vsync_toggle_toggled(_toggled_on:bool) -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	ConfigManager.save_video_settings("vsync",_toggled_on)
 	## enable vsync
 

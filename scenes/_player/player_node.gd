@@ -5,6 +5,8 @@ class_name Player_Node
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 @onready var _collect_area : Area2D = $Hurt_Box_Component
 
+### particle system
+@onready var _particles : CPUParticles2D = $Visuals_Sprite/CPUParticles2D
 ### Global Variables, can be changed by Object Manager
 var player_speed : float = 350
 var player_gravity : float  = 33
@@ -76,6 +78,7 @@ func _jump():
 		return
 	if is_on_floor() or _can_still_jump:
 		AudioManager.play_sound(AudioManager.Sound.HIT)
+		_particles.emitting =true
 		velocity.y = -player_jump_power
 		if _can_still_jump:
 			_can_still_jump = false

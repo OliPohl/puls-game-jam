@@ -12,35 +12,44 @@
 script = ExtResource("1_aybmh")
 
 [node name="Player_Hit_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_vqw5g")
+pitch_scale = 2.13
 bus = &"SFX"
 
 [node name="Player_flag_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_vqw5g")
 bus = &"SFX"
 
 [node name="Player_Click_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_wiybg")
 bus = &"SFX"
 
 [node name="Player_Interact_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_wiybg")
 bus = &"SFX"
 
 [node name="Player_Win_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("4_slqq1")
 bus = &"Music"
 
 [node name="Player_Lose_Sound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("5_swgyr")
 bus = &"Music"
 
 [node name="Music_Menu" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_q14bd")
 bus = &"Music"
 parameters/looping = true
 
 [node name="Music_Game" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_705o2")
 bus = &"Music"
 parameters/looping = true
