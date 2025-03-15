@@ -1,3 +1,117 @@
-[gd_scene format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=7 format=3 uid="uid://fb2g7h1t7r8k"]
+
+[ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_8v1rd"]
+[ext_resource type="PackedScene" uid="uid://d1ubnvlhyen4y" path="res://components/level_item.tscn" id="2_sk6ii"]
+[ext_resource type="Script" uid="uid://cn4j645eic5di" path="res://components/player_anim_follow_mouse.gd" id="3_exv5h"]
+[ext_resource type="Texture2D" uid="uid://qranu7is4cgp" path="res://assets/images/_debug/level_item_Frame.png" id="3_lt37b"]
+[ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="4_hjfbo"]
+[ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_lt37b"]
 
 [node name="Level_Selection" type="Node2D"]
+script = ExtResource("1_8v1rd")
+
+[node name="levelContainer" type="Node" parent="."]
+
+[node name="Player_anim" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_anim"]
+position = Vector2(130, 205)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("4_lt37b")
+animation = &"idle"
+frame_progress = 0.58293
+script = ExtResource("3_exv5h")
+
+[node name="Level_button_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level_button_Control"]
+layout_mode = 1
+offset_top = 250.0
+offset_right = 1276.0
+offset_bottom = 499.0
+
+[node name="Level_Item" parent="Level_button_Control/HBoxContainer" instance=ExtResource("2_sk6ii")]
+layout_mode = 2
+level_name = "Level 01 - Dusty Springs"
+level_id = 1
+level_sprite = ExtResource("3_lt37b")
+
+[node name="level_01_highscore" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "10s:333ms"
+horizontal_alignment = 1
+
+[node name="level1_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item"]
+layout_mode = 2
+texture = ExtResource("4_hjfbo")
+
+[node name="Level_Item2" parent="Level_button_Control/HBoxContainer" instance=ExtResource("2_sk6ii")]
+layout_mode = 2
+level_name = "Level 02 -Hallow Eyes"
+level_id = 2
+level_sprite = ExtResource("3_lt37b")
+
+[node name="level_02_highscore2" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item2"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "10s:333ms"
+horizontal_alignment = 1
+
+[node name="level2_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item2"]
+layout_mode = 2
+texture = ExtResource("4_hjfbo")
+
+[node name="Level_Item3" parent="Level_button_Control/HBoxContainer" instance=ExtResource("2_sk6ii")]
+layout_mode = 2
+level_name = "Level 03 - Midnight Coast"
+level_id = 3
+level_sprite = ExtResource("3_lt37b")
+
+[node name="level_03_highscore3" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item3"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "10s:333ms"
+horizontal_alignment = 1
+
+[node name="level3_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item3"]
+layout_mode = 2
+texture = ExtResource("4_hjfbo")
+
+[node name="Level_Item4" parent="Level_button_Control/HBoxContainer" instance=ExtResource("2_sk6ii")]
+layout_mode = 2
+level_name = "Level 04 - Dangerous Fall"
+level_id = 4
+level_sprite = ExtResource("3_lt37b")
+
+[node name="level_04_highscore4" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item4"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "10s:333ms"
+horizontal_alignment = 1
+
+[node name="level4_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item4"]
+layout_mode = 2
+texture = ExtResource("4_hjfbo")
+
+[node name="Level_Item5" parent="Level_button_Control/HBoxContainer" instance=ExtResource("2_sk6ii")]
+layout_mode = 2
+level_name = "Level 05 - Rising Sunset"
+level_id = 5
+level_sprite = ExtResource("3_lt37b")
+
+[node name="level_05_highscore5" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item5"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "10s:333ms"
+horizontal_alignment = 1
+
+[node name="level5_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item5"]
+layout_mode = 2
+texture = ExtResource("4_hjfbo")
