@@ -13,7 +13,7 @@ func _ready() -> void:
     for x in _game_level_list:
         ResourceLoader.load_threaded_request(x,"PackedScene",true)
 
-func on_load_scene(_value :int) -> void:
+func _on_load_scene(_value :int) -> void:
     ## Remove scene to backgroun
     get_tree().root.remove_child(_current_scene)
     ##set Loaded Resource to PackedScene
@@ -22,3 +22,7 @@ func on_load_scene(_value :int) -> void:
     _current_scene = _scene.instantiate()
     ## add to root
     get_tree().root.add_child(_current_scene)
+
+func start_level(_level_id : int) -> void:
+    _on_load_scene(_level_id)
+    GameManager.change_game_state(GameManager.GameState.GAME_RUNNING)

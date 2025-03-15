@@ -21,7 +21,10 @@ buses/default_bus_layout="res://resources/audio/default_bus_layout.tres"
 
 [autoload]
 
-Scene_Manager="*res://scenes/managers/scene_manager.tscn"
+ConfigManager="*res://scenes/managers/config_manager.tscn"
+SceneManager="*res://scenes/managers/scene_manager.tscn"
+UiManager="*res://scenes/managers/ui_manager.tscn"
+GameManager="*res://scenes/managers/game_manager.tscn"
 
 [display]
 

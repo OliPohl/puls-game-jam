@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=5 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
+[ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
+texture = ExtResource("3_oo2yl")
 
 [node name="UI_Manager" type="CanvasLayer"]
 script = ExtResource("1_xetle")
 
 [node name="Game_HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,35 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Debug_Margin" type="MarginContainer" parent="Game_HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Game_HUD/Debug_Margin"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
-layout_mode = 2
-text = "Debug_Panel"
-
-[node name="position_label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
-layout_mode = 2
-text = "asdf"
-
-[node name="Label3" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
-layout_mode = 2
-text = "Time start:
-"
-
-[node name="input_label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
-layout_mode = 2
-text = "0:00:000"
 
 [node name="Timer_Margin" type="MarginContainer" parent="Game_HUD"]
 layout_mode = 1
@@ -52,6 +28,8 @@ anchor_right = 1.0
 offset_left = -300.0
 offset_bottom = 50.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 
 [node name="Panel" type="Panel" parent="Game_HUD/Timer_Margin"]
 custom_minimum_size = Vector2(300, 50)
@@ -75,6 +53,80 @@ theme_override_font_sizes/font_size = 17
 text = "00:00:000"
 horizontal_alignment = 1
 
+[node name="Debug_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 120.0
+
+[node name="Debug_Margin" type="MarginContainer" parent="Debug_Control"]
+layout_mode = 1
+offset_right = 147.0
+offset_bottom = 114.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="Debug_Control/Debug_Margin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug_Control/Debug_Margin"]
+layout_mode = 2
+
+[node name="debug_label" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
+layout_mode = 2
+
+[node name="debug_on" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Debug_Mode:"
+
+[node name="frames_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "FPS:"
+
+[node name="ram_Label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "RAM:"
+
+[node name="Gpu_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "GPU"
+
+[node name="debug_values" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
+layout_mode = 2
+
+[node name="debug_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_font_sizes/font_size = 9
+text = "On"
+
+[node name="frames_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_font_sizes/font_size = 9
+text = "66"
+
+[node name="ram_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_font_sizes/font_size = 9
+text = "120 MB"
+
+[node name="gpu_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_font_sizes/font_size = 9
+text = "16°"
+
+[node name="Debug_Interval" type="Timer" parent="Debug_Control"]
+wait_time = 0.5
+
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -84,11 +136,98 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Debug_Margin" type="MarginContainer" parent="Menu"]
+[node name="Logo_Header_VBox" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+offset_left = 493.0
+offset_top = 144.0
+offset_right = 877.0
+offset_bottom = 472.0
+size_flags_horizontal = 4
+
+[node name="Logo" type="Sprite2D" parent="Menu/Logo_Header_VBox"]
+position = Vector2(194, -68)
+texture = ExtResource("1_aag8p")
+
+[node name="Label_Game_Head" type="Label" parent="Menu/Logo_Header_VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "The Game"
+horizontal_alignment = 1
+
+[node name="Label_Game_desc" type="Label" parent="Menu/Logo_Header_VBox"]
+layout_mode = 2
+text = "An Epic Game, but its broken and need to balance"
+horizontal_alignment = 1
+
+[node name="Menu_button_Margin" type="MarginContainer" parent="Menu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -189.0
+offset_right = 227.0
+offset_bottom = 189.0
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu_button_Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_Start" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[node name="Button_Resume" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="Button_Settings" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="Button_Select_lvl" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select Level"
+
+[node name="Button_Credits" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
+[node name="Button_Tutorial" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Tutorial"
+
+[node name="Button_Quit" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Content_Margin" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -115.5
+offset_right = 150.0
+offset_bottom = 115.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 25
@@ -96,48 +235,93 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Debug_Margin"]
+[node name="Setting_Margin" type="MarginContainer" parent="Menu/Content_Margin"]
 layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="Logo" type="Sprite2D" parent="Menu/Debug_Margin/VBoxContainer"]
-position = Vector2(85, 103)
-texture = ExtResource("1_aag8p")
-
-[node name="HSeparator" type="HSeparator" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin"]
 layout_mode = 2
 
-[node name="Button_Start" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Start"
+theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
 
-[node name="Button_Settings" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Settings"
+[node name="Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
+text = " Settings"
 
-[node name="Button_Select_lvl" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer"]
+custom_minimum_size = Vector2(310, 250)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Select Level"
 
-[node name="Button_Credits" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Credits"
+offset_left = 4.0
+offset_right = 304.0
+offset_bottom = 231.0
 
-[node name="Button_Tutorial" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="master_v_Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Tutorial"
+text = "Master Volume"
 
-[node name="Button_Quit" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+[node name="master_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Quit"
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="sound_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Sound Volume"
+
+[node name="sound_v_silder" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="music_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="music_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.41
+
+[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+
+[node name="fullscreen_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+text = "Fullscreen "
+
+[node name="vsync_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+button_pressed = true
+text = "V-Sync"
 
 [node name="Game_Timer" type="Timer" parent="."]
 wait_time = 8.0
 one_shot = true
+
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/master_v_slider" to="." method="_on_master_v_slider_drag_ended"]
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/sound_v_silder" to="." method="_on_sound_v_silder_drag_ended"]
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
+[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
