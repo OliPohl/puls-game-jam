@@ -25,6 +25,7 @@ ConfigManager="*res://scenes/managers/config_manager.tscn"
 UiManager="*res://scenes/managers/ui_manager.tscn"
 GameManager="*res://scenes/managers/game_manager.tscn"
 LogicUiNode="*res://global/logic/logic_ui.tscn"
+AudioManager="*res://scenes/managers/audio_manager.tscn"
 
 [display]
 

@@ -65,6 +65,7 @@ func change_game_state( _gamestate: GameState) -> void:
     match _gamestate:
         GameState.MENU:
             get_tree().paused = false
+            AudioManager._on_menu_changed()
             ## Set Ui to Menu
             UiManager.set_game_hud(false)
             current_game_state = GameState.MENU
@@ -100,6 +101,7 @@ func change_game_state( _gamestate: GameState) -> void:
         GameState.LEVEL_SELECTION:
             current_game_state = GameState.LEVEL_SELECTION
             ### set all menus false
+            AudioManager._on_menu_changed()
             UiManager._on_game_in_level_selection()
             get_tree().paused = false
         _:

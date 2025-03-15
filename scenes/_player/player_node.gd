@@ -111,6 +111,7 @@ func died() -> void :
 	# Animation
 	# respawn
 	player_enabled  =false
+	GameManager.on_game_over()
 
 func on_collect_area_entered(_area : Area2D)-> void:
 	GameManager.Win_Game()
