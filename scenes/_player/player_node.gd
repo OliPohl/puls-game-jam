@@ -22,6 +22,13 @@ var _was_on_floor : bool  = false
 var _can_still_jump :bool  = false
 var _jump_buffered :bool = false
 
+
+var color : String = "white":
+	set(value):
+		if (color != value):
+			color = value
+			_player_visuals.modulate = Color(value)
+
 ### Ready connect signal to coyote timer
 func _ready() -> void:
 	_player_coyote_timer.timeout.connect(_on_coyote_timer_timeout)

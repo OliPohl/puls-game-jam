@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 
 var kill_player_on_entry : bool = true
-var follow_player : bool = true
+@export var follow_player : bool = true
 @export var player: Player_Node
 
 

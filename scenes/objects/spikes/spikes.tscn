@@ -50,8 +50,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cykr"]
-size = Vector2(210.489, 238)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfxqt"]
+size = Vector2(66.4468, 187.224)
 
 [node name="spikes" type="AnimatedSprite2D"]
 position = Vector2(2.00002, 66)
@@ -66,8 +66,22 @@ script = ExtResource("3_vojj7")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
-position = Vector2(-0.755722, 4)
-shape = SubResource("RectangleShape2D_3cykr")
+position = Vector2(19.8828, 39.7652)
+rotation = -0.53058
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xfxqt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LogicArea"]
+position = Vector2(-35.7886, 35.7888)
+rotation = 0.324631
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xfxqt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LogicArea"]
+position = Vector2(-7.98853, 92.875)
+rotation = -1.58476
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xfxqt")
 
 [node name="LogicBase" type="Node" parent="."]
 script = ExtResource("4_wpoko")
