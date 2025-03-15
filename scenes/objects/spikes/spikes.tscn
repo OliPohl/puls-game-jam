@@ -1,12 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6p11375y1w2l"]
+[gd_scene load_steps=12 format=3 uid="uid://b6p11375y1w2l"]
 
-[ext_resource type="Texture2D" uid="uid://bii8bsocc634o" path="res://assets/images/logic/cancel_button.png" id="1_xfxqt"]
+[ext_resource type="Texture2D" uid="uid://b862t8l3itjax" path="res://assets/images/spike.png" id="1_xfxqt"]
 [ext_resource type="Script" uid="uid://l1x4ap8mijqp" path="res://scenes/objects/spikes/spikes.gd" id="2_0gb7l"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="3_vojj7"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="4_wpoko"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_mjep2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uhya"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gb7l"]
+atlas = ExtResource("1_xfxqt")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vojj7"]
+atlas = ExtResource("1_xfxqt")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpoko"]
+atlas = ExtResource("1_xfxqt")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjep2"]
 atlas = ExtResource("1_xfxqt")
 region = Rect2(0, 0, 256, 256)
 
@@ -14,19 +26,39 @@ region = Rect2(0, 0, 256, 256)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5uhya")
+"texture": SubResource("AtlasTexture_0gb7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vojj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpoko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vojj7")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjep2")
+}],
+"loop": false,
+"name": &"idle",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cykr"]
-size = Vector2(161.913, 327.17)
+size = Vector2(210.489, 238)
 
 [node name="spikes" type="AnimatedSprite2D"]
-scale = Vector2(10.5859, 0.320313)
+position = Vector2(2.00002, 66)
+rotation = -3.14159
+scale = Vector2(0.502952, 0.502952)
 sprite_frames = SubResource("SpriteFrames_7rg82")
+animation = &"blink"
 script = ExtResource("2_0gb7l")
 
 [node name="LogicArea" type="Area2D" parent="."]
@@ -34,7 +66,7 @@ script = ExtResource("3_vojj7")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
-position = Vector2(-0.755722, -28.0977)
+position = Vector2(-0.755722, 4)
 shape = SubResource("RectangleShape2D_3cykr")
 
 [node name="LogicBase" type="Node" parent="."]
@@ -45,6 +77,14 @@ metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
 script = ExtResource("5_mjep2")
 variable_node = NodePath("../..")
 variable_name = "kill_player_on_entry"
+value_type = "bool"
+value_name = "true"
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation2" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("5_mjep2")
+variable_node = NodePath("../..")
+variable_name = "follow_player"
 value_type = "bool"
 value_name = "true"
 interactable = true

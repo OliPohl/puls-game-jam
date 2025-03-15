@@ -81,8 +81,8 @@ metadata/_custom_type_script = "uid://beb2x43exogbb"
 [node name="LogicOperation" type="Node" parent="LogicBase/LogicIf" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("5_lrpxa")
 variable_node = NodePath("../../..")
-variable_name = "width"
+variable_name = "size"
 operator = "+="
 value_type = "float"
-value_name = "0.01"
+value_name = "0.02"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"

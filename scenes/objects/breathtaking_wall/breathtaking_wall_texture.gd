@@ -16,3 +16,11 @@ var width : float = 1.0:
     if (width != value):
       width = value
       scale.x = value
+
+
+
+var size : float = 1.0:
+  set(value):
+    if (size != value):
+      size = value
+      scale = Vector2(value, value)

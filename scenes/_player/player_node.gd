@@ -107,6 +107,9 @@ func on_collision_layer_change(_value : int) -> void:
 
 func on_death()-> void:
 	player_died = true
+	print("Player Died")
+	#TODO Robert: Make player die
+	#TODO Robert: fix player start walking bug
 func died() -> void :
 	# Animation
 	# respawn
