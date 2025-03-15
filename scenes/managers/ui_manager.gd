@@ -10,7 +10,7 @@ extends CanvasLayer
 ## SETTINGS
 @onready var _setting_control : Control = $Menu/Content_Margin/Setting_Margin
 ## CREDITS
-
+@onready var _credit_control : Control = $Menu/Content_Margin/Credits_Margin
 #timer
 @onready var _game_timer :Timer  =$Game_Timer
 @onready var _game_timer_text : Label  =$Game_HUD/Timer_Margin/Panel/VBoxContainer/Timer_value
@@ -38,6 +38,7 @@ extends CanvasLayer
 ###Privates 
 var _is_timer_running : bool  = false
 var _is_debug_running : bool = true
+var _level_started_time : float = 0
 func _ready() -> void:
 	_game_timer.timeout.connect(_on_gametimer_timeout)
 	GameManager.game_win.connect(_on_game_win)
@@ -87,6 +88,8 @@ func set_game_hud(_value : bool) ->void :
 		_game_over_control.visible = false
 		_game_timer.stop()
 		_game_timer.start()
+		##### SAVE TIMESTEP 
+		_level_started_time = Time.get_ticks_msec()
 		_is_timer_running =true
 		
 ### if gametimer timeout -> loos
@@ -126,8 +129,9 @@ func _on_game_win() -> void:
 	_game_over_control.visible = false
 	_game_hud.visible= false
 	_menu.visible =false
+	#### SET GAMERESULT_LEVEL_TIME
+	GameManager.gameresult_time= Time.get_ticks_msec() - _level_started_time
 	_win_control.set_sliders()
-
 
 func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
 	ConfigManager.save_video_settings("fullscreen", _toggled_on)
@@ -164,7 +168,11 @@ func _on_button_resume_pressed() -> void:
 
 func _on_button_settings_pressed() -> void:
 	_setting_control.visible =  !_setting_control.visible
+	_credit_control.visible  = false
 
+func _on_button_credits_pressed() -> void:
+	_credit_control.visible = !_credit_control.visible 
+	_setting_control.visible =  false
 
 func _on_button_select_lvl_pressed() -> void:
 	_win_control.visible =false
