@@ -16,14 +16,13 @@ size = Vector2(311, 40.5)
 
 [node name="Game_Node" type="Node2D"]
 
-[node name="Player_Node" parent="." node_paths=PackedStringArray("_position_label", "_input_label") instance=ExtResource("1_n7fpr")]
+[node name="Player_Node" parent="." instance=ExtResource("1_n7fpr")]
 position = Vector2(885, 202)
-_position_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/position_label")
-_input_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/input_label")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Node"]
 position = Vector2(-3, 7)
 offset = Vector2(0, -127.395)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
