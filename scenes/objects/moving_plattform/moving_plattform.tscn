@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b03lr3iaacsg8"]
+[gd_scene load_steps=11 format=3 uid="uid://b03lr3iaacsg8"]
 
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="1_d2elh"]
 [ext_resource type="Script" uid="uid://bcsgsnu8u0j23" path="res://scenes/objects/moving_plattform/moving_plattform.gd" id="1_geq86"]
@@ -7,16 +7,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2elh"]
 size = Vector2(507, 502)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_q1hbw"]
-radius = 134.78
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1hbw"]
 atlas = ExtResource("1_d2elh")
 region = Rect2(768, 0, 256, 512)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geq86"]
+size = Vector2(431, 97)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1hbw"]
+radius = 134.78
+
 [sub_resource type="Animation" id="Animation_geq86"]
 resource_name = "move"
 length = 10.0
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,14 +65,6 @@ position = Vector2(128.5, -1)
 shape = SubResource("RectangleShape2D_d2elh")
 disabled = true
 
-[node name="Death_Zone" type="Area2D" parent="Moving_plattform"]
-collision_layer = 0
-script = ExtResource("2_q1hbw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_plattform/Death_Zone"]
-position = Vector2(129, -3)
-shape = SubResource("CircleShape2D_q1hbw")
-
 [node name="Visuals" type="Node2D" parent="Moving_plattform"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_plattform/Visuals"]
@@ -79,7 +75,24 @@ position = Vector2(256, 0)
 texture = SubResource("AtlasTexture_q1hbw")
 flip_h = true
 
+[node name="Player_detect_zone" type="Area2D" parent="Moving_plattform"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_plattform/Player_detect_zone"]
+position = Vector2(123, -229)
+shape = SubResource("RectangleShape2D_geq86")
+
+[node name="Death_Zone" type="Area2D" parent="Moving_plattform"]
+collision_layer = 0
+script = ExtResource("2_q1hbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_plattform/Death_Zone"]
+position = Vector2(129, -3)
+shape = SubResource("CircleShape2D_q1hbw")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_y084x")
 }
+speed_scale = 0.3
