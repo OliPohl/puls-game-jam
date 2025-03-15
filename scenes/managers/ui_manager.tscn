@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdd8sctn6g0hv"]
+
+[ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
+[ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
+
+[node name="UI_Manager" type="CanvasLayer"]
+script = ExtResource("1_xetle")
+
+[node name="Game_HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Debug_Margin" type="MarginContainer" parent="Game_HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game_HUD/Debug_Margin"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+text = "Debug_Panel"
+
+[node name="position_label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+text = "asdf"
+
+[node name="Label3" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+text = "Time start:
+"
+
+[node name="input_label" type="Label" parent="Game_HUD/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+text = "0:00:000"
+
+[node name="Timer_Margin" type="MarginContainer" parent="Game_HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="Panel" type="Panel" parent="Game_HUD/Timer_Margin"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game_HUD/Timer_Margin/Panel"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 158.0
+offset_bottom = 96.0
+
+[node name="Timer_Label" type="Label" parent="Game_HUD/Timer_Margin/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Time Left:"
+horizontal_alignment = 1
+
+[node name="Timer_value" type="Label" parent="Game_HUD/Timer_Margin/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "00:00:000"
+horizontal_alignment = 1
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Debug_Margin" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Debug_Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Logo" type="Sprite2D" parent="Menu/Debug_Margin/VBoxContainer"]
+position = Vector2(85, 103)
+texture = ExtResource("1_aag8p")
+
+[node name="HSeparator" type="HSeparator" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_Start" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[node name="Button_Settings" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="Button_Select_lvl" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Select Level"
+
+[node name="Button_Credits" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
+[node name="Button_Tutorial" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Tutorial"
+
+[node name="Button_Quit" type="Button" parent="Menu/Debug_Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Game_Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true

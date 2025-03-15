@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7tbm1kji2ov5"]
+[gd_scene load_steps=7 format=3 uid="uid://b7tbm1kji2ov5"]
 
 [ext_resource type="PackedScene" uid="uid://d35gq840pcm2l" path="res://scenes/_player/player_node.tscn" id="1_m802k"]
+[ext_resource type="PackedScene" uid="uid://bdd8sctn6g0hv" path="res://scenes/managers/ui_manager.tscn" id="2_i2aat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmedv"]
 size = Vector2(3197, 50)
@@ -16,10 +17,8 @@ size = Vector2(311, 40.5)
 
 [node name="Game_Node" type="Node2D"]
 
-[node name="Player_Node" parent="." node_paths=PackedStringArray("_position_label", "_input_label") instance=ExtResource("1_m802k")]
+[node name="Player_Node" parent="." instance=ExtResource("1_m802k")]
 position = Vector2(885, 202)
-_position_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/position_label")
-_input_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/input_label")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Node"]
 position = Vector2(-3, 7)
@@ -84,43 +83,4 @@ shape = SubResource("RectangleShape2D_n7fpr")
 scale = Vector2(5, 1)
 texture = SubResource("GradientTexture2D_djlcl")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Position"
-
-[node name="position_label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "asdf"
-
-[node name="Label3" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Input:
-"
-
-[node name="input_label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Input:
-"
+[node name="UI_Manager" parent="." instance=ExtResource("2_i2aat")]
