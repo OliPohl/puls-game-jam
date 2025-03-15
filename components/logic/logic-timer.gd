@@ -6,7 +6,7 @@ class_name LogicTimer extends Logic
 # region Export
 @export_group("Operator")
 ## The operator to use.
-@export_enum("After", "Every", "For") var operator = "After";
+@export_enum("After", "Every") var operator = "After";
 
 
 @export_group("Variable")
@@ -23,6 +23,8 @@ class_name LogicTimer extends Logic
 @export var interactable: bool = false;
 # endregion Export
 
+var timer = 0
+var start = false
 
 
 func create_ui() -> void:
@@ -39,3 +41,28 @@ func create_ui() -> void:
 func add_ui(_node: Node) -> void:
   var _ui_element = ui_element as LogicTimerUi
   _ui_element.add_then_node(_node)
+
+
+func confirm(_activate : bool) -> void:
+  var _ui_element = ui_element as LogicTimerUi
+  variable_seconds = _ui_element.variable_seconds
+  start = _activate
+  if not _activate:
+    for child in get_children():
+      if child is Logic:
+        child.confirm(false)
+
+
+func _process(_delta: float) -> void:
+  if not start:
+    return
+
+  timer += _delta
+  if timer >= float(variable_seconds):
+    for child in get_children():
+      if child is Logic:
+        child.confirm(true)
+    timer = 0
+
+  if operator == "After":
+    start = false
