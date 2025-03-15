@@ -21,7 +21,10 @@ texture = ExtResource("2_6wu2m")
 stretch_mode = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(2506, 1480)
-energy = 0.55
+rotation = 3.14159
+energy = 0.78
+blend_mode = 1
 texture = ExtResource("3_m6o1v")
 texture_scale = 1.94

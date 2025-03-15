@@ -5,6 +5,8 @@ class_name Player_Node
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 @onready var _collect_area : Area2D = $Hurt_Box_Component
 
+### particle system
+@onready var _particles : CPUParticles2D = $Visuals_Sprite/CPUParticles2D
 ### Global Variables, can be changed by Object Manager
 var player_speed : float = 350
 var player_gravity : float  = 33
@@ -21,6 +23,13 @@ var _looks_left : bool  = true
 var _was_on_floor : bool  = false
 var _can_still_jump :bool  = false
 var _jump_buffered :bool = false
+
+
+var color : String = "white":
+	set(value):
+		if (color != value):
+			color = value
+			_player_visuals.modulate = Color(value)
 
 ### Ready connect signal to coyote timer
 func _ready() -> void:
@@ -75,6 +84,8 @@ func _jump():
 	if !player_Jump_enabled:
 		return
 	if is_on_floor() or _can_still_jump:
+		AudioManager.play_sound(AudioManager.Sound.HIT)
+		_particles.emitting =true
 		velocity.y = -player_jump_power
 		if _can_still_jump:
 			_can_still_jump = false
@@ -106,10 +117,9 @@ func on_collision_layer_change(_value : int) -> void:
 	set_collision_mask_value(player_collision_layer, true)
 
 func on_death()-> void:
+	AudioManager.play_sound(AudioManager.Sound.HIT)
 	player_died = true
-	print("Player Died")
-	#TODO Robert: Make player die
-	#TODO Robert: fix player start walking bug
+
 func died() -> void :
 	# Animation
 	# respawn
@@ -117,4 +127,5 @@ func died() -> void :
 	GameManager.on_game_over()
 
 func on_collect_area_entered(_area : Area2D)-> void:
+	AudioManager.play_sound(AudioManager.Sound.FLAG)
 	GameManager.Win_Game()

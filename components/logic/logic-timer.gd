@@ -46,7 +46,7 @@ func add_ui(_node: Node) -> void:
 func confirm(_activate : bool) -> void:
   if ui_element:
     var _ui_element = ui_element as LogicTimerUi
-    variable_seconds = _ui_element.variable_seconds
+    variable_seconds = _ui_element.value_name
   start = _activate
   if not _activate:
     for child in get_children():
@@ -58,12 +58,12 @@ func _process(_delta: float) -> void:
   if not start:
     return
 
-  timer += _delta
   if timer >= float(variable_seconds):
     for child in get_children():
       if child is Logic:
         child.confirm(true)
     timer = 0
+  timer += _delta
 
   if operator == "After":
     start = false

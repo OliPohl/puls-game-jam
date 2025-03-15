@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://yl7vr26fe21h"]
+
+[node name="Moving_Plattform" type="AudioStreamPlayer2D"]
