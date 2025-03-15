@@ -112,29 +112,29 @@ shape = SubResource("RectangleShape2D_7rg82")
 [node name="Player_Node" parent="." instance=ExtResource("3_ks2wk")]
 position = Vector2(143, 250)
 
-[node name="Camera2D" parent="Player_Node" instance=ExtResource("4_xv1ub")]
-offset = Vector2(0, -204.985)
-
-[node name="LogicArea" type="Area2D" parent="Player_Node"]
+[node name="LogicArea" type="Area2D" parent="Player_Node/Visuals_Sprite" index="0"]
 script = ExtResource("9_4jytg")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/LogicArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Visuals_Sprite/LogicArea"]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_5uhya")
 
-[node name="LogicBase" type="Node" parent="Player_Node"]
+[node name="LogicBase" type="Node" parent="Player_Node/Visuals_Sprite" index="1"]
 script = ExtResource("7_vi6sv")
 metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
 
-[node name="LogicOperation" type="Node" parent="Player_Node/LogicBase" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="Player_Node/Visuals_Sprite/LogicBase" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("8_4jytg")
-variable_node = NodePath("../..")
+variable_node = NodePath("../../..")
 variable_name = "player_jump_power"
 value_type = "float"
 value_name = "800"
 interactable = true
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="Camera2D" parent="Player_Node" instance=ExtResource("4_xv1ub")]
+offset = Vector2(0, -204.985)
 
 [node name="angry_spike" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_noxre")]
 position = Vector2(970, -457)
@@ -148,7 +148,6 @@ tile_set = SubResource("TileSet_vi6sv")
 
 [node name="Deathbox" type="Area2D" parent="."]
 position = Vector2(-0.00012207, 3.05176e-05)
-scale = Vector2(1, 1)
 script = ExtResource("5_5uhya")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathbox"]
@@ -166,3 +165,5 @@ shape = SubResource("RectangleShape2D_3cykr")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Deathbox"]
 position = Vector2(985, -3252)
 shape = SubResource("RectangleShape2D_3cykr")
+
+[editable path="Player_Node"]

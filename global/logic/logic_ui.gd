@@ -149,6 +149,6 @@ func _input(event: InputEvent) -> void:
   if event is InputEventMouseButton and event.pressed:
     var mouse_pos = get_viewport().get_mouse_position()
     if not background.get_global_rect().has_point(mouse_pos):
-      change_visibility(false)
+      _on_confirm_button_pressed()
     elif current_focus and current_focus.get_global_rect().has_point(mouse_pos):
       current_focus.release_focus()
