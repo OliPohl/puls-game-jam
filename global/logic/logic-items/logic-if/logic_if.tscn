@@ -45,7 +45,6 @@ mouse_default_cursor_shape = 8
 theme = ExtResource("3_g2l5j")
 text = " jump_power"
 editable = false
-selecting_enabled = false
 scroll_fit_content_height = true
 scroll_fit_content_width = true
 

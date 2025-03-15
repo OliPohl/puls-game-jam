@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://dderyln58imnp"]
+
+[ext_resource type="Texture2D" uid="uid://b5ccmwe5btpow" path="res://assets/images/error.png" id="1_da4ex"]
+[ext_resource type="Script" uid="uid://d3sdvl0ok0kxy" path="res://scenes/objects/breathtaking_wall/breathtaking_wall_texture.gd" id="2_3vbh6"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="3_hf343"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="4_pq6kh"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_lrpxa"]
+[ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="6_5wmqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxy0l"]
+atlas = ExtResource("1_da4ex")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_506nd"]
+atlas = ExtResource("1_da4ex")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkrmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxy0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_506nd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa48i"]
+size = Vector2(254, 254.714)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufy21"]
+size = Vector2(256, 259.15)
+
+[node name="breathtaking_wall" type="AnimatedSprite2D"]
+scale = Vector2(1, 2)
+sprite_frames = SubResource("SpriteFrames_bkrmh")
+autoplay = "default"
+frame_progress = 0.0251535
+offset = Vector2(0, -128)
+script = ExtResource("2_3vbh6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -127.614)
+shape = SubResource("RectangleShape2D_oa48i")
+
+[node name="LogicArea" type="Area2D" parent="."]
+script = ExtResource("3_hf343")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
+position = Vector2(0, -126.505)
+shape = SubResource("RectangleShape2D_ufy21")
+
+[node name="LogicBase" type="Node" parent="."]
+script = ExtResource("4_pq6kh")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("5_lrpxa")
+variable_node = NodePath("../..")
+variable_name = "height"
+value_type = "float"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicIf" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("6_5wmqq")
+variable_node = NodePath("../..")
+variable_name = "height"
+comparator = "<"
+value_type = "float"
+value_name = "1"
+metadata/_custom_type_script = "uid://beb2x43exogbb"
+
+[node name="LogicOperation" type="Node" parent="LogicBase/LogicIf" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("5_lrpxa")
+variable_node = NodePath("../../..")
+variable_name = "size"
+operator = "+="
+value_type = "float"
+value_name = "0.02"
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
