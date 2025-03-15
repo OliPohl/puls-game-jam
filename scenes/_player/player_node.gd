@@ -75,6 +75,7 @@ func _jump():
 	if !player_Jump_enabled:
 		return
 	if is_on_floor() or _can_still_jump:
+		AudioManager.play_sound(AudioManager.Sound.HIT)
 		velocity.y = -player_jump_power
 		if _can_still_jump:
 			_can_still_jump = false
@@ -106,10 +107,9 @@ func on_collision_layer_change(_value : int) -> void:
 	set_collision_mask_value(player_collision_layer, true)
 
 func on_death()-> void:
+	AudioManager.play_sound(AudioManager.Sound.HIT)
 	player_died = true
-	print("Player Died")
-	#TODO Robert: Make player die
-	#TODO Robert: fix player start walking bug
+
 func died() -> void :
 	# Animation
 	# respawn
@@ -117,4 +117,5 @@ func died() -> void :
 	GameManager.on_game_over()
 
 func on_collect_area_entered(_area : Area2D)-> void:
+	AudioManager.play_sound(AudioManager.Sound.FLAG)
 	GameManager.Win_Game()

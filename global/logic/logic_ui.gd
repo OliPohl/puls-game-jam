@@ -46,12 +46,14 @@ func _ready() -> void:
 
 func _on_confirm_button_pressed() -> void:
   if current_logic_base != null:
+    AudioManager.play_sound(AudioManager.Sound.INTERACT)
     current_logic_base.confirm()
     current_logic_base.show_logic()
   change_visibility(false)
 
 
 func _on_cancel_button_pressed() -> void:
+  AudioManager.play_sound(AudioManager.Sound.INTERACT)
   change_visibility(false)
 
 
@@ -114,6 +116,7 @@ func create_logic_timer_ui(var_name: String, value_name: String, interactable:bo
 
 func change_visibility(value :bool) -> void:
   if value:
+    AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 700.0
     visible = true
@@ -125,6 +128,7 @@ func change_visibility(value :bool) -> void:
     await tween.finished
     animating = false
   else:
+    AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 0.0
     var tween = get_tree().create_tween()

@@ -54,9 +54,22 @@ func _ready() -> void:
 	_fullscreen_checkbutton.button_pressed = _video_settings.fullscreen
 	_vsync_checkbutton.button_pressed  =_video_settings.vsync
 	var _audio_settings = ConfigManager.load_audio_setting()
+
 	_master_v_slider.set_value_no_signal(_audio_settings.master_volume)
+	AudioManager.on_master_volume(_audio_settings.master_volume)
 	_sound_v_slider.set_value_no_signal(_audio_settings.sound_volume)
+	AudioManager.on_sfx_volume(_audio_settings.sound_volume)
 	_music_v_slider.set_value_no_signal(_audio_settings.music_volume)
+	AudioManager.on_music_volume(_audio_settings.music_volume)
+
+################### INPUT
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		if GameManager.current_game_state == GameManager.GameState.GAME_RUNNING:
+			GameManager.Pause_Game()
+		if GameManager.current_game_state == GameManager.GameState.PAUSE:
+			GameManager.Resume_Game()
+###############################
 
 func _process(_delta: float) -> void:
 	if _is_timer_running:
@@ -120,12 +133,14 @@ func _on_game_over() ->void:
 	_game_timer.stop()
 	_win_control.visible =false
 	_game_over_control.visible = true
+	AudioManager.play_sound(AudioManager.Sound.LOSE)
 	_game_hud.visible= false
 	_menu.visible =false
 
 func _on_game_win() -> void:
 	_game_timer.stop()
 	_win_control.visible =true
+	AudioManager.play_sound(AudioManager.Sound.WIN)
 	_game_over_control.visible = false
 	_game_hud.visible= false
 	_menu.visible =false
@@ -145,36 +160,47 @@ func _on_vsync_toggle_toggled(_toggled_on:bool) -> void:
 
 func _on_master_v_slider_drag_ended(value_changed:bool) -> void:
 	if value_changed:
+		AudioManager.play_sound(AudioManager.Sound.CLICK)
+		AudioManager.on_master_volume(_master_v_slider.value)
 		ConfigManager.save_audio_settings("master_volume", _master_v_slider.value)
 		## change audio_manager bus volume
 
 func _on_sound_v_silder_drag_ended(value_changed:bool) -> void:
 	if value_changed:
+		AudioManager.play_sound(AudioManager.Sound.CLICK)
+		AudioManager.save_sfx_volume(_sound_v_slider.value)
 		ConfigManager.save_audio_settings("sound_volume", _sound_v_slider.value)
 		## change audio_manager bus volume
 
 func _on_music_v_slider_drag_ended(value_changed:bool) -> void:
 	if value_changed:
+		AudioManager.play_sound(AudioManager.Sound.CLICK)
+		AudioManager.save_music_volume(_music_v_slider.value)
 		ConfigManager.save_audio_settings("music_volume", _music_v_slider.value)
 		## change audio_manager bus volume
 #############################################  MENU BUTTONS###############
 func _on_button_start_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	GameManager.start_level(1)
 
 
 func _on_button_resume_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	GameManager.change_game_state(GameManager.GameState.GAME_RUNNING)
 
 
 func _on_button_settings_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_setting_control.visible =  !_setting_control.visible
 	_credit_control.visible  = false
 
 func _on_button_credits_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_credit_control.visible = !_credit_control.visible 
 	_setting_control.visible =  false
 
 func _on_button_select_lvl_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
 	_setting_control.visible = false
@@ -182,22 +208,29 @@ func _on_button_select_lvl_pressed() -> void:
 
 
 func _on_button_quit_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	### SOUND SCHREI
 	get_tree().quit()
 
 ####################################### MENU BUTTONS END ######################
 ############# WIN CONTROL BUTTONS##########
 func _on_button_WIN_next_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
 	GameManager.start_level(GameManager.current_level+1)
 	
 func _on_button_restart_pressed() -> void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
 	GameManager.start_level(GameManager.current_level)
 
 func _on_button_menu_pressed() ->void:
+	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
 	GameManager.start_level(0)  ### Start Scene
+
+func on_set_game_timer(_value : float) ->void:
+	_game_timer.wait_time = _value

@@ -54,12 +54,16 @@ func start_level(_level_id : int):
         change_game_state(GameState.MENU)
     else:
         current_level= _level_id
+        UiManager.on_set_game_timer( _level_id *10)
         _scene_manager.start_level(_level_id)
         change_game_state(GameState.GAME_RUNNING)
 ###############################################
 func Win_Game():
     change_game_state(GameState.GAME_WIN)
-
+func Pause_Game():
+    change_game_state(GameState.PAUSE)
+func Resume_Game():
+    change_game_state(GameState.GAME_RESUME)
 ## CHANGE GAMESTATE (MENU,LEVEL_SELECTION,GAME_RUNNING,GAME_RESUME,GAME_OVER,GAME_WIN, PAUSE)
 func change_game_state( _gamestate: GameState) -> void:
     match _gamestate:
