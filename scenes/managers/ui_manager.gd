@@ -47,7 +47,6 @@ func _ready() -> void:
 	GameManager.game_paused.connect(_on_game_paused)
 
 	_debug_timer.timeout.connect(_debug_data_update)
-	set_game_hud(false)
 	_debug_timer.start()
 	### LOAD SETTINGS AND SET UI 
 	var _video_settings = ConfigManager.load_video_settings()
@@ -74,6 +73,7 @@ func _input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	if _is_timer_running:
 		_game_timer_text.text = _format_decimal_float(_game_timer.time_left)
+
 func _on_game_in_level_selection() -> void:
 	_game_hud.visible= false
 	_menu.visible =false
@@ -104,7 +104,21 @@ func set_game_hud(_value : bool) ->void :
 		##### SAVE TIMESTEP 
 		_level_started_time = Time.get_ticks_msec()
 		_is_timer_running =true
-		
+
+#########################  GOTO MENU FUNCTION
+func start_menu() ->void:
+	_game_hud.visible= false
+	_menu.visible =true
+	_win_control.visible =false
+	_game_over_control.visible = false
+	_game_timer.stop()
+
+func start_level_selection() -> void:
+	_game_hud.visible= true
+	_menu.visible =false
+	_win_control.visible =false
+	_game_over_control.visible = false
+	_game_timer.stop()
 ### if gametimer timeout -> loos
 func _on_gametimer_timeout() -> void:
 	##signal player death
@@ -130,6 +144,8 @@ func _debug_data_update() -> void:
 	_debug_gpu_value.text = "13," + str(randi_range(0,9))+ "°"
 
 func _on_game_over() ->void:
+	### Death Counter ++
+	GameManager.gameresult_deaths += 1
 	_game_timer.stop()
 	_win_control.visible =false
 	_game_over_control.visible = true
@@ -137,6 +153,7 @@ func _on_game_over() ->void:
 	_game_hud.visible= false
 	_menu.visible =false
 
+#### cast from gamemanager Signal game_win
 func _on_game_win() -> void:
 	_game_timer.stop()
 	_win_control.visible =true
@@ -220,18 +237,17 @@ func _on_button_WIN_next_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
+	GameManager.reset_gameresults()
 	GameManager.start_level(GameManager.current_level+1)
 	
 func _on_button_restart_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
-	_win_control.visible =false
-	_game_over_control.visible = false
+	start_menu()
 	GameManager.start_level(GameManager.current_level)
 
 func _on_button_menu_pressed() ->void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
-	_win_control.visible =false
-	_game_over_control.visible = false
+	start_menu()
 	GameManager.start_level(0)  ### Start Scene
 
 func on_set_game_timer(_value : float) ->void:

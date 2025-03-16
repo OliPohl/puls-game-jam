@@ -8,9 +8,10 @@ extends Control
 @export var _death_label : Label
 
 func set_sliders() -> void:
-    _slider_time.set_value_no_signal(GameManager.gameresult_time)
-    _slider_object.set_value_no_signal(GameManager.gameresult_objects)
-    _slider_death.set_value_no_signal(GameManager.gameresult_deaths)
+    var _time_max : float = GameManager.current_level * 10
+    _slider_time.set_value_no_signal(GameManager.gameresult_time / _time_max)
+    _slider_object.set_value_no_signal(float(GameManager.gameresult_objects)/10)
+    _slider_death.set_value_no_signal(1 - (GameManager.gameresult_deaths * 0.33))
     ### set Labels
     _time_label.text = str(GameManager.gameresult_time)
     _object_label.text = str(GameManager.gameresult_objects)
@@ -20,3 +21,6 @@ func set_sliders() -> void:
     #### DATA SAVE TO CONFIG FILE
     var _result : float  = (GameManager.gameresult_time*100) + (GameManager.gameresult_objects * 10) - (GameManager.gameresult_deaths*10)
     ConfigManager.save_highscore_settings("highscore_0"+ str(GameManager.current_level),_result)
+
+     ### RESET VARIABLES 
+    GameManager.reset_gameresults()

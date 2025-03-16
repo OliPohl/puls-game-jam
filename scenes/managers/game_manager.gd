@@ -22,6 +22,11 @@ var gameresult_deaths : int = 0
 var current_scene : Node2D
 var current_level  : int = 0
 var current_game_state : GameState = GameState.MENU
+## RESET GAME RESULT
+func reset_gameresults() -> void:
+    gameresult_deaths = 0
+    gameresult_objects = 0
+    gameresult_time = 0
 func on_game_win() -> void:
     ## SHOW UI WIN PANEL
     game_win.emit()
@@ -50,6 +55,7 @@ func start_level(_level_id : int):
         change_game_state(GameState.LEVEL_SELECTION)
     if _level_id == 0:
         current_level= _level_id
+        UiManager.start_menu()
         _scene_manager.start_level(_level_id)
         change_game_state(GameState.MENU)
     else:
@@ -92,6 +98,7 @@ func change_game_state( _gamestate: GameState) -> void:
             current_game_state = GameState.PAUSE
             get_tree().paused = true
             game_paused.emit(true)
+            UiManager.start_level_selection()
 
         GameState.GAME_OVER:
             current_game_state = GameState.GAME_OVER
@@ -109,6 +116,4 @@ func change_game_state( _gamestate: GameState) -> void:
             UiManager._on_game_in_level_selection()
             get_tree().paused = false
         _:
-            ## Set Default Ui to Menu
-            UiManager.set_game_hud(false)
-            current_game_state = GameState.MENU
+            print("default")

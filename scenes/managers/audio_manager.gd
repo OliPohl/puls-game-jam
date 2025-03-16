@@ -64,7 +64,7 @@ func play_sound(_sound : Sound) ->void:
         Sound.LOSE:
             _audio_player_lose.play()
         _:
-            _audio_player_hit.play()
+            print("error- default")
 
 func on_master_volume(_value :float) ->void:
     AudioServer.set_bus_volume_db(master_index,_value)

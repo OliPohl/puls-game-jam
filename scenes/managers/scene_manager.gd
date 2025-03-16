@@ -1,12 +1,12 @@
 extends Node
 class_name Scene_Manager
-const GAME_LEVEL_SELECTION : String ="res://scenes/levels/level_selection.tscn"
-const GAME_LEVEL_01 : String = "res://scenes/levels/level_01.tscn"
-const GAME_LEVEL_02 : String = "res://scenes/levels/level_02.tscn"
-const GAME_LEVEL_03 : String = "res://scenes/levels/level_03.tscn"
-const GAME_LEVEL_04 : String = "res://scenes/levels/level_04.tscn"
-const GAME_LEVEL_05 : String = "res://scenes/levels/level_05.tscn"
-const GAME_LEVEL_MENU : String = "res://scenes/levels/main_menu_scene.tscn"
+const GAME_LEVEL_SELECTION : String ="res://scenes/_game/level_selection.tscn"
+const GAME_LEVEL_01 : String = "res://scenes/_game/level1.tscn"
+const GAME_LEVEL_02 : String = "res://scenes/_game/level2.tscn"
+const GAME_LEVEL_03 : String = "res://scenes/_game/level3.tscn"
+const GAME_LEVEL_04 : String = "res://scenes/_game/level4.tscn"
+const GAME_LEVEL_05 : String = "res://scenes/_game/level5.tscn"
+const GAME_LEVEL_MENU : String = "res://scenes/_game/main_menu.tscn"
 ### PRIVATES
 var _level_00
 var _level_01

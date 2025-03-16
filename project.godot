@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pulse-game-jam"
-run/main_scene="uid://b0sn50pwyrljv"
+run/main_scene="uid://t1f5bhbw1ira"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
