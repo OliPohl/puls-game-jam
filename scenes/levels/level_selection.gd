@@ -2,7 +2,7 @@ extends Node2D
 
 #### LOCKED IMAGES
 @onready var _level_01_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item/level1_locked
-@onready var _level_02_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item2/level2_locked
+@onready var _level_02_locked : TextureRect  = $Level_button_Control/HBoxContainer/Level_Item2/level2_locked
 @onready var _level_03_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item3/level3_locked
 @onready var _level_04_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item4/level4_locked
 @onready var _level_05_locked  : TextureRect = $Level_button_Control/HBoxContainer/Level_Item5/level5_locked

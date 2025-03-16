@@ -60,3 +60,9 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box_Component"]
 shape = SubResource("CircleShape2D_abu21")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-8, 118)
+enabled = false
+texture = ExtResource("3_p6qsx")
+texture_scale = 2.13

@@ -170,6 +170,9 @@ shape = SubResource("CircleShape2D_abu21")
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("13_psr2b")]
 offset = Vector2(0, -204.985)
 
+[node name="PointLight2D" type="PointLight2D" parent="Player_Node"]
+texture = ExtResource("12_khclu")
+
 [node name="angry_spike" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_peyy1")]
 position = Vector2(970, -457)
 rotation = 3.14159

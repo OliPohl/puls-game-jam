@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_0ydjg"]
 [ext_resource type="Texture2D" uid="uid://drjfk7g620vt7" path="res://assets/images/env/bg2.png" id="2_q33g2"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="3_obopg"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="4_mcj5a"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="4_mcj5a"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_yk47u"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="5_a4fx8"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="6_mrauc"]
@@ -219,6 +219,12 @@ shape = SubResource("CircleShape2D_abu21")
 
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("4_mcj5a")]
 offset = Vector2(0, -204.985)
+
+[node name="PointLight2D" type="PointLight2D" parent="Player_Node"]
+position = Vector2(-8, 118)
+enabled = false
+texture = ExtResource("8_f7i38")
+texture_scale = 2.13
 
 [node name="Deathbox" type="Area2D" parent="."]
 position = Vector2(-0.00012207, 3.05176e-05)

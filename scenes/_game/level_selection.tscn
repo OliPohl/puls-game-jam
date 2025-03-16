@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=10 format=3 uid="uid://fb2g7h1t7r8k"]
 
 [ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_7n0cu"]
+[ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="2_87vkh"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="2_xkea0"]
 [ext_resource type="Script" uid="uid://cn4j645eic5di" path="res://components/player_anim_follow_mouse.gd" id="3_87vkh"]
+[ext_resource type="Texture2D" uid="uid://caehlo8www1kl" path="res://assets/images/env/bg1.png" id="3_lerbm"]
 [ext_resource type="PackedScene" uid="uid://d1ubnvlhyen4y" path="res://components/level_item.tscn" id="4_lerbm"]
 [ext_resource type="Texture2D" uid="uid://qranu7is4cgp" path="res://assets/images/_debug/level_item_Frame.png" id="5_w1sg1"]
 [ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="6_7orfj"]
@@ -11,6 +13,10 @@
 
 [node name="Level_Selection" type="Node2D"]
 script = ExtResource("1_7n0cu")
+
+[node name="TextureRect" parent="." instance=ExtResource("2_87vkh")]
+modulate = Color(0.787899, 0.720972, 0.452955, 1)
+texture = ExtResource("3_lerbm")
 
 [node name="levelContainer" type="Node" parent="."]
 
@@ -51,6 +57,7 @@ text = "10s:333ms"
 horizontal_alignment = 1
 
 [node name="level1_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item"]
+visible = false
 layout_mode = 2
 texture = ExtResource("6_7orfj")
 

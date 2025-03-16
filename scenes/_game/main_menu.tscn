@@ -202,7 +202,7 @@ shape = SubResource("CircleShape2D_abu21")
 [node name="Camera2D" parent="." instance=ExtResource("12_jb8cl")]
 position = Vector2(143, 267)
 offset = Vector2(645.895, -250)
-zoom = Vector2(0.29, 0.29)
+zoom = Vector2(0.325, 0.325)
 
 [node name="angry_spike" parent="." instance=ExtResource("13_f2cex")]
 position = Vector2(970, -457)

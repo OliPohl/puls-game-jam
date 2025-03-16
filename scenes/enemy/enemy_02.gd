@@ -6,7 +6,7 @@ class_name Enemy02
 @onready var _sprite : AnimatedSprite2D =$Visuals/AnimatedSprite2D
 @onready var _weapon : Node2D =$weapon
 @onready var _hurtbox : Area2D =$HurtBox_Component
-
+@onready var _playerhitbox : Area2D =$Player_HitBox
 ############################################ EDITABLE VARIABLES
 var color : String = "white":
     set(value):
@@ -68,14 +68,19 @@ func _on_cdtimer_timeout() ->void:
     ## z-index back
 
 func _on_body_entered(_body : Node):
-    _sprite.play("idle")
-    _is_player_inrange =true
+    if !_is_death:
+        _sprite.play("idle")
+        _is_player_inrange =true
 
 func _on_body_exited(_body : Node):
-    _sprite.play("walking")
-    _is_player_inrange = false
+    if !_is_death:
+        _sprite.play("walking")
+        _is_player_inrange = false
 
 func _on_bullet_hit_self(_body: Area2D):
     print("Get damage")
     _sprite.play("dying")
     _is_death =true
+    _playerhitbox.visible =false
+    _playerhitbox.monitorable = false
+    _playerhitbox.monitoring = false

@@ -1,10 +1,11 @@
 extends CharacterBody2D
 class_name Player_Node
 @export var _player_visuals : AnimatedSprite2D
+@export var _use_coyote_time_light  : bool = false
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 @onready var _collect_area : Area2D = $Hurt_Box_Component
-
+@onready var _PointLight2D : PointLight2D =$PointLight2D
 ### particle system
 @export var _particles : CPUParticles2D
 ### Global Variables, can be changed by Object Manager
@@ -116,6 +117,10 @@ func _jump():
 			_jump_buffered_timer.start()
 ## Start to fall
 func _handle_coyote_time() -> void:
+	if _can_still_jump:
+		if _player_coyote_timer.time_left < 0.5:
+			if _use_coyote_time_light:
+				_PointLight2D.enabled =true
 	if _was_on_floor and  !is_on_floor() and velocity.y >= 0:
 		_can_still_jump = true
 		_player_coyote_timer.start()
@@ -128,6 +133,7 @@ func _handle_coyote_time() -> void:
 ### function for timertimeout on coyote time
 func _on_coyote_timer_timeout() -> void:
 	_can_still_jump = false
+	_PointLight2D.enabled =false
 ### function for timertimeout on buffered jump
 func _on_jumped_buffered_timer_timeout()-> void:
 	_jump_buffered = false
