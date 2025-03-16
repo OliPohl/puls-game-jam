@@ -124,6 +124,8 @@ func change_visibility(value :bool) -> void:
     tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
     tween.tween_property(self, "offset:y", 0, 0.2)
     pause_shader.change_visibility(true)
+    ####### new line
+    UiManager.interact_paused_game()
     get_tree().paused = true
     await tween.finished
     animating = false
@@ -136,6 +138,8 @@ func change_visibility(value :bool) -> void:
     tween.tween_property(self, "offset:y", 700.0, 0.2)
     pause_shader.change_visibility(false)
     await tween.finished
+####### new line
+    UiManager.interact_resume_game()
     get_tree().paused = false
     visible = false
     animating = false

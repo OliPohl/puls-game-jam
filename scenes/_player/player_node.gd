@@ -73,12 +73,12 @@ func _input(event: InputEvent) -> void:
 
 ### Main Process
 func _physics_process(_delta: float) -> void:
+	if !player_enabled:
+		return
 	position_y = position.y
 	if player_died:
 		died()
 	_handle_gravity()
-	if !player_enabled:
-		return
 	_handle_movement()
 	_was_on_floor = is_on_floor()
 	move_and_slide()
@@ -143,6 +143,7 @@ func on_death()-> void:
 
 func died() -> void :
 	# Animation
+	_player_visuals.animation = "hit"
 	# respawn
 	player_enabled  =false
 	GameManager.on_game_over()

@@ -16,14 +16,14 @@ height = 202.51
 radius = 129.542
 
 [node name="Player_Node" type="CharacterBody2D"]
+process_mode = 3
 collision_layer = 17
 script = ExtResource("1_abu21")
 
 [node name="Visuals_Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_abu21")
-animation = &"run"
+animation = &"hit"
 autoplay = "idle"
-frame_progress = 0.169238
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Visuals_Sprite"]
 position = Vector2(-9, 101)

@@ -1,10 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://c0ghy5lbewe8k"]
+[gd_scene load_steps=26 format=4 uid="uid://c0ghy5lbewe8k"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_p46h2"]
 [ext_resource type="Texture2D" uid="uid://dmn622qtjkge1" path="res://assets/images/env/bg4.png" id="2_stolp"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="3_omwyw"]
-[ext_resource type="PackedScene" uid="uid://bh5gqn7c5p8ng" path="res://scenes/enemy/enemy_01.tscn" id="4_gbwuf"]
-[ext_resource type="PackedScene" uid="uid://dderyln58imnp" path="res://scenes/objects/breathtaking_wall/breathtaking_wall.tscn" id="5_1pbkn"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="6_pi32m"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="7_5gvbv"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="8_qisqe"]
@@ -15,6 +13,7 @@
 [ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="13_psr2b"]
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="14_peyy1"]
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="15_0khby"]
+[ext_resource type="PackedScene" uid="uid://d6gsd6384nci" path="res://scenes/enemy/enemy_02.tscn" id="15_03wqj"]
 [ext_resource type="Texture2D" uid="uid://b3e7i8asjkqgg" path="res://assets/images/klickmich.png" id="16_a3lm7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7rg82"]
@@ -25,9 +24,6 @@ texture_region_size = Vector2i(256, 256)
 [sub_resource type="TileSet" id="TileSet_noxre"]
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_7rg82")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rg82"]
-size = Vector2(167, 225.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uhya"]
 size = Vector2(176, 236)
@@ -100,19 +96,6 @@ tile_set = SubResource("TileSet_noxre")
 
 [node name="FLAG_OBJECT" parent="." instance=ExtResource("3_omwyw")]
 position = Vector2(1633, 392)
-
-[node name="enemy_01" parent="." instance=ExtResource("4_gbwuf")]
-position = Vector2(716.33, 381)
-
-[node name="breathtaking_wall" parent="." instance=ExtResource("5_1pbkn")]
-position = Vector2(1042, 394.695)
-
-[node name="Area2D" type="Area2D" parent="breathtaking_wall"]
-script = ExtResource("6_pi32m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="breathtaking_wall/Area2D"]
-position = Vector2(0.5, -126.098)
-shape = SubResource("RectangleShape2D_7rg82")
 
 [node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
 position = Vector2(143, 250)
@@ -220,3 +203,6 @@ shape = SubResource("RectangleShape2D_3cykr")
 [node name="Klickmich" type="Sprite2D" parent="."]
 position = Vector2(853, 535)
 texture = ExtResource("16_a3lm7")
+
+[node name="enemy_02" parent="." instance=ExtResource("15_03wqj")]
+position = Vector2(1048, 368)
