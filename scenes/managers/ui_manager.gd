@@ -13,7 +13,7 @@ extends CanvasLayer
 @onready var _credit_control : Control = $Menu/Content_Margin/Credits_Margin
 #timer
 @onready var _game_timer :Timer  =$Game_Timer
-@onready var _game_timer_text : Label  =$Game_HUD/Timer_Margin/Panel/VBoxContainer/Timer_value
+@onready var _game_timer_text : Label  = %Timer_value
 ### DEBUG VALUES
 @onready var _debug_control :Control = $Debug_Control
 @onready var _debug_on_value :Label =$Debug_Control/Debug_Margin/HBoxContainer/debug_values/debug_value

@@ -49,6 +49,10 @@ folder_colors={
 "res://scenes/_debug/": "blue"
 }
 
+[gui]
+
+theme/custom_font="uid://bx71l7hqs525p"
+
 [importer_defaults]
 
 texture={
