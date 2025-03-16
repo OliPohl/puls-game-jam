@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=13 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
+[ext_resource type="Texture2D" uid="uid://c2mnliquaklgr" path="res://assets/images/clock.png" id="2_mai3r"]
 [ext_resource type="Texture2D" uid="uid://dglay7b4doic2" path="res://assets/images/logo_main.png" id="3_3t4xl"]
+[ext_resource type="Texture2D" uid="uid://d0wg23f2yi03o" path="res://assets/images/document_0.png" id="3_etnpp"]
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
 [ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
@@ -86,38 +88,56 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Panel" type="Panel" parent="Game_HUD"]
+layout_mode = 2
+offset_left = 1149.33
+offset_top = 32.055
+offset_right = 1270.22
+offset_bottom = 72.285
+
 [node name="Timer_Margin" type="MarginContainer" parent="Game_HUD"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -300.0
-offset_bottom = 50.0
+offset_left = -216.595
+offset_top = -11.17
+offset_right = 98.405
+offset_bottom = 141.83
 grow_horizontal = 0
+scale = Vector2(0.69, 0.69)
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 
-[node name="Panel" type="Panel" parent="Game_HUD/Timer_Margin"]
-custom_minimum_size = Vector2(300, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="Game_HUD/Timer_Margin"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Game_HUD/Timer_Margin/Panel"]
-custom_minimum_size = Vector2(300, 50)
+[node name="TextureRect" type="TextureRect" parent="Game_HUD/Timer_Margin/HBoxContainer"]
 layout_mode = 2
-offset_right = 158.0
-offset_bottom = 96.0
+texture = ExtResource("2_mai3r")
 
-[node name="Timer_Label" type="Label" parent="Game_HUD/Timer_Margin/Panel/VBoxContainer"]
+[node name="Timer_value" type="Label" parent="Game_HUD/Timer_Margin/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Time Left:"
-horizontal_alignment = 1
-
-[node name="Timer_value" type="Label" parent="Game_HUD/Timer_Margin/Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 44
 text = "00:00:000"
 horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Game_HUD"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 594.0
+offset_right = 1272.0
+offset_bottom = 712.0
+
+[node name="TextureRect" type="TextureRect" parent="Game_HUD/Panel2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -20.0
+offset_right = 253.0
+offset_bottom = 236.0
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("3_etnpp")
 
 [node name="Debug_Control" type="Control" parent="."]
 layout_mode = 3
