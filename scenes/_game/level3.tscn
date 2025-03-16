@@ -492,13 +492,13 @@ position = Vector2(4165, 3476)
 shape = SubResource("RectangleShape2D_3frxo")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(702, 295)
+position = Vector2(624, 67)
 rotation = 0.645772
 scale = Vector2(2, 2)
 texture = ExtResource("17_3frxo")
 
 [node name="Arrow2" type="Sprite2D" parent="."]
-position = Vector2(5706, -236)
+position = Vector2(6123, -403)
 rotation = 0.645772
 scale = Vector2(2, 2)
 texture = ExtResource("17_3frxo")
