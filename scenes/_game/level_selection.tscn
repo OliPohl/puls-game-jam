@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=14 format=3 uid="uid://fb2g7h1t7r8k"]
 
 [ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_7n0cu"]
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="2_87vkh"]
@@ -6,8 +6,12 @@
 [ext_resource type="Script" uid="uid://cn4j645eic5di" path="res://components/player_anim_follow_mouse.gd" id="3_87vkh"]
 [ext_resource type="Texture2D" uid="uid://caehlo8www1kl" path="res://assets/images/env/bg1.png" id="3_lerbm"]
 [ext_resource type="PackedScene" uid="uid://d1ubnvlhyen4y" path="res://components/level_item.tscn" id="4_lerbm"]
-[ext_resource type="Texture2D" uid="uid://qranu7is4cgp" path="res://assets/images/_debug/level_item_Frame.png" id="5_w1sg1"]
 [ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="6_7orfj"]
+[ext_resource type="Texture2D" uid="uid://crn6lejxt57ol" path="res://assets/images/_debug/level_01.png" id="7_5fty7"]
+[ext_resource type="Texture2D" uid="uid://nv3gx6tshik5" path="res://assets/images/_debug/level_02.png" id="9_w4pxb"]
+[ext_resource type="Texture2D" uid="uid://crgccbsb8004c" path="res://assets/images/_debug/level_03.png" id="10_ny0g1"]
+[ext_resource type="Texture2D" uid="uid://b0uo06vn4a8j4" path="res://assets/images/_debug/level_04.png" id="11_vue4j"]
+[ext_resource type="Texture2D" uid="uid://b8n16rcfleing" path="res://assets/images/_debug/level_05.png" id="12_l70wv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exv5h"]
 
@@ -48,7 +52,7 @@ offset_bottom = 499.0
 layout_mode = 2
 level_name = "Level 01 - Dusty Springs"
 level_id = 1
-level_sprite = ExtResource("5_w1sg1")
+level_sprite = ExtResource("7_5fty7")
 
 [node name="level_01_highscore" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item"]
 layout_mode = 2
@@ -65,7 +69,7 @@ texture = ExtResource("6_7orfj")
 layout_mode = 2
 level_name = "Level 02 -Hallow Eyes"
 level_id = 2
-level_sprite = ExtResource("5_w1sg1")
+level_sprite = ExtResource("9_w4pxb")
 
 [node name="level_02_highscore2" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item2"]
 layout_mode = 2
@@ -81,7 +85,7 @@ texture = ExtResource("6_7orfj")
 layout_mode = 2
 level_name = "Level 03 - Midnight Coast"
 level_id = 3
-level_sprite = ExtResource("5_w1sg1")
+level_sprite = ExtResource("10_ny0g1")
 
 [node name="level_03_highscore3" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item3"]
 layout_mode = 2
@@ -97,7 +101,7 @@ texture = ExtResource("6_7orfj")
 layout_mode = 2
 level_name = "Level 04 - Dangerous Fall"
 level_id = 4
-level_sprite = ExtResource("5_w1sg1")
+level_sprite = ExtResource("11_vue4j")
 
 [node name="level_04_highscore4" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item4"]
 layout_mode = 2
@@ -113,7 +117,7 @@ texture = ExtResource("6_7orfj")
 layout_mode = 2
 level_name = "Level 05 - Rising Sunset"
 level_id = 5
-level_sprite = ExtResource("5_w1sg1")
+level_sprite = ExtResource("12_l70wv")
 
 [node name="level_05_highscore5" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item5"]
 layout_mode = 2
@@ -147,5 +151,8 @@ offset_bottom = 106.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Back to Menu"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(570, 384)
 
 [connection signal="pressed" from="Level_button_Control/Panel/PanelContainer/Button" to="." method="_on_button_menu_pressed"]

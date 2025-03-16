@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		get_tree().paused = !get_tree().paused
 		_pause_panel.visible = !_pause_panel.visible
-	if event.is_action_pressed("restart"):
+	if event.is_action_pressed("restart") and !get_tree().paused:
 		start_menu()
 		GameManager.start_level(GameManager.current_level)
 ###############################
