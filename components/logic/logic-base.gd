@@ -5,7 +5,7 @@ class_name LogicBase extends Logic
 ## Is the parent object interactable
 @export var interactable: bool = true
 @onready var parent: CanvasItem = get_parent()
-var logic_used: int = 0
+var logic_used: Array  = []
 
 func _ready() -> void:
   confirm(true)
@@ -25,7 +25,9 @@ func add_ui(_node: Node) -> void:
 
 
 func confirm(_activate = true) -> void:
-  logic_used += 1
+  if self not in logic_used:
+    logic_used.append(self)
+    GameManager.gameresult_objects +=1
   for child in get_children():
     if child is Logic:
       child.confirm(_activate)

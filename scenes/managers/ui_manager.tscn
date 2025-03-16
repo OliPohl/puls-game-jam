@@ -124,7 +124,6 @@ text = "00:00:000"
 horizontal_alignment = 1
 
 [node name="Panel2" type="Panel" parent="Game_HUD"]
-visible = false
 layout_mode = 0
 offset_left = 1107.0
 offset_top = 594.0
@@ -621,6 +620,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.41
+editable = false
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
@@ -647,6 +648,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.41
+editable = false
+scrollable = false
 
 [node name="HSeparator2" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
@@ -673,6 +676,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.41
+editable = false
+scrollable = false
 
 [node name="HSeparator3" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
@@ -790,6 +795,8 @@ horizontal_alignment = 2
 layout_mode = 2
 max_value = 1.0
 step = 0.01
+editable = false
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
@@ -815,6 +822,8 @@ horizontal_alignment = 2
 layout_mode = 2
 max_value = 1.0
 step = 0.01
+editable = false
+scrollable = false
 
 [node name="HSeparator2" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
@@ -840,6 +849,8 @@ horizontal_alignment = 2
 layout_mode = 2
 max_value = 1.0
 step = 0.01
+editable = false
+scrollable = false
 
 [node name="HSeparator3" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
