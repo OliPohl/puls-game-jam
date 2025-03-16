@@ -165,22 +165,22 @@ layout_mode = 2
 
 [node name="debug_on" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "Debug_Mode:"
 
 [node name="frames_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "FPS:"
 
 [node name="ram_Label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "RAM:"
 
 [node name="Gpu_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "GPU"
 
 [node name="debug_values" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
@@ -189,25 +189,25 @@ layout_mode = 2
 [node name="debug_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "On"
 
 [node name="frames_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "66"
 
 [node name="ram_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "120 MB"
 
 [node name="gpu_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 12
 text = "16°"
 
 [node name="Debug_Interval" type="Timer" parent="Debug_Control"]
@@ -245,13 +245,14 @@ layout_mode = 2
 
 [node name="Label_Game_Head" type="Label" parent="Menu/Logo_Header_VBox/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 40
 text = "Developer Hell"
 horizontal_alignment = 1
 
 [node name="Label_Game_desc" type="Label" parent="Menu/Logo_Header_VBox/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "An Epic Game, but its broken and need to balance"
+theme_override_font_sizes/font_size = 31
+text = "The THRILLING debug experience!"
 horizontal_alignment = 1
 
 [node name="Menu_button_Margin" type="MarginContainer" parent="Menu"]

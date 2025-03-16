@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsrkfo1jedrm6"]
+[gd_scene load_steps=10 format=3 uid="uid://m5l16l8hiq8u"]
 
 [ext_resource type="Script" uid="uid://ctvdv4eu4g85j" path="res://scenes/managers/audio_manager.gd" id="1_aybmh"]
 [ext_resource type="AudioStream" uid="uid://cek51480vdx7y" path="res://assets/sounds/Balloon_hit_03.mp3" id="2_vqw5g"]
+[ext_resource type="AudioStream" uid="uid://da6ls8bnhq0r2" path="res://assets/sounds/jump.wav" id="2_wiybg"]
 [ext_resource type="AudioStream" uid="uid://mhj4hw1qxkec" path="res://assets/sounds/Button_hover.wav" id="3_wiybg"]
-[ext_resource type="AudioStream" uid="uid://bgee4yuglln7k" path="res://assets/sounds/ui_game_win.mp3" id="4_slqq1"]
-[ext_resource type="AudioStream" uid="uid://cx678mvqtptb0" path="res://assets/sounds/ui_game_over.mp3" id="5_swgyr"]
+[ext_resource type="AudioStream" uid="uid://bmr4r2snla3jh" path="res://assets/sounds/UIClick_Operating System UI Cursor_RogueWaves_KawaiiUI.wav" id="4_slqq1"]
+[ext_resource type="AudioStream" uid="uid://xjqkcj3rn7wv" path="res://assets/sounds/victory.wav" id="4_vqw5g"]
 [ext_resource type="AudioStream" uid="uid://nhx1ukvc0rgt" path="res://assets/sounds/menu_music.mp3" id="6_q14bd"]
+[ext_resource type="AudioStream" uid="uid://g7w4uawigtfg" path="res://assets/sounds/lose.wav" id="6_slqq1"]
 [ext_resource type="AudioStream" uid="uid://ce5xfiuomdihc" path="res://assets/sounds/ambience_01.mp3" id="7_705o2"]
 
 [node name="Audio_Manager" type="Node"]
@@ -13,7 +15,7 @@ script = ExtResource("1_aybmh")
 
 [node name="Player_Hit_Sound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("2_vqw5g")
+stream = ExtResource("2_wiybg")
 pitch_scale = 2.13
 bus = &"SFX"
 
@@ -29,17 +31,18 @@ bus = &"SFX"
 
 [node name="Player_Interact_Sound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("3_wiybg")
+stream = ExtResource("4_slqq1")
 bus = &"SFX"
 
 [node name="Player_Win_Sound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("4_slqq1")
+stream = ExtResource("4_vqw5g")
 bus = &"Music"
 
 [node name="Player_Lose_Sound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("5_swgyr")
+stream = ExtResource("6_slqq1")
+volume_db = -5.0
 bus = &"Music"
 
 [node name="Music_Menu" type="AudioStreamPlayer" parent="."]
