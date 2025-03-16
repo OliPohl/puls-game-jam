@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name Player_Node
-@onready var _player_visuals : AnimatedSprite2D =$Visuals_Sprite
+@onready var _player_visuals : AnimatedSprite2D =$cool_guy
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 @onready var _collect_area : Area2D = $Hurt_Box_Component
@@ -8,11 +8,25 @@ class_name Player_Node
 ### particle system
 @onready var _particles : CPUParticles2D = $Visuals_Sprite/CPUParticles2D
 ### Global Variables, can be changed by Object Manager
+var layer : int = 1:
+	set(value):
+		if layer != value:
+			set_collision_mask_value(1, false)
+			set_collision_mask_value(2, false)
+			set_collision_mask_value(3, false)
+			layer = value
+			set_collision_mask_value(layer, true)
+			
+
 var player_speed : float = 350
 var player_gravity : float  = 33
-var player_size : float  = 1
+var player_size : float  = 1:
+	set(value):
+		if player_size != value:
+			_player_visuals.scale = Vector2(value, value)
+			player_size = value
 var player_coyote_time : float = 0.23
-var player_jump_power : float  =800
+var player_jump_power : float  = 800
 var player_collision_layer : int  = 0
 var player_Jump_enabled : bool  = true
 var player_enabled : bool =  true

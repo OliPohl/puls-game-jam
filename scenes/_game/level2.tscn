@@ -136,13 +136,11 @@ modulate = Color(1, 1, 1, 0.662745)
 position = Vector2(994, 160)
 
 [node name="LogicArea" type="Area2D" parent="Moving_mother/Moving_plattform/Visuals/moving_mother" index="0"]
-scale = Vector2(1, 1)
 script = ExtResource("8_hrcjy")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_mother/Moving_plattform/Visuals/moving_mother/LogicArea"]
 position = Vector2(10.4271, 2.55334)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dc1wp")
 
 [node name="LogicBase" type="Node" parent="Moving_mother/Moving_plattform/Visuals/moving_mother" index="1"]
