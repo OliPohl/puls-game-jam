@@ -46,6 +46,7 @@ func on_game_over() -> void:
 ####             START LEVEL MECHANIC
 ####
 ###############################################
+
 func start_level(_level_id : int):
     current_level = _level_id
     if _level_id == 6:

@@ -6,7 +6,9 @@ const GAME_LEVEL_02 : String = "res://scenes/_game/level2.tscn"
 const GAME_LEVEL_03 : String = "res://scenes/_game/level3.tscn"
 const GAME_LEVEL_04 : String = "res://scenes/_game/level4.tscn"
 const GAME_LEVEL_05 : String = "res://scenes/_game/level5.tscn"
+### secure 
 const GAME_LEVEL_06 : String = "res://scenes/_game/level5.tscn"
+
 const GAME_LEVEL_MENU : String = "res://scenes/_game/main_menu.tscn"
 
 var current_scene
@@ -54,5 +56,5 @@ func start_level(_level_id : int) -> void:
         6:
             goto_scene(GAME_LEVEL_SELECTION)
         _:
-            goto_scene(GAME_LEVEL_01)
+            goto_scene(GAME_LEVEL_MENU)
     
