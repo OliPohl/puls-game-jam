@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d30nseke6ivd6"]
+[gd_scene load_steps=23 format=3 uid="uid://d30nseke6ivd6"]
 
 [ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="1_wdv2b"]
 [ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="1_yvj1n"]
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="2_yvj1n"]
+[ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="4_35xuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvc87"]
 radius = 91.92
@@ -92,22 +93,138 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Animation" id="Animation_35xuo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yvj1n"]
+resource_name = "wiggle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.96667, 8.96667, 9.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.055, 1.055), Vector2(1.041, 1.041), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.93333, 8.93333, 9.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0523599, -0.0523599, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8, 8.9, 9.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53y00"]
+_data = {
+&"RESET": SubResource("Animation_35xuo"),
+&"wiggle": SubResource("Animation_yvj1n")
+}
+
+[sub_resource type="Curve" id="Curve_53y00"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0.0337079), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2qpm4"]
+offsets = PackedFloat32Array(0, 0.352941, 0.54902, 0.710784, 0.818627, 0.980392)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.180392, 0.180392, 1, 1, 0.698039, 0.12549, 1, 0, 0.435294, 0.0784314, 1, 0, 0.262745, 1, 1, 0, 0, 0, 1)
+
 [node name="FLAG_OBJECT" type="Area2D" node_paths=PackedStringArray("flag")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_yvj1n")
-flag = NodePath("AnimatedSprite2D")
+flag = NodePath("Visuals/AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uvc87")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 position = Vector2(73.505, -127.415)
 texture = ExtResource("1_wdv2b")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 modulate = Color(0.634666, 0, 0.195131, 1)
 position = Vector2(73.505, -127.415)
 sprite_frames = SubResource("SpriteFrames_ihpxj")
 autoplay = "default"
-frame_progress = 0.632235
+frame_progress = 0.349664
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_53y00")
+}
+autoplay = "wiggle"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(64, -148)
+emitting = false
+texture = ExtResource("4_35xuo")
+lifetime = 0.3
+one_shot = true
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 58.46
+gravity = Vector2(0, 150)
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_53y00")
+color_initial_ramp = SubResource("Gradient_2qpm4")

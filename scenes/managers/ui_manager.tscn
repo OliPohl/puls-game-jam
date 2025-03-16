@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
-[ext_resource type="Texture2D" uid="uid://diwdq5ln7l3fx" path="res://assets/images/_debug/player.png" id="3_3t4xl"]
+[ext_resource type="Texture2D" uid="uid://dglay7b4doic2" path="res://assets/images/logo_main.png" id="3_3t4xl"]
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
 [ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
@@ -77,6 +77,7 @@ process_mode = 3
 script = ExtResource("1_xetle")
 
 [node name="Game_HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,13 +217,19 @@ texture = ExtResource("1_aag8p")
 [node name="Sprite2D" type="Sprite2D" parent="Menu/Logo_Header_VBox/Logo"]
 texture = ExtResource("3_3t4xl")
 
-[node name="Label_Game_Head" type="Label" parent="Menu/Logo_Header_VBox"]
+[node name="PanelContainer" type="PanelContainer" parent="Menu/Logo_Header_VBox"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Logo_Header_VBox/PanelContainer"]
+layout_mode = 2
+
+[node name="Label_Game_Head" type="Label" parent="Menu/Logo_Header_VBox/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "The Game"
+text = "Developer Hell"
 horizontal_alignment = 1
 
-[node name="Label_Game_desc" type="Label" parent="Menu/Logo_Header_VBox"]
+[node name="Label_Game_desc" type="Label" parent="Menu/Logo_Header_VBox/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "An Epic Game, but its broken and need to balance"
 horizontal_alignment = 1

@@ -187,14 +187,14 @@ func _on_master_v_slider_drag_ended(value_changed:bool) -> void:
 func _on_sound_v_silder_drag_ended(value_changed:bool) -> void:
 	if value_changed:
 		AudioManager.play_sound(AudioManager.Sound.CLICK)
-		AudioManager.save_sfx_volume(_sound_v_slider.value)
+		AudioManager.on_sfx_volume(_sound_v_slider.value)
 		ConfigManager.save_audio_settings("sound_volume", _sound_v_slider.value)
 		## change audio_manager bus volume
 
 func _on_music_v_slider_drag_ended(value_changed:bool) -> void:
 	if value_changed:
 		AudioManager.play_sound(AudioManager.Sound.CLICK)
-		AudioManager.save_music_volume(_music_v_slider.value)
+		AudioManager.on_music_volume(_music_v_slider.value)
 		ConfigManager.save_audio_settings("music_volume", _music_v_slider.value)
 		## change audio_manager bus volume
 #############################################  MENU BUTTONS###############
