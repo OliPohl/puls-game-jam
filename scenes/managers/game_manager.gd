@@ -60,7 +60,7 @@ func start_level(_level_id : int):
         change_game_state(GameState.MENU)
     else:
         current_level= _level_id
-        UiManager.on_set_game_timer( (_level_id *5) +60)
+        UiManager.on_set_game_timer( _level_id *60)
         _scene_manager.start_level(_level_id)
         change_game_state(GameState.GAME_RUNNING)
 ###############################################

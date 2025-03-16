@@ -20,12 +20,14 @@ func _ready() -> void:
         config.set_value("level","level_03", false)
         config.set_value("level","level_04", false)
         config.set_value("level","level_05", false)
+        config.set_value("level","level_06", false)
 
         config.set_value("highscore", "level_01", 0)
         config.set_value("highscore", "level_02", 0)
         config.set_value("highscore", "level_03", 0)
         config.set_value("highscore", "level_04", 0)
         config.set_value("highscore", "level_05", 0)
+        config.set_value("highscore", "level_06", 0)
         ## save to file
         config.save(SETTING_FILE_PATH)
     else:

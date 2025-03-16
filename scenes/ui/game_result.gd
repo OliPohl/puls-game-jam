@@ -17,7 +17,7 @@ func set_sliders() -> void:
     _object_label.text = str(GameManager.gameresult_objects)
     _death_label.text = str(GameManager.gameresult_deaths)
     ### LEVEL UNLOCK SAVE TO CONFIG FILE
-    ConfigManager.save_level_settings("level_0"+ str(GameManager.current_level), true)
+    ConfigManager.save_level_settings("level_0"+ str(GameManager.current_level+1), true)
     #### DATA SAVE TO CONFIG FILE
     var _result : float  = (GameManager.gameresult_time*100) + (GameManager.gameresult_objects * 10) - (GameManager.gameresult_deaths*10)
     ConfigManager.save_highscore_settings("highscore_0"+ str(GameManager.current_level),_result)
