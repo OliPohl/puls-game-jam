@@ -19,14 +19,14 @@
 [ext_resource type="Script" uid="uid://b0h7f3mlh2i43" path="res://components/logic/logic-timer.gd" id="12_u8txp"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="14_u8txp"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcj5a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7i38"]
 texture = ExtResource("2_q33g2")
 texture_region_size = Vector2i(256, 256)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_a4fx8"]
 tile_size = Vector2i(256, 256)
-sources/0 = SubResource("TileSetAtlasSource_mcj5a")
+sources/0 = SubResource("TileSetAtlasSource_f7i38")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obopg"]
 size = Vector2(126, 236)

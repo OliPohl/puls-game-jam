@@ -16,6 +16,8 @@ var layer : int = 1:
 			set_collision_mask_value(3, false)
 			layer = value
 			set_collision_mask_value(layer, true)
+
+var position_y : float = 0
 			
 
 var player_speed : float = 350
@@ -71,6 +73,7 @@ func _input(event: InputEvent) -> void:
 
 ### Main Process
 func _physics_process(_delta: float) -> void:
+	position_y = position.y
 	if player_died:
 		died()
 	_handle_gravity()

@@ -1,10 +1,13 @@
 extends AnimatedSprite2D
 
-var height : float = 2.7:
+var height : float:
   set(value):
+    # print("value: ", value)
     if (height != value):
       height = value
       scale.y = value
+  get:
+    return scale.y
 
 
 func _ready() -> void:
@@ -19,7 +22,7 @@ var width : float = 1.0:
 
 
 
-var size : float = 1.0:
+var size : float:
   set(value):
     if (size != value):
       size = value
