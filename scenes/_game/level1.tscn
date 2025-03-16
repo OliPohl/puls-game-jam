@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="2_xv1ub"]
 [ext_resource type="PackedScene" uid="uid://d35gq840pcm2l" path="res://scenes/_player/player_node.tscn" id="3_ks2wk"]
 [ext_resource type="PackedScene" uid="uid://dderyln58imnp" path="res://scenes/objects/breathtaking_wall/breathtaking_wall.tscn" id="4_x4mpu"]
-[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="4_xv1ub"]
+[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="4_xv1ub"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="5_5uhya"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="6_021lk"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="7_vi6sv"]

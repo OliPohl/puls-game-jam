@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://d30nseke6ivd6"]
+[gd_scene load_steps=17 format=3 uid="uid://d30nseke6ivd6"]
 
 [ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="1_wdv2b"]
+[ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="1_yvj1n"]
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="2_yvj1n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvc87"]
@@ -91,9 +92,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="FLAG_OBJECT" type="Area2D"]
+[node name="FLAG_OBJECT" type="Area2D" node_paths=PackedStringArray("flag")]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_yvj1n")
+flag = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uvc87")
