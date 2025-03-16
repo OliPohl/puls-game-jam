@@ -214,6 +214,5 @@ position = Vector2(985, -3252)
 shape = SubResource("RectangleShape2D_3cykr")
 
 [node name="Klickmich" type="Sprite2D" parent="."]
-modulate = Color(0.908053, 0, 0.445915, 1)
-position = Vector2(914, 517)
+position = Vector2(853, 535)
 texture = ExtResource("15_xchol")

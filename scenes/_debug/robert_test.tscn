@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="10_ntlv2"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="11_a0y6m"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="12_khclu"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="13_psr2b"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="13_psr2b"]
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="14_peyy1"]
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="15_0khby"]
 [ext_resource type="PackedScene" uid="uid://d6gsd6384nci" path="res://scenes/enemy/enemy_02.tscn" id="15_03wqj"]
