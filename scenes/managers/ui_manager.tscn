@@ -503,7 +503,7 @@ libraries = {
 autoplay = "sprite_anim"
 
 [node name="Game_Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 60.0
 one_shot = true
 
 [node name="Win_Control" type="Control" parent="." node_paths=PackedStringArray("_time_label", "_object_label", "_death_label")]
