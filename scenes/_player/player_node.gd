@@ -1,12 +1,12 @@
 extends CharacterBody2D
 class_name Player_Node
-@onready var _player_visuals : AnimatedSprite2D =$cool_guy
+@export var _player_visuals : AnimatedSprite2D
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
 @onready var _collect_area : Area2D = $Hurt_Box_Component
 
 ### particle system
-@onready var _particles : CPUParticles2D = $Visuals_Sprite/CPUParticles2D
+@export var _particles : CPUParticles2D
 ### Global Variables, can be changed by Object Manager
 var layer : int = 1:
 	set(value):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4m8xl8tmrij2"]
+[gd_scene load_steps=18 format=3 uid="uid://4m8xl8tmrij2"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_3hrdy"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="2_u1um0"]
@@ -9,10 +9,15 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="4_xe5ll"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_xe5ll"]
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="6_lctgq"]
+[ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_qlxxa"]
 [ext_resource type="Script" uid="uid://b0h7f3mlh2i43" path="res://components/logic/logic-timer.gd" id="9_xwd1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lctgq"]
 size = Vector2(125, 237.5)
+
+[sub_resource type="Curve" id="Curve_i1k3q"]
+_data = [Vector2(0.0166667, 0.0449438), 0.0, 0.0, 0, 0, Vector2(1, 0.921348), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkbid"]
 radius = 18.13
@@ -36,10 +41,12 @@ offset_top = -4756.0
 offset_right = 12337.0
 offset_bottom = 5960.0
 
-[node name="Player_Node" type="CharacterBody2D" parent="."]
+[node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
 position = Vector2(24, 379)
 collision_layer = 17
 script = ExtResource("2_u1um0")
+_player_visuals = NodePath("cool_guy")
+_particles = NodePath("cool_guy/CPUParticles2D")
 
 [node name="cool_guy" type="AnimatedSprite2D" parent="Player_Node"]
 sprite_frames = ExtResource("3_qlxxa")
@@ -94,6 +101,23 @@ variable_name = "layer"
 value_name = "1"
 interactable = true
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player_Node/cool_guy"]
+position = Vector2(-9, 101)
+emitting = false
+amount = 22
+texture = ExtResource("8_qlxxa")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.08
+direction = Vector2(0, 2.195)
+spread = 180.0
+gravity = Vector2(0, 222)
+scale_amount_min = 0.3
+scale_amount_curve = SubResource("Curve_i1k3q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node"]
 position = Vector2(-9, 23)

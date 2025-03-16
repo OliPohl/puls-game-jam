@@ -1,17 +1,19 @@
-[gd_scene load_steps=21 format=4 uid="uid://b0sn50pwyrljv"]
+[gd_scene load_steps=26 format=4 uid="uid://b0sn50pwyrljv"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_5uhya"]
 [ext_resource type="Texture2D" uid="uid://dmn622qtjkge1" path="res://assets/images/env/bg4.png" id="2_ks2wk"]
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="2_xv1ub"]
-[ext_resource type="PackedScene" uid="uid://d35gq840pcm2l" path="res://scenes/_player/player_node.tscn" id="3_ks2wk"]
 [ext_resource type="PackedScene" uid="uid://dderyln58imnp" path="res://scenes/objects/breathtaking_wall/breathtaking_wall.tscn" id="4_x4mpu"]
 [ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="4_xv1ub"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="5_5uhya"]
+[ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="6_3cykr"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="6_021lk"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="7_vi6sv"]
+[ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="7_xchol"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="8_4jytg"]
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="8_noxre"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="9_4jytg"]
+[ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="11_n8rqn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7rg82"]
 texture = ExtResource("2_ks2wk")
@@ -27,6 +29,17 @@ size = Vector2(167, 225.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uhya"]
 size = Vector2(176, 236)
+
+[sub_resource type="Curve" id="Curve_g0gcu"]
+_data = [Vector2(0.0166667, 0.0449438), 0.0, 0.0, 0, 0, Vector2(1, 0.921348), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkbid"]
+radius = 18.13
+height = 202.51
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
+radius = 129.542
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_noxre"]
 tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 131072, 2, 65537, 196608, 2)
@@ -96,22 +109,32 @@ script = ExtResource("5_5uhya")
 position = Vector2(0.5, -126.098)
 shape = SubResource("RectangleShape2D_7rg82")
 
-[node name="Player_Node" parent="." instance=ExtResource("3_ks2wk")]
+[node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
 position = Vector2(143, 250)
+collision_layer = 17
+script = ExtResource("6_3cykr")
+_player_visuals = NodePath("confused_guy")
+_particles = NodePath("confused_guy/CPUParticles2D")
 
-[node name="LogicArea" type="Area2D" parent="Player_Node/Visuals_Sprite" index="0"]
+[node name="confused_guy" type="AnimatedSprite2D" parent="Player_Node"]
+sprite_frames = ExtResource("7_xchol")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.169238
+
+[node name="LogicArea" type="Area2D" parent="Player_Node/confused_guy"]
 script = ExtResource("9_4jytg")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Visuals_Sprite/LogicArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/confused_guy/LogicArea"]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_5uhya")
 
-[node name="LogicBase" type="Node" parent="Player_Node/Visuals_Sprite" index="1"]
+[node name="LogicBase" type="Node" parent="Player_Node/confused_guy"]
 script = ExtResource("7_vi6sv")
 metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
 
-[node name="LogicOperation" type="Node" parent="Player_Node/Visuals_Sprite/LogicBase" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="Player_Node/confused_guy/LogicBase" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("8_4jytg")
 variable_node = NodePath("../../..")
 variable_name = "player_jump_power"
@@ -119,6 +142,42 @@ value_type = "float"
 value_name = "800"
 interactable = true
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player_Node/confused_guy"]
+position = Vector2(-9, 101)
+emitting = false
+amount = 22
+texture = ExtResource("11_n8rqn")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.08
+direction = Vector2(0, 2.195)
+spread = 180.0
+gravity = Vector2(0, 222)
+scale_amount_min = 0.3
+scale_amount_curve = SubResource("Curve_g0gcu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node"]
+position = Vector2(-9, 23)
+shape = SubResource("CapsuleShape2D_qkbid")
+
+[node name="Coyote_Timer" type="Timer" parent="Player_Node"]
+wait_time = 0.12
+one_shot = true
+
+[node name="Jump_buffered_Timer" type="Timer" parent="Player_Node"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
+shape = SubResource("CircleShape2D_abu21")
 
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("4_xv1ub")]
 offset = Vector2(0, -204.985)
@@ -152,5 +211,3 @@ shape = SubResource("RectangleShape2D_3cykr")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Deathbox"]
 position = Vector2(985, -3252)
 shape = SubResource("RectangleShape2D_3cykr")
-
-[editable path="Player_Node"]
