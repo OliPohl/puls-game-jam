@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://4m8xl8tmrij2"]
+[gd_scene load_steps=28 format=4 uid="uid://4m8xl8tmrij2"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_3hrdy"]
+[ext_resource type="Texture2D" uid="uid://dtgaba7fsck5j" path="res://assets/images/env/bg3.png" id="2_i1k3q"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="2_u1um0"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="3_5chxp"]
 [ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="3_c86oh"]
@@ -29,17 +30,144 @@ radius = 129.542
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwd1o"]
 size = Vector2(177, 232)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1um0"]
-size = Vector2(736, 86)
+[sub_resource type="TileMapPattern" id="TileMapPattern_noxre"]
+tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 131072, 2, 65537, 196608, 2)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i1k3q"]
+load_path = "res://.godot/imported/spritesheet_1.png-efbcb105c8407faaad688033353c12be.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rklr2"]
+texture = SubResource("CompressedTexture2D_i1k3q")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 128, -106.667, 128, 128, -128, 128)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 128, -106.667, 128, 128, -128, 128)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -106.667, 128, -106.667, 128, 128, -106.667, 128)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, -106.667, -128, 128, -128, 128, 128, -128, 128)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 106.667, -128, -128, 128, -128, 128, 128, -106.667, 128)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, -128, 106.667)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 106.667, -106.667, 106.667)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 128, -106.667, 128)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 128, -128, 128)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 106.667, -106.667, 106.667, 128, -128, 128)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 106.667, -128, 106.667)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, 106.667, 128, -128, 128)
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sf2a0"]
+tile_size = Vector2i(256, 256)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rklr2")
+pattern_0 = SubResource("TileMapPattern_noxre")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_af44g"]
+load_path = "res://.godot/imported/spritesheet_1.png-efbcb105c8407faaad688033353c12be.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21njq"]
+texture = SubResource("CompressedTexture2D_af44g")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 128, -106.667, 128, 128, -128, 128)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 128, -106.667, 128, 128, -128, 128)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -106.667, 128, -106.667, 128, 128, -106.667, 128)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, -106.667, -128, 128, -128, 128, 128, -128, 128)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 106.667, -128, -128, 128, -128, 128, 128, -106.667, 128)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, -128, 106.667)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 106.667, -106.667, 106.667)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 128, -106.667, 128)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 128, -128, 128)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 106.667, -106.667, 106.667, 128, -128, 128)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 106.667, -128, 106.667)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, 106.667, 128, -128, 128)
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3frxo"]
+tile_size = Vector2i(256, 256)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_21njq")
+pattern_0 = SubResource("TileMapPattern_noxre")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_obt5i"]
+load_path = "res://.godot/imported/spritesheet_1.png-efbcb105c8407faaad688033353c12be.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqvou"]
+texture = SubResource("CompressedTexture2D_obt5i")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 128, -106.667, 128, 128, -128, 128)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 128, -106.667, 128, 128, -128, 128)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -106.667, 128, -106.667, 128, 128, -106.667, 128)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, -106.667, -128, 128, -128, 128, 128, -128, 128)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 106.667, -128, -128, 128, -128, 128, 128, -106.667, 128)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, -128, 106.667)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 106.667, -106.667, 106.667)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-106.667, -128, 128, -128, 128, 128, -106.667, 128)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 128, -128, 128)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -106.667, 106.667, -106.667, 106.667, 128, -128, 128)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 106.667, -128, 106.667, 106.667, -128, 106.667)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 106.667, 106.667, 128, -128, 128)
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8n4la"]
+tile_size = Vector2i(256, 256)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xqvou")
+pattern_0 = SubResource("TileMapPattern_noxre")
 
 [node name="Level3" type="Node2D"]
 
 [node name="TextureRect" parent="." instance=ExtResource("1_3hrdy")]
-modulate = Color(0.498834, 0.835288, 0.871692, 1)
+modulate = Color(0.92516, 0.751911, 1.15514e-06, 1)
 offset_left = -3781.0
 offset_top = -4756.0
 offset_right = 12337.0
 offset_bottom = 5960.0
+texture = ExtResource("2_i1k3q")
 
 [node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
 position = Vector2(24, 379)
@@ -207,8 +335,15 @@ variable_name = "player.player_gravity"
 value_name = "33"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
-[node name="TestgroundDELTELATER" type="StaticBody2D" parent="."]
+[node name="TileMapLayer_1" type="TileMapLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAACAAUAAAACAAIAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAD//wUAAAABAAAAAAD+/wUAAAADAAAAAAD+/wYAAAADAAEAAAD//wYAAAACAAEAAAAAAAYAAAACAAEAAAABAAYAAAACAAEAAAACAAYAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_sf2a0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestgroundDELTELATER"]
-position = Vector2(33, 604)
-shape = SubResource("RectangleShape2D_u1um0")
+[node name="TileMapLayer_2" type="TileMapLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_set = SubResource("TileSet_3frxo")
+
+[node name="TileMapLayer_3" type="TileMapLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_set = SubResource("TileSet_8n4la")
