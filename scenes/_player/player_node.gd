@@ -25,7 +25,7 @@ var player_gravity : float  = 33
 var player_size : float  = 1:
 	set(value):
 		if player_size != value:
-			_player_visuals.scale = Vector2(value, value)
+			scale = Vector2(value, value)
 			player_size = value
 var player_coyote_time : float = 0.23:
 	set(value):

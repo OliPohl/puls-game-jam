@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://4m8xl8tmrij2"]
+[gd_scene load_steps=49 format=4 uid="uid://4m8xl8tmrij2"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_3hrdy"]
 [ext_resource type="Texture2D" uid="uid://dtgaba7fsck5j" path="res://assets/images/env/bg3.png" id="2_i1k3q"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="3_5chxp"]
 [ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="3_c86oh"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="3_qlxxa"]
-[ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="4_c86oh"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="4_xe5ll"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_xe5ll"]
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="6_lctgq"]
@@ -14,8 +13,11 @@
 [ext_resource type="Script" uid="uid://b0h7f3mlh2i43" path="res://components/logic/logic-timer.gd" id="9_xwd1o"]
 [ext_resource type="Texture2D" uid="uid://bqqiwmckufgdl" path="res://assets/images/1.png" id="13_af44g"]
 [ext_resource type="Texture2D" uid="uid://dgo7kd58x6y0i" path="res://assets/images/2.png" id="14_21njq"]
+[ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="14_xqvou"]
 [ext_resource type="Texture2D" uid="uid://cm7pnlxokrylu" path="res://assets/images/3.png" id="15_3frxo"]
+[ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="15_8n4la"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="16_21njq"]
+[ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="16_f3b76"]
 [ext_resource type="Texture2D" uid="uid://blpbr2wk6ml48" path="res://assets/images/arrow.png" id="17_3frxo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_noxre"]
@@ -163,6 +165,94 @@ height = 202.51
 [sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
 radius = 129.542
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqvou"]
+size = Vector2(160, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35xuo"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53y00"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qpm4"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgfar"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctqgv"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfjta"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imyvo"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24gd"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma0xd"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nytbj"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cel7q"]
+atlas = ExtResource("16_f3b76")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihpxj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35xuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53y00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qpm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgfar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctqgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfjta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imyvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k24gd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma0xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nytbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cel7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwd1o"]
 size = Vector2(177, 232)
 
@@ -210,7 +300,7 @@ position = Vector2(478, 861)
 texture = ExtResource("15_3frxo")
 
 [node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
-position = Vector2(-29, 507)
+position = Vector2(-21, 510)
 collision_layer = 17
 script = ExtResource("2_u1um0")
 _player_visuals = NodePath("cool_guy")
@@ -309,67 +399,86 @@ shape = SubResource("CircleShape2D_abu21")
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("3_c86oh")]
 offset = Vector2(0, -71.845)
 
-[node name="FLAG_OBJECT" parent="." instance=ExtResource("4_c86oh")]
+[node name="FLAG_OBJECT" type="Area2D" parent="." node_paths=PackedStringArray("flag")]
 position = Vector2(7683, 8)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("14_xqvou")
+flag = NodePath("AnimatedSprite2D")
 
-[node name="LogicArea" type="Area2D" parent="FLAG_OBJECT"]
-position = Vector2(27, -52)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT"]
+position = Vector2(52, -109.5)
+shape = SubResource("RectangleShape2D_xqvou")
+
+[node name="Sprite2D" type="Sprite2D" parent="FLAG_OBJECT"]
+position = Vector2(73.505, -127.415)
+texture = ExtResource("15_8n4la")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FLAG_OBJECT"]
+modulate = Color(0.634666, 0, 0.195131, 1)
+position = Vector2(73.505, -127.415)
+sprite_frames = SubResource("SpriteFrames_ihpxj")
+autoplay = "default"
+frame_progress = 0.632235
+
+[node name="LogicArea" type="Area2D" parent="FLAG_OBJECT/AnimatedSprite2D"]
+position = Vector2(-46.5049, 75.415)
 script = ExtResource("3_5chxp")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT/LogicArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT/AnimatedSprite2D/LogicArea"]
 position = Vector2(20.5, -56)
 shape = SubResource("RectangleShape2D_xwd1o")
 
-[node name="LogicBase" type="Node" parent="FLAG_OBJECT"]
+[node name="LogicBase" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D"]
 script = ExtResource("4_xe5ll")
 metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
 
-[node name="LogicTimer" type="Node" parent="FLAG_OBJECT/LogicBase"]
+[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("5_xe5ll")
+variable_node = NodePath("../../..")
+variable_name = "color"
+value_type = "string"
+value_name = "white"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicTimer" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase"]
 script = ExtResource("9_xwd1o")
 variable_seconds = "30"
 metadata/_custom_type_script = "uid://b0h7f3mlh2i43"
 
-[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/LogicBase/LogicTimer" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase/LogicTimer" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("5_xe5ll")
-variable_node = NodePath("../../..")
+variable_node = NodePath("../../../..")
 variable_name = "goal_enabled"
 value_type = "bool"
 value_name = "false"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
-[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("5_xe5ll")
-variable_node = NodePath("../..")
-variable_name = "color"
-value_type = "string"
-value_name = "red"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"
-
-[node name="LogicIf" type="Node" parent="FLAG_OBJECT/LogicBase" node_paths=PackedStringArray("variable_node")]
+[node name="LogicIf" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("6_lctgq")
-variable_node = NodePath("../../../Player_Node")
+variable_node = NodePath("../../../../Player_Node")
 variable_name = "_looks_left"
 metadata/_custom_type_script = "uid://beb2x43exogbb"
 
-[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/LogicBase/LogicIf" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase/LogicIf" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("5_xe5ll")
-variable_node = NodePath("../../../../Player_Node")
+variable_node = NodePath("../../../../../Player_Node")
 variable_name = "player.player_gravity"
 value_name = "7"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
-[node name="LogicIf2" type="Node" parent="FLAG_OBJECT/LogicBase" node_paths=PackedStringArray("variable_node")]
+[node name="LogicIf2" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("6_lctgq")
-variable_node = NodePath("../../../Player_Node")
+variable_node = NodePath("../../../../Player_Node")
 variable_name = "_looks_left"
 value_name = "false"
 metadata/_custom_type_script = "uid://beb2x43exogbb"
 
-[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/LogicBase/LogicIf2" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="FLAG_OBJECT/AnimatedSprite2D/LogicBase/LogicIf2" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("5_xe5ll")
-variable_node = NodePath("../../../../Player_Node")
+variable_node = NodePath("../../../../../Player_Node")
 variable_name = "player.player_gravity"
 value_name = "33"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
@@ -379,7 +488,7 @@ position = Vector2(-0.00012207, 3.05176e-05)
 script = ExtResource("16_21njq")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Deathbox"]
-position = Vector2(4234.5, 5380.25)
+position = Vector2(4165, 3476)
 shape = SubResource("RectangleShape2D_3frxo")
 
 [node name="Arrow" type="Sprite2D" parent="."]
