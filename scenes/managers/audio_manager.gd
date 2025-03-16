@@ -67,10 +67,10 @@ func play_sound(_sound : Sound) ->void:
             print("error- default")
 
 func on_master_volume(_value :float) ->void:
-    AudioServer.set_bus_volume_db(master_index,_value)
+    AudioServer.set_bus_volume_db(master_index,linear_to_db(_value))
 
 func on_sfx_volume(_value : float ) -> void:
-    AudioServer.set_bus_volume_db(sfx_index, _value)
+    AudioServer.set_bus_volume_db(sfx_index, linear_to_db(_value))
 
 func on_music_volume(_value: float) -> void:
-    AudioServer.set_bus_volume_db(music_index,_value)
+    AudioServer.set_bus_volume_db(music_index,linear_to_db(_value))
