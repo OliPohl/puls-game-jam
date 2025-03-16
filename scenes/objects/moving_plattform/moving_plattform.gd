@@ -23,6 +23,7 @@ var collision: bool = false:
       _player_detect_zone_collision.disabled = !value
       if value:
         modulate.a = 1
+        $Moving_plattform/Visuals/moving_mother.animation = "active"
       else:
         modulate.a = 0.6
 
