@@ -25,7 +25,11 @@ var player_size : float  = 1:
 		if player_size != value:
 			_player_visuals.scale = Vector2(value, value)
 			player_size = value
-var player_coyote_time : float = 0.23
+var player_coyote_time : float = 0.23:
+	set(value):
+		if player_coyote_time != value:
+			_player_coyote_timer.wait_time = value
+			player_coyote_time = value
 var player_jump_power : float  = 800
 var player_collision_layer : int  = 0
 var player_Jump_enabled : bool  = true
