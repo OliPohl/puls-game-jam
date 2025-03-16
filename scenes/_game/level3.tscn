@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://4m8xl8tmrij2"]
+[gd_scene load_steps=33 format=4 uid="uid://4m8xl8tmrij2"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_3hrdy"]
 [ext_resource type="Texture2D" uid="uid://dtgaba7fsck5j" path="res://assets/images/env/bg3.png" id="2_i1k3q"]
@@ -12,32 +12,19 @@
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="6_lctgq"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_qlxxa"]
 [ext_resource type="Script" uid="uid://b0h7f3mlh2i43" path="res://components/logic/logic-timer.gd" id="9_xwd1o"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lctgq"]
-size = Vector2(125, 237.5)
-
-[sub_resource type="Curve" id="Curve_i1k3q"]
-_data = [Vector2(0.0166667, 0.0449438), 0.0, 0.0, 0, 0, Vector2(1, 0.921348), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkbid"]
-radius = 18.13
-height = 202.51
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
-radius = 129.542
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwd1o"]
-size = Vector2(177, 232)
+[ext_resource type="Texture2D" uid="uid://bqqiwmckufgdl" path="res://assets/images/1.png" id="13_af44g"]
+[ext_resource type="Texture2D" uid="uid://dgo7kd58x6y0i" path="res://assets/images/2.png" id="14_21njq"]
+[ext_resource type="Texture2D" uid="uid://cm7pnlxokrylu" path="res://assets/images/3.png" id="15_3frxo"]
+[ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="16_21njq"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_noxre"]
 tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 131072, 2, 65537, 196608, 2)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i1k3q"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xqvou"]
 load_path = "res://.godot/imported/spritesheet_1.png-efbcb105c8407faaad688033353c12be.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rklr2"]
-texture = SubResource("CompressedTexture2D_i1k3q")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8n4la"]
+texture = SubResource("CompressedTexture2D_xqvou")
 texture_region_size = Vector2i(256, 256)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
@@ -69,10 +56,10 @@ texture_region_size = Vector2i(256, 256)
 2:3/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_sf2a0"]
+[sub_resource type="TileSet" id="TileSet_f3b76"]
 tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_rklr2")
+sources/0 = SubResource("TileSetAtlasSource_8n4la")
 pattern_0 = SubResource("TileMapPattern_noxre")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_af44g"]
@@ -113,7 +100,8 @@ texture_region_size = Vector2i(256, 256)
 
 [sub_resource type="TileSet" id="TileSet_3frxo"]
 tile_size = Vector2i(256, 256)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_21njq")
 pattern_0 = SubResource("TileMapPattern_noxre")
 
@@ -155,9 +143,30 @@ texture_region_size = Vector2i(256, 256)
 
 [sub_resource type="TileSet" id="TileSet_8n4la"]
 tile_size = Vector2i(256, 256)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
 sources/0 = SubResource("TileSetAtlasSource_xqvou")
 pattern_0 = SubResource("TileMapPattern_noxre")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lctgq"]
+size = Vector2(125, 237.5)
+
+[sub_resource type="Curve" id="Curve_i1k3q"]
+_data = [Vector2(0.0166667, 0.0449438), 0.0, 0.0, 0, 0, Vector2(1, 0.921348), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkbid"]
+radius = 18.13
+height = 202.51
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
+radius = 129.542
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwd1o"]
+size = Vector2(177, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3frxo"]
+size = Vector2(18787, 2444.5)
 
 [node name="Level3" type="Node2D"]
 
@@ -168,6 +177,36 @@ offset_top = -4756.0
 offset_right = 12337.0
 offset_bottom = 5960.0
 texture = ExtResource("2_i1k3q")
+
+[node name="TileMapLayer_1" type="TileMapLayer" parent="."]
+modulate = Color(0.550171, 0.782269, 3.85046e-07, 1)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAACAAUAAAACAAIAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAD//wUAAAABAAAAAAD+/wUAAAADAAAAAAD+/wYAAAADAAEAAAD//wYAAAACAAEAAAAAAAYAAAACAAEAAAABAAYAAAACAAEAAAACAAYAAAADAAIAAAAUAAcAAAADAAAAAAAUAAgAAAADAAEAAAAVAAcAAAABAAAAAAAVAAgAAAACAAEAAAAWAAcAAAACAAIAAAAWAAgAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_f3b76")
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(-46, 755)
+texture = ExtResource("13_af44g")
+
+[node name="TileMapLayer_2" type="TileMapLayer" parent="."]
+modulate = Color(1, 0.422778, 0.383641, 1)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAD+/wcAAAADAAAAAAD+/wgAAAADAAEAAAD//wcAAAABAAAAAAD//wgAAAACAAEAAAAAAAcAAAACAAIAAAAAAAgAAAADAAIAAAAJAAkAAAADAAEAAAAJAAgAAAADAAAAAAAKAAcAAAADAAAAAAALAAkAAAADAAIAAAALAAcAAAACAAIAAAALAAgAAAABAAIAAAAKAAkAAAACAAEAAAAKAAgAAAAAAAEAAAAPAAcAAAADAAAAAAAPAAsAAAADAAEAAAARAAcAAAACAAIAAAAQAAcAAAABAAAAAAAPAAgAAAAAAAIAAAAPAAkAAAAAAAIAAAAPAAoAAAAAAAIAAAAQAAsAAAACAAEAAAARAAgAAAABAAIAAAARAAkAAAABAAIAAAARAAoAAAABAAIAAAARAAsAAAADAAIAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_3frxo")
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(48, 988)
+texture = ExtResource("14_21njq")
+
+[node name="TileMapLayer_3" type="TileMapLayer" parent="."]
+modulate = Color(0.122994, 0.762177, 0.809557, 1)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAABAAcAAAADAAAAAAABAAgAAAADAAEAAAAFAAgAAAADAAIAAAADAAYAAAADAAAAAAACAAcAAAABAAAAAAADAAcAAAAAAAEAAAAEAAYAAAABAAAAAAAFAAYAAAACAAIAAAAFAAcAAAABAAIAAAACAAgAAAACAAEAAAADAAgAAAACAAEAAAAEAAgAAAACAAEAAAAEAAcAAAAAAAAAAAAJAAcAAAADAAIAAAAIAAYAAAADAAAAAAAIAAcAAAADAAEAAAAJAAYAAAACAAIAAAAZAAcAAAADAAAAAAAZAAgAAAADAAEAAAAaAAgAAAADAAIAAAAaAAcAAAACAAIAAAAgAAcAAAACAAIAAAAfAAcAAAADAAAAAAAfAAgAAAADAAEAAAAgAAgAAAADAAIAAAA=")
+tile_set = SubResource("TileSet_8n4la")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(478, 861)
+texture = ExtResource("15_3frxo")
 
 [node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
 position = Vector2(24, 379)
@@ -267,11 +306,10 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_abu21")
 
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("3_c86oh")]
-offset = Vector2(0, -204.985)
+offset = Vector2(0, -71.845)
 
 [node name="FLAG_OBJECT" parent="." instance=ExtResource("4_c86oh")]
 position = Vector2(7134, -283)
-script_enabled = true
 
 [node name="LogicArea" type="Area2D" parent="FLAG_OBJECT"]
 position = Vector2(27, -52)
@@ -335,15 +373,10 @@ variable_name = "player.player_gravity"
 value_name = "33"
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
-[node name="TileMapLayer_1" type="TileMapLayer" parent="."]
-scale = Vector2(0.5, 0.5)
-tile_map_data = PackedByteArray("AAACAAUAAAACAAIAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAD//wUAAAABAAAAAAD+/wUAAAADAAAAAAD+/wYAAAADAAEAAAD//wYAAAACAAEAAAAAAAYAAAACAAEAAAABAAYAAAACAAEAAAACAAYAAAADAAIAAAA=")
-tile_set = SubResource("TileSet_sf2a0")
+[node name="Deathbox" type="Area2D" parent="."]
+position = Vector2(-0.00012207, 3.05176e-05)
+script = ExtResource("16_21njq")
 
-[node name="TileMapLayer_2" type="TileMapLayer" parent="."]
-scale = Vector2(0.5, 0.5)
-tile_set = SubResource("TileSet_3frxo")
-
-[node name="TileMapLayer_3" type="TileMapLayer" parent="."]
-scale = Vector2(0.5, 0.5)
-tile_set = SubResource("TileSet_8n4la")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Deathbox"]
+position = Vector2(4234.5, 5380.25)
+shape = SubResource("RectangleShape2D_3frxo")

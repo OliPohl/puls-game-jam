@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b0sn50pwyrljv"]
+[gd_scene load_steps=27 format=4 uid="uid://b0sn50pwyrljv"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_5uhya"]
 [ext_resource type="Texture2D" uid="uid://dmn622qtjkge1" path="res://assets/images/env/bg4.png" id="2_ks2wk"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="8_noxre"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="9_4jytg"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="11_n8rqn"]
+[ext_resource type="Texture2D" uid="uid://b3e7i8asjkqgg" path="res://assets/images/klickmich.png" id="15_xchol"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7rg82"]
 texture = ExtResource("2_ks2wk")
@@ -211,3 +212,7 @@ shape = SubResource("RectangleShape2D_3cykr")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Deathbox"]
 position = Vector2(985, -3252)
 shape = SubResource("RectangleShape2D_3cykr")
+
+[node name="Klickmich" type="Sprite2D" parent="."]
+position = Vector2(853, 535)
+texture = ExtResource("15_xchol")
