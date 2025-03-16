@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://d6gsd6384nci"]
+
+[ext_resource type="Script" uid="uid://bwsx64wf2vme7" path="res://scenes/enemy/enemy_02.gd" id="1_51k35"]
+[ext_resource type="PackedScene" uid="uid://b5pnekujnem83" path="res://scenes/enemy/weapon.tscn" id="2_2dq1b"]
+[ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="3_6oqqy"]
+[ext_resource type="PackedScene" uid="uid://cbu8c1yhdh6yo" path="res://components/enemy_HitBox.tscn" id="4_2kyt8"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="5_t0l0m"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="6_iqbil"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_i83sv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahm5f"]
+radius = 51.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ehnnc"]
+radius = 51.0098
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xaaw"]
+radius = 113.442
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eftnu"]
+size = Vector2(1797, 606)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8sjoj"]
+radius = 83.5225
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51k35"]
+radius = 76.5658
+
+[node name="enemy_02" type="CharacterBody2D"]
+script = ExtResource("1_51k35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -51)
+shape = SubResource("CircleShape2D_ahm5f")
+
+[node name="weapon" parent="." instance=ExtResource("2_2dq1b")]
+position = Vector2(4, -96)
+scale = Vector2(0.8, 0.8)
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(0, -123)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+process_mode = 3
+position = Vector2(4, 27)
+scale = Vector2(0.8, 0.8)
+sprite_frames = ExtResource("3_6oqqy")
+animation = &"dying"
+autoplay = "walking"
+
+[node name="Hit_Box_Component" parent="." instance=ExtResource("4_2kyt8")]
+position = Vector2(7, -110)
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hit_Box_Component" index="0"]
+position = Vector2(-9, 50)
+shape = SubResource("CircleShape2D_ehnnc")
+debug_color = Color(0.955567, 3.27289e-06, 0.542531, 0.42)
+
+[node name="LogicArea" type="Area2D" parent="."]
+script = ExtResource("5_t0l0m")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
+position = Vector2(0, -75)
+shape = SubResource("CircleShape2D_3xaaw")
+
+[node name="LogicBase" type="Node" parent="."]
+script = ExtResource("6_iqbil")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_i83sv")
+variable_node = NodePath("../..")
+variable_name = "enemy_speed"
+value_type = "float"
+value_name = "200"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation2" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_i83sv")
+variable_node = NodePath("../..")
+variable_name = "enemy_size"
+value_type = "float"
+value_name = "1"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation3" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_i83sv")
+variable_node = NodePath("../..")
+variable_name = "color"
+value_type = "string"
+value_name = "white"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="Trigger_Zone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Zone"]
+position = Vector2(5.5, -56)
+shape = SubResource("RectangleShape2D_eftnu")
+
+[node name="CD_Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="HurtBox_Component" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox_Component"]
+position = Vector2(25, -96)
+shape = SubResource("CircleShape2D_8sjoj")
+debug_color = Color(0.735857, 0.469443, 0, 0.42)
+
+[node name="Player_HitBox" parent="." instance=ExtResource("4_2kyt8")]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Player_HitBox" index="0"]
+position = Vector2(-2, -70)
+shape = SubResource("CircleShape2D_51k35")
+
+[connection signal="body_entered" from="Trigger_Zone" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Trigger_Zone" to="." method="_on_body_exited"]
+
+[editable path="Hit_Box_Component"]
+[editable path="Player_HitBox"]

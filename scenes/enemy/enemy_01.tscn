@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh5gqn7c5p8ng"]
+[gd_scene load_steps=10 format=3 uid="uid://bh5gqn7c5p8ng"]
 
 [ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="1_oix7v"]
 [ext_resource type="Script" uid="uid://fm0ijpvqgfnf" path="res://scenes/enemy/enemy_01.gd" id="1_oxspq"]
@@ -14,10 +14,7 @@ radius = 51.0
 radius = 51.0098
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xaaw"]
-radius = 87.0517
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eftnu"]
-size = Vector2(922, 606)
+radius = 113.442
 
 [node name="enemy_01" type="CharacterBody2D"]
 script = ExtResource("1_oxspq")
@@ -30,15 +27,17 @@ shape = SubResource("CircleShape2D_ahm5f")
 position = Vector2(0, -123)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+process_mode = 3
 position = Vector2(4, 27)
 scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("1_oix7v")
 animation = &"walking"
 autoplay = "walking"
-frame_progress = 0.0501985
 
 [node name="Hit_Box_Component" parent="." instance=ExtResource("2_ahm5f")]
 position = Vector2(7, -110)
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" parent="Hit_Box_Component" index="0"]
 position = Vector2(-9, 50)
@@ -83,17 +82,5 @@ value_type = "string"
 value_name = "white"
 interactable = true
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
-
-[node name="Trigger_Zone" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Zone"]
-position = Vector2(6, -56)
-shape = SubResource("RectangleShape2D_eftnu")
-
-[node name="CD_Timer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="body_entered" from="Trigger_Zone" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Trigger_Zone" to="." method="_on_body_exited"]
 
 [editable path="Hit_Box_Component"]

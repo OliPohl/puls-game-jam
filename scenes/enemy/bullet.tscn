@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://bor0pccyc6feb"]
+
+[ext_resource type="Texture2D" uid="uid://bbygvy61gikwu" path="res://assets/images/bullet.png" id="1_cauhf"]
+[ext_resource type="Script" uid="uid://ifeby3xi65bq" path="res://scenes/enemy/bullet.gd" id="1_tg652"]
+[ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="2_716yw"]
+[ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="3_716yw"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="5_3swi0"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="6_k3j8w"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_m4ph0"]
+
+[sub_resource type="Curve" id="Curve_1wb40"]
+_data = [Vector2(0.00434782, 1), 0.0, 0.0, 0, 0, Vector2(0.626087, 0.88764), -2.79101, -2.79101, 0, 0, Vector2(0.986957, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_48d8u"]
+colors = PackedColorArray(1, 0.576471, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3swi0"]
+radius = 16.1245
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wb40"]
+radius = 14.1421
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyp6o"]
+radius = 70.0071
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_tg652")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cauhf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+texture = ExtResource("2_716yw")
+lifetime = 2.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 22.33
+spread = 180.0
+gravity = Vector2(55, 0)
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_1wb40")
+color_ramp = SubResource("Gradient_48d8u")
+
+[node name="Player_hit" type="Area2D" parent="."]
+position = Vector2(0, 5)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_716yw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_hit"]
+position = Vector2(-4, -5)
+shape = SubResource("CircleShape2D_3swi0")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, 5)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_716yw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-10, -4)
+shape = SubResource("CircleShape2D_1wb40")
+
+[node name="LogicArea" type="Area2D" parent="."]
+script = ExtResource("5_3swi0")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
+shape = SubResource("CircleShape2D_yyp6o")
+
+[node name="LogicBase" type="Node" parent="."]
+script = ExtResource("6_k3j8w")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_m4ph0")
+variable_node = NodePath("../..")
+variable_name = "bullet_speed"
+value_type = "float"
+value_name = "15"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation2" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_m4ph0")
+variable_node = NodePath("../..")
+variable_name = "direction"
+value_type = "float"
+value_name = "-1"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"

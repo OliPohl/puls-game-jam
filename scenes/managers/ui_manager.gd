@@ -112,7 +112,18 @@ func start_menu() ->void:
 	_win_control.visible =false
 	_game_over_control.visible = false
 	_game_timer.stop()
-
+func interact_paused_game() -> void :
+	_game_timer.stop()
+	_game_hud.visible= false
+	_menu.visible =false
+	_win_control.visible =false
+	_game_over_control.visible = false
+func interact_resume_game() -> void :
+	_game_timer.start()
+	_game_hud.visible= true
+	_menu.visible =false
+	_win_control.visible =false
+	_game_over_control.visible = false
 func start_level_selection() -> void:
 	_game_hud.visible= true
 	_menu.visible =false
