@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="9_gakm4"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="10_kehli"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="11_1g70w"]
-[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="12_jb8cl"]
+[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="12_jb8cl"]
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="13_f2cex"]
 [ext_resource type="Texture2D" uid="uid://ck0ks3subsjsa" path="res://assets/images/spritesheet_1.png" id="14_gax1r"]
 
