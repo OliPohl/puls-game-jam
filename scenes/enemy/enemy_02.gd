@@ -71,7 +71,7 @@ func _on_body_entered(_body : Node):
     if !_is_death:
         _sprite.play("idle")
         _is_player_inrange =true
-
+#1123
 func _on_body_exited(_body : Node):
     if !_is_death:
         _sprite.play("walking")
