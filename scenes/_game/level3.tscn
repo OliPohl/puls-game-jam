@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtgaba7fsck5j" path="res://assets/images/env/bg3.png" id="2_i1k3q"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="2_u1um0"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="3_5chxp"]
-[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="3_c86oh"]
+[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="3_c86oh"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="3_qlxxa"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="4_xe5ll"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_xe5ll"]

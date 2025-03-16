@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bmnfvoy6txq1l"]
+[gd_scene load_steps=48 format=4 uid="uid://b6nl7sy3omvto"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_7008j"]
 [ext_resource type="Texture2D" uid="uid://dwxr3ofgs20rf" path="res://assets/images/ty.png" id="2_cdacf"]
@@ -10,14 +10,14 @@
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_1aykq"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_ihw8d"]
 [ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="9_llam7"]
-[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="9_ywuur"]
+[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="9_ywuur"]
 [ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="10_vmcep"]
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="11_cdacf"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="12_3inni"]
 [ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="12_ctlnc"]
 [ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="14_6vou7"]
 [ext_resource type="PackedScene" uid="uid://b5pnekujnem83" path="res://scenes/enemy/weapon.tscn" id="15_1aykq"]
-[ext_resource type="PackedScene" uid="uid://sdoguyj1wlwi" path="res://components/endgame_particle.tscn" id="18_cdacf"]
+[ext_resource type="PackedScene" path="res://components/endgame_particle.tscn" id="18_cdacf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6vp2"]
 texture = ExtResource("2_llam7")
