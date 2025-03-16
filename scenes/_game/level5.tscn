@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://b6nl7sy3omvto"]
+[gd_scene load_steps=55 format=4 uid="uid://bmnfvoy6txq1l"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_7008j"]
 [ext_resource type="Texture2D" uid="uid://dwxr3ofgs20rf" path="res://assets/images/ty.png" id="2_cdacf"]
@@ -10,14 +10,15 @@
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_1aykq"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_ihw8d"]
 [ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="9_llam7"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="9_ywuur"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="9_ywuur"]
 [ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="10_vmcep"]
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="11_cdacf"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="12_3inni"]
 [ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="12_ctlnc"]
 [ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="14_6vou7"]
 [ext_resource type="PackedScene" uid="uid://b5pnekujnem83" path="res://scenes/enemy/weapon.tscn" id="15_1aykq"]
-[ext_resource type="PackedScene" path="res://components/endgame_particle.tscn" id="18_cdacf"]
+[ext_resource type="Texture2D" uid="uid://b862t8l3itjax" path="res://assets/images/spike.png" id="17_ctlnc"]
+[ext_resource type="PackedScene" uid="uid://sdoguyj1wlwi" path="res://components/endgame_particle.tscn" id="18_cdacf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6vp2"]
 texture = ExtResource("2_llam7")
@@ -253,6 +254,64 @@ tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_aiu8b")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vou7"]
+atlas = ExtResource("17_ctlnc")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aykq"]
+atlas = ExtResource("17_ctlnc")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihw8d"]
+atlas = ExtResource("17_ctlnc")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywuur"]
+atlas = ExtResource("17_ctlnc")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xff2a"]
+atlas = ExtResource("17_ctlnc")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ie64"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1aykq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihw8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywuur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xff2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vou7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahm5f"]
 radius = 51.0
 
@@ -461,6 +520,22 @@ position = Vector2(222, -615)
 sprite_frames = ExtResource("14_6vou7")
 animation = &"walking"
 autoplay = "walking"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-979, -574)
+scale = Vector2(1.6, 1.6)
+sprite_frames = SubResource("SpriteFrames_1ie64")
+autoplay = "default"
+frame_progress = 0.781619
+flip_h = true
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-748, -421)
+scale = Vector2(0.405, 0.405)
+sprite_frames = SubResource("SpriteFrames_1ie64")
+autoplay = "default"
+frame_progress = 0.747423
+flip_h = true
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)

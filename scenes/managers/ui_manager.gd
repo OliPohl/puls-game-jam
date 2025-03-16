@@ -35,6 +35,8 @@ extends CanvasLayer
 @onready var _win_control : Control  =$Win_Control
 ### Game over panel
 @onready var _game_over_control : Control =$Game_Over_Control
+### pause panel
+@onready var _pause_panel : ColorRect = $Pause_rect
 ###Privates 
 var _is_timer_running : bool  = false
 var _is_debug_running : bool = true
@@ -64,10 +66,8 @@ func _ready() -> void:
 ################### INPUT
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		if GameManager.current_game_state == GameManager.GameState.GAME_RUNNING:
-			GameManager.Pause_Game()
-		if GameManager.current_game_state == GameManager.GameState.PAUSE:
-			GameManager.Resume_Game()
+		get_tree().paused = !get_tree().paused
+		_pause_panel.visible = !_pause_panel.visible
 ###############################
 
 func _process(_delta: float) -> void:
