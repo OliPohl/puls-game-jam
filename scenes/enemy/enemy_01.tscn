@@ -10,11 +10,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahm5f"]
 radius = 51.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ehnnc"]
-radius = 51.0098
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xaaw"]
 radius = 113.442
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ehnnc"]
+radius = 51.0098
 
 [node name="enemy_01" type="CharacterBody2D"]
 script = ExtResource("1_oxspq")
@@ -24,7 +24,7 @@ position = Vector2(1, -51)
 shape = SubResource("CircleShape2D_ahm5f")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(0, -123)
+position = Vector2(0, -119)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 process_mode = 3
@@ -33,6 +33,47 @@ scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("1_oix7v")
 animation = &"walking"
 autoplay = "walking"
+
+[node name="LogicArea" type="Area2D" parent="Visuals/AnimatedSprite2D"]
+position = Vector2(-5, 115)
+scale = Vector2(1.25, 1.25)
+script = ExtResource("4_eftnu")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/AnimatedSprite2D/LogicArea"]
+position = Vector2(0, -75)
+shape = SubResource("CircleShape2D_3xaaw")
+
+[node name="LogicBase" type="Node" parent="Visuals/AnimatedSprite2D"]
+script = ExtResource("4_rhpej")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="Visuals/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("6_8sjoj")
+variable_node = NodePath("../../../..")
+variable_name = "enemy_speed"
+value_type = "float"
+value_name = "200"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation2" type="Node" parent="Visuals/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("6_8sjoj")
+variable_node = NodePath("../../../..")
+variable_name = "enemy_size"
+value_type = "float"
+value_name = "1"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation3" type="Node" parent="Visuals/AnimatedSprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("6_8sjoj")
+variable_node = NodePath("../../../..")
+variable_name = "color"
+value_type = "string"
+value_name = "white"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
 [node name="Hit_Box_Component" parent="." instance=ExtResource("2_ahm5f")]
 position = Vector2(7, -110)
@@ -43,44 +84,5 @@ collision_mask = 16
 position = Vector2(-9, 50)
 shape = SubResource("CircleShape2D_ehnnc")
 debug_color = Color(0.955567, 3.27289e-06, 0.542531, 0.42)
-
-[node name="LogicArea" type="Area2D" parent="."]
-script = ExtResource("4_eftnu")
-metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
-position = Vector2(0, -75)
-shape = SubResource("CircleShape2D_3xaaw")
-
-[node name="LogicBase" type="Node" parent="."]
-script = ExtResource("4_rhpej")
-metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
-
-[node name="LogicOperation" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("6_8sjoj")
-variable_node = NodePath("../..")
-variable_name = "enemy_speed"
-value_type = "float"
-value_name = "200"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"
-
-[node name="LogicOperation2" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("6_8sjoj")
-variable_node = NodePath("../..")
-variable_name = "enemy_size"
-value_type = "float"
-value_name = "1"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"
-
-[node name="LogicOperation3" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("6_8sjoj")
-variable_node = NodePath("../..")
-variable_name = "color"
-value_type = "string"
-value_name = "white"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
 [editable path="Hit_Box_Component"]

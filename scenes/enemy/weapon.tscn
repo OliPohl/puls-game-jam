@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5pnekujnem83"]
+[gd_scene load_steps=14 format=3 uid="uid://b5pnekujnem83"]
 
 [ext_resource type="Texture2D" uid="uid://c11fjh37umtfy" path="res://assets/images/cannon.png" id="1_6tjsa"]
 [ext_resource type="Script" uid="uid://8sg8f025bkhr" path="res://scenes/enemy/weapon.gd" id="1_ukrtr"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="3_7qp2l"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="4_46rsy"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="5_axcmm"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="5_d1b52"]
 
 [sub_resource type="Curve" id="Curve_46rsy"]
 _data = [Vector2(0, 0.966292), 0.0, 0.482397, 0, 0, Vector2(0.982609, 0), 0.107678, 0.0, 0, 0]
@@ -14,32 +17,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.21978, 0.21978, 0.21978, 0.7
 
 [sub_resource type="Gradient" id="Gradient_axcmm"]
 
-[sub_resource type="Animation" id="Animation_nf8jf"]
-resource_name = "shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:offset")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(19.905, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.10472, 0.0]
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_axcmm"]
+radius = 125.144
 
 [sub_resource type="Animation" id="Animation_ukrtr"]
 length = 0.001
@@ -68,13 +47,40 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_nf8jf"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(19.905, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.10472, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1t1m7"]
 _data = {
 &"RESET": SubResource("Animation_ukrtr"),
 &"shoot": SubResource("Animation_nf8jf")
 }
 
-[node name="weapon" type="Node2D"]
+[node name="Mammut_MK2025_XXL_TURBO" type="Node2D"]
 script = ExtResource("1_ukrtr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -97,6 +103,27 @@ color_initial_ramp = SubResource("Gradient_axcmm")
 
 [node name="Marker2D" type="Marker2D" parent="Sprite2D"]
 position = Vector2(-98, -51)
+
+[node name="LogicArea" type="Area2D" parent="Sprite2D"]
+script = ExtResource("4_46rsy")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LogicArea"]
+position = Vector2(-29, -44)
+shape = SubResource("CircleShape2D_axcmm")
+
+[node name="LogicBase" type="Node" parent="Sprite2D"]
+script = ExtResource("5_axcmm")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("5_d1b52")
+variable_node = NodePath("../../..")
+variable_name = "can_shoot"
+value_type = "bool"
+value_name = "true"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

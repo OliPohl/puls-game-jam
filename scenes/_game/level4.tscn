@@ -1,11 +1,11 @@
-[gd_scene load_steps=30 format=4 uid="uid://5sg3l3gjujy4"]
+[gd_scene load_steps=32 format=4 uid="uid://5sg3l3gjujy4"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_6ntpm"]
 [ext_resource type="Texture2D" uid="uid://dmn622qtjkge1" path="res://assets/images/env/bg4.png" id="2_poscc"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="2_xhl30"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="3_rmqes"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="4_13qy7"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="5_poscc"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="5_poscc"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="6_rmqes"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="8_jqehj"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="9_jqehj"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="12_ypmr1"]
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="13_q3kgi"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="14_0btvk"]
+[ext_resource type="PackedScene" uid="uid://bh5gqn7c5p8ng" path="res://scenes/enemy/enemy_01.tscn" id="16_uehbh"]
+[ext_resource type="PackedScene" uid="uid://d6gsd6384nci" path="res://scenes/enemy/enemy_02.tscn" id="17_nny3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6vp2"]
 texture = ExtResource("2_poscc")
@@ -115,7 +117,7 @@ tile_map_data = PackedByteArray("AAD8/wMABQAAAAAAAAD8/wIABQAAAAAAAAD9/wIABQAAAAA
 tile_set = SubResource("TileSet_aiu8b")
 
 [node name="Player_Node" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_player_visuals", "_particles")]
-position = Vector2(-261, 504)
+position = Vector2(-769, 387)
 collision_layer = 17
 script = ExtResource("2_xhl30")
 _player_visuals = NodePath("confident_guy")
@@ -275,3 +277,9 @@ value_type = "float"
 value_name = "0.01"
 interactable = true
 metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="enemy_01" parent="." instance=ExtResource("16_uehbh")]
+position = Vector2(278, 648)
+
+[node name="enemy_03" parent="." instance=ExtResource("17_nny3x")]
+position = Vector2(3301, 1420)

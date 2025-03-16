@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="6_k3j8w"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_m4ph0"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyp6o"]
+radius = 149.03
+
 [sub_resource type="Curve" id="Curve_1wb40"]
 _data = [Vector2(0.00434782, 1), 0.0, 0.0, 0, 0, Vector2(0.626087, 0.88764), -2.79101, -2.79101, 0, 0, Vector2(0.986957, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -21,14 +24,40 @@ radius = 16.1245
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wb40"]
 radius = 14.1421
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yyp6o"]
-radius = 70.0071
-
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_tg652")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cauhf")
+
+[node name="LogicArea" type="Area2D" parent="Sprite2D"]
+script = ExtResource("5_3swi0")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LogicArea"]
+shape = SubResource("CircleShape2D_yyp6o")
+
+[node name="LogicBase" type="Node" parent="Sprite2D"]
+script = ExtResource("6_k3j8w")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_m4ph0")
+variable_node = NodePath("../../..")
+variable_name = "bullet_speed"
+value_type = "float"
+value_name = "5"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
+
+[node name="LogicOperation2" type="Node" parent="Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("7_m4ph0")
+variable_node = NodePath("../../..")
+variable_name = "direction"
+value_type = "float"
+value_name = "-1"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 16
@@ -62,32 +91,3 @@ script = ExtResource("3_716yw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-10, -4)
 shape = SubResource("CircleShape2D_1wb40")
-
-[node name="LogicArea" type="Area2D" parent="."]
-script = ExtResource("5_3swi0")
-metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicArea"]
-shape = SubResource("CircleShape2D_yyp6o")
-
-[node name="LogicBase" type="Node" parent="."]
-script = ExtResource("6_k3j8w")
-metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
-
-[node name="LogicOperation" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("7_m4ph0")
-variable_node = NodePath("../..")
-variable_name = "bullet_speed"
-value_type = "float"
-value_name = "15"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"
-
-[node name="LogicOperation2" type="Node" parent="LogicBase" node_paths=PackedStringArray("variable_node")]
-script = ExtResource("7_m4ph0")
-variable_node = NodePath("../..")
-variable_name = "direction"
-value_type = "float"
-value_name = "-1"
-interactable = true
-metadata/_custom_type_script = "uid://6t1rnc37yi2h"

@@ -4,9 +4,15 @@ extends Node2D
 
 var _bullet : PackedScene =preload("res://scenes/enemy/bullet.tscn")
 
+var can_shoot : bool = true:
+  set(value):
+    if (can_shoot != value):
+      can_shoot = value
+
 func shoot(_direction : float) ->void:
-    var _instance = _bullet.instantiate()
-    add_child(_instance)
-    _instance.position = _spawn_pos.position
-    _instance.shoot(_direction)
-    _anim.play("shoot")
+    if can_shoot:
+        var _instance = _bullet.instantiate()
+        add_child(_instance)
+        _instance.position = _spawn_pos.position
+        _instance.shoot(_direction)
+        _anim.play("shoot")
