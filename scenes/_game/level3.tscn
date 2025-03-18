@@ -304,7 +304,6 @@ position = Vector2(-21, 510)
 collision_layer = 17
 script = ExtResource("2_u1um0")
 _player_visuals = NodePath("cool_guy")
-_use_coyote_time_light = true
 _particles = NodePath("cool_guy/CPUParticles2D")
 
 [node name="cool_guy" type="AnimatedSprite2D" parent="Player_Node"]

@@ -22,15 +22,15 @@ extends CanvasLayer
 @onready var _debug_gpu_value  : Label  =$Debug_Control/Debug_Margin/HBoxContainer/debug_values/gpu_value
 @onready var _debug_timer : Timer = $Debug_Control/Debug_Interval
 ### BUTTONS
-@onready var _button_start : Button = $Menu/Menu_button_Margin/VBoxContainer/Button_Start
-@onready var _button_resume: Button = $Menu/Menu_button_Margin/VBoxContainer/Button_Resume
+@onready var _button_start : Button = $Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Start
+@onready var _button_resume: Button = $Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Resume
 ### SLIDERS
-@onready var _master_v_slider : Slider = $Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/master_v_slider
-@onready var _sound_v_slider : Slider = $Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/sound_v_silder
-@onready var _music_v_slider : Slider  =$Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/music_v_slider
+@onready var _master_v_slider : Slider = $Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/master_v_slider
+@onready var _sound_v_slider : Slider = $Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/sound_v_silder
+@onready var _music_v_slider : Slider  =$Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/music_v_slider
 ### Checkboxes
-@onready var _fullscreen_checkbutton : CheckButton =$Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/fullscreen_toggle
-@onready var _vsync_checkbutton : CheckButton = $Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/vsync_toggle
+@onready var _fullscreen_checkbutton : CheckButton =$Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/fullscreen_toggle
+@onready var _vsync_checkbutton : CheckButton = $Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/vsync_toggle
 ### Win panel
 @onready var _win_control : Control  =$Win_Control
 ### Game over panel

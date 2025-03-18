@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=33 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
@@ -8,9 +8,39 @@
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
 [ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
+[ext_resource type="SpriteFrames" uid="uid://cdy2k83nyd7c7" path="res://scenes/ui/ui_flag_button.tres" id="5_mpd4i"]
+[ext_resource type="StyleBox" uid="uid://bten5yq8nthrs" path="res://scenes/ui/ui_stylebox_panel.tres" id="7_ytsje"]
+[ext_resource type="LabelSettings" uid="uid://b8mhxmsla83cm" path="res://scenes/ui/menu_h1_label_settings.tres" id="8_m2gsp"]
+[ext_resource type="Script" uid="uid://bmuudnk31h7a8" path="res://scenes/ui/anim_button.gd" id="8_nxfho"]
+[ext_resource type="LabelSettings" uid="uid://c5pjvewn030i1" path="res://scenes/ui/menu_label_settings.tres" id="9_tu02a"]
+[ext_resource type="Texture2D" uid="uid://djrtdnb1ivmek" path="res://assets/images/ui/knob.png" id="10_2whxp"]
+[ext_resource type="Texture2D" uid="uid://4b74k57ge6bt" path="res://assets/images/ui/knob_highlighted.png" id="11_0d6jp"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
-texture = ExtResource("3_oo2yl")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_id3g5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxfho"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7j1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dgnm4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngihc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ytsje"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2gsp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7fyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pss4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu02a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2whxp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d6jp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t74x"]
 
 [sub_resource type="Animation" id="Animation_mai3r"]
 length = 0.001
@@ -74,6 +104,9 @@ _data = {
 &"sprite_anim": SubResource("Animation_3t4xl")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
+texture = ExtResource("3_oo2yl")
+
 [node name="UI_Manager" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_xetle")
@@ -122,22 +155,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "00:00:000"
 horizontal_alignment = 1
-
-[node name="Panel2" type="Panel" parent="Game_HUD"]
-layout_mode = 0
-offset_left = 1107.0
-offset_top = 594.0
-offset_right = 1272.0
-offset_bottom = 712.0
-
-[node name="TextureRect" type="TextureRect" parent="Game_HUD/Panel2"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -20.0
-offset_right = 253.0
-offset_bottom = 236.0
-scale = Vector2(0.69, 0.69)
-texture = ExtResource("3_etnpp")
 
 [node name="Debug_Control" type="Control" parent="."]
 layout_mode = 3
@@ -188,25 +205,25 @@ layout_mode = 2
 
 [node name="debug_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
 theme_override_font_sizes/font_size = 9
 text = "On"
 
 [node name="frames_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
 theme_override_font_sizes/font_size = 9
 text = "66"
 
 [node name="ram_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
 theme_override_font_sizes/font_size = 9
 text = "120 MB"
 
 [node name="gpu_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.152941, 0.788235, 0.152941, 1)
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
 theme_override_font_sizes/font_size = 9
 text = "16°"
 
@@ -273,38 +290,169 @@ layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_id3g5")
 
-[node name="Button_Start" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
-layout_mode = 2
+[node name="Start_Button" type="AnimatedSprite2D" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer" node_paths=PackedStringArray("button")]
+position = Vector2(74, -68)
+sprite_frames = ExtResource("5_mpd4i")
+autoplay = "default"
+script = ExtResource("8_nxfho")
+button = NodePath("Button_Start")
+
+[node name="Button_Start" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button"]
+custom_minimum_size = Vector2(130, 50)
+offset_left = -74.0
+offset_top = -56.0
+offset_right = 56.0
+offset_bottom = -14.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ngihc")
 text = "Start"
 
-[node name="Button_Resume" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="Button_Resume" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button"]
 visible = false
-layout_mode = 2
+custom_minimum_size = Vector2(130, 50)
+offset_left = -74.0
+offset_top = -57.0
+offset_right = 56.0
+offset_bottom = -15.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytsje")
 text = "Resume"
 
-[node name="Button_Settings" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m2gsp")
+
+[node name="Setting_Button" type="AnimatedSprite2D" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer2" node_paths=PackedStringArray("button")]
+position = Vector2(74, 21)
+sprite_frames = ExtResource("5_mpd4i")
+autoplay = "default"
+script = ExtResource("8_nxfho")
+button = NodePath("Button_Settings")
+
+[node name="Button_Settings" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer2/Setting_Button"]
+custom_minimum_size = Vector2(130, 50)
+offset_left = -74.0
+offset_top = -58.0
+offset_right = 56.0
+offset_bottom = -16.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytsje")
 text = "Settings"
 
-[node name="Button_Credits" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m2gsp")
+
+[node name="Credits_Button" type="AnimatedSprite2D" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer3" node_paths=PackedStringArray("button")]
+position = Vector2(74, 94)
+sprite_frames = ExtResource("5_mpd4i")
+autoplay = "default"
+script = ExtResource("8_nxfho")
+button = NodePath("Button_Credits")
+
+[node name="Button_Credits" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer3/Credits_Button"]
+custom_minimum_size = Vector2(130, 50)
+offset_left = -74.0
+offset_top = -56.0
+offset_right = 56.0
+offset_bottom = -14.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytsje")
 text = "Credits"
 
-[node name="Button_Select_lvl" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m2gsp")
+
+[node name="levelselect_Button" type="AnimatedSprite2D" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer4" node_paths=PackedStringArray("button")]
+position = Vector2(74, 173)
+sprite_frames = ExtResource("5_mpd4i")
+animation = &"pressed"
+autoplay = "default"
+script = ExtResource("8_nxfho")
+button = NodePath("Button_Select_lvl")
+
+[node name="Button_Select_lvl" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer4/levelselect_Button"]
+custom_minimum_size = Vector2(130, 50)
+offset_left = -67.0
+offset_top = -56.0
+offset_right = 63.0
+offset_bottom = -14.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytsje")
 text = "Select Level"
 
-[node name="Button_Quit" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="Menu/Menu_button_Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m2gsp")
+
+[node name="quit_Button" type="AnimatedSprite2D" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer5" node_paths=PackedStringArray("button")]
+position = Vector2(79, 249)
+sprite_frames = ExtResource("5_mpd4i")
+autoplay = "default"
+script = ExtResource("8_nxfho")
+button = NodePath("Button_Quit")
+
+[node name="Button_Quit" type="Button" parent="Menu/Menu_button_Margin/VBoxContainer/PanelContainer5/quit_Button"]
+custom_minimum_size = Vector2(130, 50)
+offset_left = -67.0
+offset_top = -55.0
+offset_right = 63.0
+offset_bottom = -5.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxfho")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7j1f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dgnm4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytsje")
 text = "Quit"
 
 [node name="Content_Margin" type="MarginContainer" parent="Menu"]
@@ -333,80 +481,118 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ColorRect" type="ColorRect" parent="Menu/Content_Margin/Setting_Margin"]
+[node name="Panel" type="Panel" parent="Menu/Content_Margin/Setting_Margin"]
+custom_minimum_size = Vector2(420, 300)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("7_ytsje")
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Content_Margin/Setting_Margin/Panel"]
+visible = false
+layout_mode = 2
+offset_right = 310.0
+offset_bottom = 279.0
 color = Color(0.099986, 0.099986, 0.099986, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -139.5
+offset_right = 155.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer"]
+[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y7fyd")
 
-[node name="Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
+[node name="Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Settings_Header"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 93.0
+offset_top = 6.0
+offset_right = 214.0
+offset_bottom = 57.0
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
 text = " Settings"
+label_settings = ExtResource("8_m2gsp")
 
-[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer"]
+[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(310, 250)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4pss4")
 
-[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
+[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 offset_left = 4.0
 offset_right = 304.0
 offset_bottom = 231.0
 
-[node name="master_v_Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator4" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="master_v_Label" type="Label" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 text = "Master Volume"
+label_settings = ExtResource("9_tu02a")
 
-[node name="master_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="master_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
 max_value = 1.0
 step = 0.01
 value = 0.41
 
-[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 
-[node name="sound_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="sound_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 text = "Sound Volume"
+label_settings = ExtResource("9_tu02a")
 
-[node name="sound_v_silder" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="sound_v_silder" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
 max_value = 1.0
 step = 0.01
 value = 0.41
 
-[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 
-[node name="music_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="music_v_label" type="Label" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 text = "Music Volume"
+label_settings = ExtResource("9_tu02a")
 
-[node name="music_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="music_v_slider" type="HSlider" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
 max_value = 1.0
 step = 0.01
 value = 0.41
 
-[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
 
-[node name="fullscreen_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="fullscreen_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+visible = false
 layout_mode = 2
 text = "Fullscreen "
 
-[node name="vsync_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="vsync_toggle" type="CheckButton" parent="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+visible = false
 layout_mode = 2
 button_pressed = true
 text = "V-Sync"
@@ -419,87 +605,121 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ColorRect" type="ColorRect" parent="Menu/Content_Margin/Credits_Margin"]
+[node name="Panel" type="Panel" parent="Menu/Content_Margin/Credits_Margin"]
+custom_minimum_size = Vector2(420, 300)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("7_ytsje")
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Content_Margin/Credits_Margin/Panel"]
+visible = false
+layout_mode = 2
+offset_right = 420.0
+offset_bottom = 300.0
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin/Panel"]
 layout_mode = 2
+offset_right = 420.0
+offset_bottom = 300.0
 
-[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer"]
+[node name="Settings_Header" type="Panel" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tu02a")
 
-[node name="Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Settings_Header"]
+[node name="Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Settings_Header"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 12.5
+offset_right = 420.0
+offset_bottom = 63.5
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
 text = "Credits"
+label_settings = ExtResource("8_m2gsp")
+horizontal_alignment = 1
 
-[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer"]
+[node name="Setting_P" type="Panel" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(310, 141.51)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2whxp")
 
-[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P"]
+[node name="VBox" type="VBoxContainer" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 offset_left = 4.0
-offset_right = 304.0
-offset_bottom = 136.0
+offset_top = 30.5
+offset_right = 424.0
+offset_bottom = 194.5
 
-[node name="oli_Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="oli_Label" type="Label" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 text = "Oliver Pohl - Programing and UI"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0d6jp")
 
-[node name="phillip_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="phillip_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 text = "Philipp Becker - Artist 2D - Animation"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator2" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8t74x")
 
-[node name="robert_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="robert_v_label" type="Label" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 text = "Quang Nguyen - Artist"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator3" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8t74x")
 
-[node name="robert_v_label2" type="Label" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="robert_v_label2" type="Label" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 text = "Robert Mögenburg - Programming"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator4" type="HSeparator" parent="Menu/Content_Margin/Credits_Margin/Panel/VBoxContainer/Setting_P/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8t74x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Content_Margin/Credits_Margin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Content_Margin/Credits_Margin/Panel"]
 layout_mode = 2
+offset_right = 420.0
+offset_bottom = 300.0
 
-[node name="Phillip_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
-position = Vector2(75.36, -30.18)
+[node name="Phillip_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/Panel/HBoxContainer"]
+position = Vector2(112.36, 253.78)
 scale = Vector2(0.245, 0.245)
 sprite_frames = ExtResource("4_7f570")
 animation = &"win"
 autoplay = "win"
 frame_progress = 0.771356
 
-[node name="Oliver_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+[node name="Oliver_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/Panel/HBoxContainer"]
 modulate = Color(0.372549, 0.682353, 1, 1)
-position = Vector2(136, -18.5)
+position = Vector2(173, 260.5)
 scale = Vector2(0.155, 0.155)
 sprite_frames = ExtResource("4_7f570")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0331982
 
-[node name="Quang_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+[node name="Quang_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/Panel/HBoxContainer"]
 modulate = Color(0.592157, 1, 1, 1)
-position = Vector2(202, -19.5)
+position = Vector2(239, 256.5)
 scale = Vector2(0.18, 0.18)
 sprite_frames = ExtResource("4_7f570")
 animation = &"win"
@@ -507,9 +727,9 @@ autoplay = "win"
 frame_progress = 0.505682
 flip_h = true
 
-[node name="Robert_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/HBoxContainer"]
+[node name="Robert_sprite" type="AnimatedSprite2D" parent="Menu/Content_Margin/Credits_Margin/Panel/HBoxContainer"]
 modulate = Color(0.164706, 1, 0.266667, 1)
-position = Vector2(277.36, -29.18)
+position = Vector2(314, 251.5)
 scale = Vector2(0.26, 0.26)
 sprite_frames = ExtResource("4_7f570")
 animation = &"idle"
@@ -529,6 +749,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_etnpp")
 }
 autoplay = "sprite_anim"
+
+[node name="Panel2" type="Panel" parent="Menu"]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 594.0
+offset_right = 1272.0
+offset_bottom = 712.0
+
+[node name="TextureRect" type="TextureRect" parent="Menu/Panel2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -20.0
+offset_right = 253.0
+offset_bottom = 236.0
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("3_etnpp")
 
 [node name="Game_Timer" type="Timer" parent="."]
 wait_time = 60.0
@@ -894,17 +1130,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0.0784314, 0.0784314, 0.733333)
 
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Start" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Resume" to="." method="_on_button_resume_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Credits" to="." method="_on_button_credits_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Select_lvl" to="." method="_on_button_select_lvl_pressed"]
-[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]
-[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/master_v_slider" to="." method="_on_master_v_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/sound_v_silder" to="." method="_on_sound_v_silder_drag_ended"]
-[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
-[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
-[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Start" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Resume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer2/Setting_Button/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer3/Credits_Button/Button_Credits" to="." method="_on_button_credits_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer4/levelselect_Button/Button_Select_lvl" to="." method="_on_button_select_lvl_pressed"]
+[connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer5/quit_Button/Button_Quit" to="." method="_on_button_quit_pressed"]
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/master_v_slider" to="." method="_on_master_v_slider_drag_ended"]
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/sound_v_silder" to="." method="_on_sound_v_silder_drag_ended"]
+[connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
+[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
 [connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]

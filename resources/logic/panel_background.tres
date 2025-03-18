@@ -1,11 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cu3nrlos83hou"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cu3nrlos83hou"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apyqn"]
-bg_color = Color(0.129412, 0.145098, 0.168627, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="Texture2D" uid="uid://brst4q5ui5gl2" path="res://assets/images/ui/debug_console_panel.png" id="1_txpo7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_30lx0"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+texture = ExtResource("1_txpo7")
+modulate_color = Color(0.129412, 0.145098, 0.168627, 1)
 
 [resource]
-Panel/styles/panel = SubResource("StyleBoxFlat_apyqn")
+Panel/styles/panel = SubResource("StyleBoxTexture_30lx0")
