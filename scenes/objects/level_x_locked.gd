@@ -5,5 +5,5 @@ var unlocked : bool = false:
         if unlocked != _value:
             unlocked  = _value
             if unlocked:
-                get_parent().is_enabled = true
+                get_parent().is_enabled()
                 visible =!unlocked

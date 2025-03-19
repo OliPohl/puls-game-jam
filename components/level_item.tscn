@@ -87,6 +87,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vj5ks")
 
 [node name="TextureButton" type="TextureButton" parent="PanelContainer/VBoxContainer/Content_Margin/Panel"]
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(192, 153)
 layout_mode = 2
@@ -95,6 +96,5 @@ offset_top = 5.0
 offset_right = 254.0
 offset_bottom = 158.0
 scale = Vector2(0.785, 1.249)
-disabled = true
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Content_Margin/Panel/TextureButton" to="." method="_pressed"]

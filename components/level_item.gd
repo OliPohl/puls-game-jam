@@ -9,9 +9,10 @@ signal level_selected()
 @export var level_name : String
 @export var level_id : int
 @export var level_sprite : Texture2D
-@export var is_enabled  :bool  = false:
-    set(value):
-        button.disabled = !value
+
+func is_enabled()-> void:
+    button.visible  =true
+
 var _is_allready_pressed: bool = false
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _ready() -> void:
     level_texture.texture = level_sprite
 
 func _pressed() -> void :
+    print("Button Pressed")
     if !_is_allready_pressed:
         _is_allready_pressed = true
         level_selected.emit()

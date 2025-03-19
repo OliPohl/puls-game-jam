@@ -23,11 +23,20 @@ extends Node2D
 func _ready() -> void:
     GameManager.current_scene = self
     ## unlock levels
+    _level_01_item.is_enabled()
     var _level_settings = ConfigManager.load_level_setting()
     _level_02_locked.visible = !_level_settings.level_02
+    if _level_settings.level_02:
+        _level_02_item.is_enabled()
     _level_03_locked.visible  = !_level_settings.level_03
+    if _level_settings.level_03:
+        _level_03_item.is_enabled()
     _level_04_locked.visible  = !_level_settings.level_04
+    if _level_settings.level_04:
+        _level_04_item.is_enabled()
     _level_05_locked.visible  = !_level_settings.level_05
+    if _level_settings.level_05:
+        _level_05_item.is_enabled()
 ## connect button signal
     _level_01_item.level_selected.connect(on_level_selected)
     _level_02_item.level_selected.connect(on_level_selected)

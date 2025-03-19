@@ -17,6 +17,7 @@ scale = Vector2(1.56, 1.56)
 texture = ExtResource("1_1551r")
 
 [node name="LogicArea2" type="Area2D" parent="Sprite2D"]
+z_index = 5
 script = ExtResource("2_43vqm")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
