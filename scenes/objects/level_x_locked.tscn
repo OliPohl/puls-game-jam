@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ukyydib0xtah"]
+
+[ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="1_1551r"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="2_43vqm"]
+[ext_resource type="Script" uid="uid://clpsmpfe6h8y2" path="res://scenes/objects/level_x_locked.gd" id="2_s3nto"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="3_s3nto"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="4_tcuau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3nto"]
+size = Vector2(126.282, 165.385)
+
+[node name="insane_lock_mechanic" type="Node2D"]
+script = ExtResource("2_s3nto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.56, 1.56)
+texture = ExtResource("1_1551r")
+
+[node name="LogicArea2" type="Area2D" parent="Sprite2D"]
+script = ExtResource("2_43vqm")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LogicArea2"]
+position = Vector2(-2.24359, 3.82081e-07)
+shape = SubResource("RectangleShape2D_s3nto")
+
+[node name="LogicBase" type="Node" parent="Sprite2D"]
+script = ExtResource("3_s3nto")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("4_tcuau")
+variable_node = NodePath("../../..")
+variable_name = "unlocked"
+value_type = "bool"
+value_name = "false"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"

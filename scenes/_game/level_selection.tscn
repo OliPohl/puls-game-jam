@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=20 format=3 uid="uid://fb2g7h1t7r8k"]
 
 [ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_7n0cu"]
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="2_87vkh"]
@@ -10,10 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://crn6lejxt57ol" path="res://assets/images/_debug/level_01.png" id="7_5fty7"]
 [ext_resource type="Texture2D" uid="uid://nv3gx6tshik5" path="res://assets/images/_debug/level_02.png" id="9_w4pxb"]
 [ext_resource type="Texture2D" uid="uid://crgccbsb8004c" path="res://assets/images/_debug/level_03.png" id="10_ny0g1"]
+[ext_resource type="PackedScene" uid="uid://ukyydib0xtah" path="res://scenes/objects/level_x_locked.tscn" id="10_w4pxb"]
 [ext_resource type="Texture2D" uid="uid://b0uo06vn4a8j4" path="res://assets/images/_debug/level_04.png" id="11_vue4j"]
 [ext_resource type="Texture2D" uid="uid://b8n16rcfleing" path="res://assets/images/_debug/level_05.png" id="12_l70wv"]
+[ext_resource type="Theme" uid="uid://dqy5f7lc3q763" path="res://resources/theme/default.tres" id="14_buh0u"]
+[ext_resource type="FontFile" uid="uid://bx71l7hqs525p" path="res://assets/fonts/PatrickHand-Regular.ttf" id="15_f2hcf"]
+[ext_resource type="Script" uid="uid://c5fe6wdh0kov8" path="res://scenes/ui/check_button_delete_data.gd" id="16_sobg8"]
+[ext_resource type="Script" uid="uid://blyvxteahtneq" path="res://scenes/ui/check_button_sure_delete.gd" id="17_5tccg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exv5h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buh0u"]
+bg_color = Color(0.129412, 0.145098, 0.168627, 1)
 
 [node name="Level_Selection" type="Node2D"]
 script = ExtResource("1_7n0cu")
@@ -27,14 +35,16 @@ texture = ExtResource("3_lerbm")
 [node name="Player_anim" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_anim"]
-position = Vector2(133, 216)
+position = Vector2(136, 246)
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("2_xkea0")
 animation = &"idle"
 frame_progress = 0.58293
 script = ExtResource("3_87vkh")
 
-[node name="Level_button_Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Level_button_Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,117 +52,153 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Level_button_Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Level_button_Control"]
 layout_mode = 1
 offset_top = 250.0
 offset_right = 1276.0
 offset_bottom = 499.0
+alignment = 1
 
-[node name="Level_Item" parent="Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
+[node name="Level_Item" parent="CanvasLayer/Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
 layout_mode = 2
 level_name = "Level 01 - Dusty Springs"
 level_id = 1
 level_sprite = ExtResource("7_5fty7")
+is_enabled = true
 
-[node name="level_01_highscore" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item"]
+[node name="level_01_highscore" type="Label" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "10s:333ms"
 horizontal_alignment = 1
 
-[node name="level1_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item"]
+[node name="level1_locked" type="TextureRect" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item"]
 visible = false
 layout_mode = 2
 texture = ExtResource("6_7orfj")
 
-[node name="Level_Item2" parent="Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
+[node name="Level_Item2" parent="CanvasLayer/Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
 layout_mode = 2
 level_name = "Level 02 -Hallow Eyes"
 level_id = 2
 level_sprite = ExtResource("9_w4pxb")
 
-[node name="level_02_highscore2" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item2"]
+[node name="level_02_highscore2" type="Label" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item2"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "10s:333ms"
 horizontal_alignment = 1
 
-[node name="level2_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item2"]
-layout_mode = 2
-texture = ExtResource("6_7orfj")
+[node name="level2_locked" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item2" instance=ExtResource("10_w4pxb")]
+position = Vector2(104.785, 156.03)
 
-[node name="Level_Item3" parent="Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
+[node name="Level_Item3" parent="CanvasLayer/Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
 layout_mode = 2
 level_name = "Level 03 - Midnight Coast"
 level_id = 3
 level_sprite = ExtResource("10_ny0g1")
 
-[node name="level_03_highscore3" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item3"]
+[node name="level_03_highscore3" type="Label" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item3"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "10s:333ms"
 horizontal_alignment = 1
 
-[node name="level3_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item3"]
-layout_mode = 2
-texture = ExtResource("6_7orfj")
+[node name="level3_locked" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item3" instance=ExtResource("10_w4pxb")]
+position = Vector2(108, 156.03)
 
-[node name="Level_Item4" parent="Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
+[node name="Level_Item4" parent="CanvasLayer/Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
 layout_mode = 2
 level_name = "Level 04 - Dangerous Fall"
 level_id = 4
 level_sprite = ExtResource("11_vue4j")
 
-[node name="level_04_highscore4" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item4"]
+[node name="level_04_highscore4" type="Label" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item4"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "10s:333ms"
 horizontal_alignment = 1
 
-[node name="level4_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item4"]
-layout_mode = 2
-texture = ExtResource("6_7orfj")
+[node name="level4_locked" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item4" instance=ExtResource("10_w4pxb")]
+position = Vector2(112, 156.03)
 
-[node name="Level_Item5" parent="Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
+[node name="Level_Item5" parent="CanvasLayer/Level_button_Control/HBoxContainer" instance=ExtResource("4_lerbm")]
 layout_mode = 2
 level_name = "Level 05 - Rising Sunset"
 level_id = 5
 level_sprite = ExtResource("12_l70wv")
 
-[node name="level_05_highscore5" type="Label" parent="Level_button_Control/HBoxContainer/Level_Item5"]
+[node name="level_05_highscore5" type="Label" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item5"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "10s:333ms"
 horizontal_alignment = 1
 
-[node name="level5_locked" type="TextureRect" parent="Level_button_Control/HBoxContainer/Level_Item5"]
-layout_mode = 2
-texture = ExtResource("6_7orfj")
+[node name="level5_locked" parent="CanvasLayer/Level_button_Control/HBoxContainer/Level_Item5" instance=ExtResource("10_w4pxb")]
+position = Vector2(113, 156.03)
 
-[node name="Panel" type="Panel" parent="Level_button_Control"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Level_button_Control"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_right = 200.0
 offset_bottom = 40.0
-grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_exv5h")
 
-[node name="PanelContainer" type="PanelContainer" parent="Level_button_Control/Panel"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Level_button_Control/Panel"]
 layout_mode = 0
 offset_left = 557.0
 offset_top = 63.0
 offset_right = 731.0
 offset_bottom = 106.0
 
-[node name="Button" type="Button" parent="Level_button_Control/Panel/PanelContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Level_button_Control/Panel/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Back to Menu"
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Level_button_Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Level_button_Control/MarginContainer"]
+custom_minimum_size = Vector2(320, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_buh0u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Level_button_Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 197.0
+offset_bottom = -4.0
+grow_vertical = 0
+
+[node name="CheckButton_delete" type="CheckButton" parent="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer" node_paths=PackedStringArray("epic_end_checkbox")]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("14_buh0u")
+theme_override_fonts/font = ExtResource("15_f2hcf")
+text = "DELETE SAVE DATA :"
+script = ExtResource("16_sobg8")
+epic_end_checkbox = NodePath("../CheckButton_sure_delete")
+
+[node name="CheckButton_sure_delete" type="CheckButton" parent="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("14_buh0u")
+theme_override_fonts/font = ExtResource("15_f2hcf")
+text = "I AM SURE TO DELETE ALL DATA :"
+script = ExtResource("17_5tccg")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(570, 384)
 
-[connection signal="pressed" from="Level_button_Control/Panel/PanelContainer/Button" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Level_button_Control/Panel/PanelContainer/Button" to="." method="_on_button_menu_pressed"]
+[connection signal="toggled" from="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_delete" to="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_delete" method="_ontoggle_changed"]
+[connection signal="toggled" from="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_sure_delete" to="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_sure_delete" method="_on_toggled"]

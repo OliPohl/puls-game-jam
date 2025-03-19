@@ -8,11 +8,12 @@ extends CanvasLayer
 @onready var _game_hud : Control = $Game_HUD
 @onready var _menu : Control = $Menu
 ## SETTINGS
+var _is_settings_enabled : bool = false
 @onready var _setting_control : Control = $Menu/Content_Margin/Setting_Margin
 ## CREDITS
+var _is_credits_enabled : bool = false
 @onready var _credit_control : Control = $Menu/Content_Margin/Credits_Margin
-#timer
-@onready var _game_timer :Timer  =$Game_Timer
+
 @onready var _game_timer_text : Label  = %Timer_value
 ### DEBUG VALUES
 @onready var _debug_control :Control = $Debug_Control
@@ -40,9 +41,10 @@ extends CanvasLayer
 ###Privates 
 var _is_timer_running : bool  = false
 var _is_debug_running : bool = true
-var _level_started_time : float = 0
+var _level_timer : float  = 0
+var _level_time_start : float  = 0
 func _ready() -> void:
-	_game_timer.timeout.connect(_on_gametimer_timeout)
+
 	GameManager.game_win.connect(_on_game_win)
 	GameManager.game_over.connect(_on_game_over)
 	## on paused
@@ -71,12 +73,20 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart") and !get_tree().paused:
 		start_menu()
 		GameManager.start_level(GameManager.current_level)
-###############################
-
-func _process(_delta: float) -> void:
+############################### TIMER ###############
+func _format_decimal_float(_float : float) ->String:
+	var _minutes = _float /60
+	var _seconds = fmod(_float, 60)
+	var  _milliseconds = fmod(_float, 1) * 100
+	var _text = "%02d:%02d:%02d" % [_minutes, _seconds, _milliseconds]
+	return _text
+func set_level_timer_start(_value: float) -> void:
+	_level_time_start = _value
+func set_level_timer(_value: float) -> void:
+	_level_timer = _value
 	if _is_timer_running:
-		_game_timer_text.text = _format_decimal_float(_game_timer.time_left)
-
+		_game_timer_text.text = _format_decimal_float(_level_timer)
+############################### / TIMER ####################
 func _on_game_in_level_selection() -> void:
 	_game_hud.visible= false
 	_menu.visible =false
@@ -88,13 +98,7 @@ func _on_game_paused(_value : bool)->void:
 func _button_change_paused(_value :bool) ->void:
 	_button_resume.visible = _value
 	_button_start.visible = !_value
-### format timer time
-func _format_decimal_float(_float : float) ->String:
-	var _minutes = _float /60
-	var _seconds = fmod(_float, 60)
-	var  _milliseconds = fmod(_float, 1) * 100
-	var _text = "%02d:%02d:%02d" % [_minutes, _seconds, _milliseconds]
-	return _text
+
 ### set game hud on and menu off and toggle 
 func set_game_hud(_value : bool) ->void :
 	_game_hud.visible= (_value)
@@ -102,10 +106,6 @@ func set_game_hud(_value : bool) ->void :
 	if _value:
 		_win_control.visible =false
 		_game_over_control.visible = false
-		_game_timer.stop()
-		_game_timer.start()
-		##### SAVE TIMESTEP 
-		_level_started_time = Time.get_ticks_msec()
 		_is_timer_running =true
 
 #########################  GOTO MENU FUNCTION
@@ -114,15 +114,13 @@ func start_menu() ->void:
 	_menu.visible =true
 	_win_control.visible =false
 	_game_over_control.visible = false
-	_game_timer.stop()
+
 func interact_paused_game() -> void :
-	_game_timer.stop()
 	_game_hud.visible= false
 	_menu.visible =false
 	_win_control.visible =false
 	_game_over_control.visible = false
 func interact_resume_game() -> void :
-	_game_timer.start()
 	_game_hud.visible= true
 	_menu.visible =false
 	_win_control.visible =false
@@ -132,7 +130,7 @@ func start_level_selection() -> void:
 	_menu.visible =false
 	_win_control.visible =false
 	_game_over_control.visible = false
-	_game_timer.stop()
+
 ### if gametimer timeout -> loos
 func _on_gametimer_timeout() -> void:
 	##signal player death
@@ -160,7 +158,6 @@ func _debug_data_update() -> void:
 func _on_game_over() ->void:
 	### Death Counter ++
 	GameManager.gameresult_deaths += 1
-	_game_timer.stop()
 	_win_control.visible =false
 	_game_over_control.visible = true
 	AudioManager.play_sound(AudioManager.Sound.LOSE)
@@ -169,14 +166,14 @@ func _on_game_over() ->void:
 
 #### cast from gamemanager Signal game_win
 func _on_game_win() -> void:
-	_game_timer.stop()
 	_win_control.visible =true
 	AudioManager.play_sound(AudioManager.Sound.WIN)
 	_game_over_control.visible = false
 	_game_hud.visible= false
 	_menu.visible =false
-	#### SET GAMERESULT_LEVEL_TIME
-	GameManager.gameresult_time= Time.get_ticks_msec() - _level_started_time
+	#### SET GAMERESULT_new  level time - current time_left *100
+	GameManager.gameresult_time=_level_time_start -(_level_time_start - _level_timer) *100
+	#GameManager.gameresult_time= Time.get_ticks_msec() - _level_started_time
 	_win_control.set_sliders()
 
 func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
@@ -184,12 +181,10 @@ func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
 	ConfigManager.save_video_settings("fullscreen", _toggled_on)
 	## change to full screen
 
-
 func _on_vsync_toggle_toggled(_toggled_on:bool) -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	ConfigManager.save_video_settings("vsync",_toggled_on)
 	## enable vsync
-
 
 func _on_master_v_slider_drag_ended(value_changed:bool) -> void:
 	if value_changed:
@@ -216,21 +211,50 @@ func _on_button_start_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	GameManager.start_level(1)
 
-
 func _on_button_resume_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	GameManager.change_game_state(GameManager.GameState.GAME_RUNNING)
 
-
 func _on_button_settings_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
-	_setting_control.visible =  !_setting_control.visible
-	_credit_control.visible  = false
+	_is_settings_enabled  = ! _is_settings_enabled
+	if _is_settings_enabled:
+		_credit_control.visible  = false
+		_setting_control.visible = _is_settings_enabled
+		await get_tree().process_frame
+		_setting_control.position.y = 700.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(_setting_control, "position:y", 25, 0.2)
+		await tween.finished
+	else:
+		_credit_control.visible  = false
+		
+		_setting_control.position.y = 25.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(_setting_control, "position:y", 700.0, 0.2)
+		await tween.finished
+		_setting_control.visible = false
 
 func _on_button_credits_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
-	_credit_control.visible = !_credit_control.visible 
-	_setting_control.visible =  false
+	_is_credits_enabled  = ! _is_credits_enabled
+	if _is_credits_enabled:
+		_setting_control.visible  = false
+		_credit_control.visible = _is_credits_enabled
+		 #### AFTER VISIBLE WAIT 1 FRAME TO CHANGE POSITION
+		await get_tree().process_frame
+		_credit_control.position.y = 700.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(_credit_control, "position:y", 25, 0.2)
+		await tween.finished
+	else:
+		_setting_control.visible  = false
+		_credit_control.position.y = 25.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(_credit_control, "position:y", 700.0, 0.2)
+		await tween.finished
+		_credit_control.visible = false
+
 
 func _on_button_select_lvl_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
@@ -264,5 +288,3 @@ func _on_button_menu_pressed() ->void:
 	start_menu()
 	GameManager.start_level(0)  ### Start Scene
 
-func on_set_game_timer(_value : float) ->void:
-	_game_timer.wait_time = _value

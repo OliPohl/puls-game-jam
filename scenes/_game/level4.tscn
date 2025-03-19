@@ -1,11 +1,12 @@
-[gd_scene load_steps=32 format=4 uid="uid://5sg3l3gjujy4"]
+[gd_scene load_steps=33 format=4 uid="uid://5sg3l3gjujy4"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_6ntpm"]
+[ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_ypmr1"]
 [ext_resource type="Texture2D" uid="uid://dmn622qtjkge1" path="res://assets/images/env/bg4.png" id="2_poscc"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="2_xhl30"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="3_rmqes"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="4_13qy7"]
-[ext_resource type="PackedScene" uid="uid://bnleg6lqnj8ef" path="res://scenes/_player/camera.tscn" id="5_poscc"]
+[ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="5_poscc"]
 [ext_resource type="PackedScene" uid="uid://d30nseke6ivd6" path="res://components/flag_object.tscn" id="6_rmqes"]
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="8_jqehj"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="9_jqehj"]
@@ -16,7 +17,7 @@
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="13_q3kgi"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="14_0btvk"]
 [ext_resource type="PackedScene" uid="uid://bh5gqn7c5p8ng" path="res://scenes/enemy/enemy_01.tscn" id="16_uehbh"]
-[ext_resource type="PackedScene" path="res://scenes/enemy/enemy_02.tscn" id="17_nny3x"]
+[ext_resource type="PackedScene" uid="uid://d6gsd6384nci" path="res://scenes/enemy/enemy_02.tscn" id="17_nny3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6vp2"]
 texture = ExtResource("2_poscc")
@@ -102,6 +103,9 @@ size = Vector2(254, 254.714)
 size = Vector2(256, 259.15)
 
 [node name="Level4" type="Node2D"]
+
+[node name="Level_Timer" parent="." instance=ExtResource("1_ypmr1")]
+time_left = 300.0
 
 [node name="TextureRect" parent="." instance=ExtResource("1_6ntpm")]
 modulate = Color(0.565035, 0.868626, 0.374125, 1)

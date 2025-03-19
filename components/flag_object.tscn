@@ -188,8 +188,8 @@ offsets = PackedFloat32Array(0, 0.352941, 0.54902, 0.710784, 0.818627, 0.980392)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.180392, 0.180392, 1, 1, 0.698039, 0.12549, 1, 0, 0.435294, 0.0784314, 1, 0, 0.262745, 1, 1, 0, 0, 0, 1)
 
 [node name="FLAG_OBJECT" type="Area2D" node_paths=PackedStringArray("flag")]
-collision_layer = 8
-collision_mask = 0
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_yvj1n")
 flag = NodePath("Visuals/AnimatedSprite2D")
 
@@ -220,11 +220,11 @@ position = Vector2(64, -148)
 emitting = false
 texture = ExtResource("4_35xuo")
 lifetime = 0.3
-one_shot = true
 randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 58.46
 gravity = Vector2(0, 150)
 angle_max = 720.0
 scale_amount_curve = SubResource("Curve_53y00")
+color = Color(1, 1, 1, 0.0784314)
 color_initial_ramp = SubResource("Gradient_2qpm4")

@@ -4,7 +4,7 @@ class_name Player_Node
 @export var _use_coyote_time_light  : bool = false
 @onready var _player_coyote_timer:  Timer  =$Coyote_Timer
 @onready var _jump_buffered_timer : Timer  =$Jump_buffered_Timer
-@onready var _collect_area : Area2D = $Hurt_Box_Component
+
 @onready var _PointLight2D : PointLight2D =$PointLight2D
 ### particle system
 @export var _particles : CPUParticles2D
@@ -19,8 +19,6 @@ var layer : int = 1:
 			set_collision_mask_value(layer, true)
 
 var position_y : float = 0
-			
-
 var player_speed : float = 350
 var player_gravity : float  = 33
 var player_size : float  = 1:
@@ -33,7 +31,10 @@ var player_coyote_time : float = 0.23:
 		if player_coyote_time != value:
 			_player_coyote_timer.wait_time = value
 			player_coyote_time = value
-var player_jump_power : float  = 800
+var player_jump_power : float  = 800:
+	set(value):
+		if player_jump_power != value:
+			player_jump_power = value
 var player_collision_layer : int  = 0
 var player_Jump_enabled : bool  = true
 var player_enabled : bool =  true
@@ -57,7 +58,7 @@ func _ready() -> void:
 	_player_coyote_timer.timeout.connect(_on_coyote_timer_timeout)
 	_jump_buffered_timer.timeout.connect(_on_jumped_buffered_timer_timeout)
 	_player_coyote_timer.wait_time = player_coyote_time
-	_collect_area.area_entered.connect(on_collect_area_entered)
+
 	
 ######### INPUT
 func _input(event: InputEvent) -> void:
@@ -154,6 +155,4 @@ func died() -> void :
 	player_enabled  =false
 	GameManager.on_game_over()
 
-func on_collect_area_entered(_area : Area2D)-> void:
-	AudioManager.play_sound(AudioManager.Sound.FLAG)
-	GameManager.Win_Game()
+

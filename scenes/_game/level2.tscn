@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=4 uid="uid://ckh8fmb461xj0"]
+[gd_scene load_steps=38 format=4 uid="uid://ckh8fmb461xj0"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_0ydjg"]
+[ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_4vmkb"]
 [ext_resource type="Texture2D" uid="uid://drjfk7g620vt7" path="res://assets/images/env/bg2.png" id="2_q33g2"]
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="3_obopg"]
 [ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="4_mcj5a"]
@@ -132,6 +133,9 @@ size = Vector2(488, 144)
 size = Vector2(398, 71.75)
 
 [node name="Level2" type="Node2D"]
+
+[node name="Level_Timer" parent="." instance=ExtResource("1_4vmkb")]
+time_left = 120.0
 
 [node name="TextureRect" parent="." instance=ExtResource("1_0ydjg")]
 modulate = Color(0.79268, 0.738253, 0.913332, 1)

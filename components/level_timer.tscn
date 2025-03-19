@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhpb82q6pb8s6"]
+
+[ext_resource type="Script" uid="uid://65sccxljb5a6" path="res://scenes/_game/level_timer.gd" id="1_d3mko"]
+
+[node name="Level_Timer" type="Node"]
+script = ExtResource("1_d3mko")

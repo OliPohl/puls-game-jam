@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=41 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
@@ -15,6 +15,7 @@
 [ext_resource type="LabelSettings" uid="uid://c5pjvewn030i1" path="res://scenes/ui/menu_label_settings.tres" id="9_tu02a"]
 [ext_resource type="Texture2D" uid="uid://djrtdnb1ivmek" path="res://assets/images/ui/knob.png" id="10_2whxp"]
 [ext_resource type="Texture2D" uid="uid://4b74k57ge6bt" path="res://assets/images/ui/knob_highlighted.png" id="11_0d6jp"]
+[ext_resource type="Texture2D" uid="uid://dj4gbjadfsbq2" path="res://assets/images/ui/panel_512.png" id="15_tu02a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_id3g5"]
 
@@ -103,6 +104,26 @@ _data = {
 &"RESET": SubResource("Animation_mai3r"),
 &"sprite_anim": SubResource("Animation_3t4xl")
 }
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m2gsp"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+texture = ExtResource("15_tu02a")
+modulate_color = Color(0.611765, 0.835294, 0.823529, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_347yf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ljg2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfikd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxd1k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jlso2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3alx1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
 texture = ExtResource("3_oo2yl")
@@ -770,7 +791,7 @@ texture = ExtResource("3_etnpp")
 wait_time = 60.0
 one_shot = true
 
-[node name="Win_Control" type="Control" parent="." node_paths=PackedStringArray("_time_label", "_object_label", "_death_label")]
+[node name="Win_Control" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -779,9 +800,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_7rmiq")
-_time_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer/time_s_value")
-_object_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2/used_objects_value")
-_death_label = NodePath("Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3/death_count_value")
 
 [node name="Content_Margin" type="MarginContainer" parent="Win_Control"]
 layout_mode = 1
@@ -790,10 +808,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -115.5
-offset_right = 150.0
-offset_bottom = 115.5
+offset_left = -335.0
+offset_top = -275.0
+offset_right = 335.0
+offset_bottom = 275.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 25
@@ -801,154 +819,172 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Setting_Margin" type="MarginContainer" parent="Win_Control/Content_Margin"]
+[node name="Panel_background" type="Panel" parent="Win_Control/Content_Margin"]
+custom_minimum_size = Vector2(620, 500)
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_styles/panel = SubResource("StyleBoxTexture_m2gsp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin"]
+[node name="VBox" type="VBoxContainer" parent="Win_Control/Content_Margin"]
+custom_minimum_size = Vector2(420, 300)
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Settings_Header" type="Panel" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-custom_minimum_size = Vector2(100, 25)
+[node name="Label2" type="Label" parent="Win_Control/Content_Margin/VBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
-
-[node name="Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
-text = "GAME RESULT                                       WIN"
-
-[node name="Setting_P" type="Panel" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-custom_minimum_size = Vector2(310, 250)
-layout_mode = 2
-
-[node name="VBox" type="VBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
-custom_minimum_size = Vector2(300, 50)
-layout_mode = 2
-offset_left = 4.0
-offset_right = 304.0
-offset_bottom = 231.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="time_s_header" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-layout_mode = 2
-text = "Time Score:"
-
-[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 105
-
-[node name="time_s_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-custom_minimum_size = Vector2(85.68, 0)
-layout_mode = 2
-text = "9999"
-horizontal_alignment = 2
-
-[node name="time_slider" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.41
-editable = false
-scrollable = false
-
-[node name="HSeparator" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="used_objects_header" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-layout_mode = 2
-text = "Used Objects:"
-
-[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 70
-
-[node name="used_objects_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-custom_minimum_size = Vector2(104.38, 0)
-layout_mode = 2
-text = "9999"
-horizontal_alignment = 2
-
-[node name="used_objects_silder" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.41
-editable = false
-scrollable = false
-
-[node name="HSeparator2" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="death_count_Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-layout_mode = 2
-text = "Deaths:"
-
-[node name="VSeparator" type="VSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-layout_mode = 2
-theme_override_constants/separation = 160
-
-[node name="death_count_value" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-custom_minimum_size = Vector2(61.575, 0)
-layout_mode = 2
-text = "9999"
-horizontal_alignment = 2
-
-[node name="death_count_slider" type="HSlider" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.41
-editable = false
-scrollable = false
-
-[node name="HSeparator3" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-text = "Total:  9999"
+text = "GAME RESULT"
+label_settings = ExtResource("8_m2gsp")
 horizontal_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator" type="HSeparator" parent="Win_Control/Content_Margin/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_347yf")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="time_s_header" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Time Score:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="time_s_value" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "9999"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="time_slider" type="HSlider" parent="Win_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+value = 0.41
+editable = false
+scrollable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="used_objects_header" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Used Objects:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="used_objects_value" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "9999"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="used_objects_silder" type="HSlider" parent="Win_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+value = 0.41
+editable = false
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="death_count_Label" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Deaths:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="death_count_value" type="Label" parent="Win_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "9999"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="death_count_slider" type="HSlider" parent="Win_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+value = 0.41
+editable = false
+scrollable = false
+
+[node name="total_Label" type="Label" parent="Win_Control/Content_Margin/VBox"]
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+text = "Total:  9999"
+label_settings = ExtResource("8_m2gsp")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 28
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2ljg2")
+
+[node name="PanelContainer" type="PanelContainer" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vfikd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Win_Control/Content_Margin/VBox/PanelContainer" node_paths=PackedStringArray("button")]
+position = Vector2(313, 48.5)
+sprite_frames = ExtResource("5_mpd4i")
+script = ExtResource("8_nxfho")
+button = NodePath("../Button_next")
+
+[node name="Button_next" type="Button" parent="Win_Control/Content_Margin/VBox/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qxd1k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jlso2")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3alx1")
+text = "NEXT LEVEL"
+
+[node name="Content_Buttons" type="MarginContainer" parent="Win_Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Win_Control/Content_Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Button_restart" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+[node name="Button_restart" type="Button" parent="Win_Control/Content_Buttons/HBoxContainer4"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Restart"
 
-[node name="Button_menu" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+[node name="Button_menu" type="Button" parent="Win_Control/Content_Buttons/HBoxContainer4"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Menu"
-
-[node name="PanelContainer" type="PanelContainer" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button_next" type="Button" parent="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "NEXT LEVEL"
 
 [node name="Game_Over_Control" type="Control" parent="."]
 visible = false
@@ -1141,8 +1177,8 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 0.733333)
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
-[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
-[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
-[connection signal="pressed" from="Win_Control/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Margin/VBox/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Buttons/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Buttons/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1ubnvlhyen4y"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ubnvlhyen4y"]
 
 [ext_resource type="Script" uid="uid://tiaboo4lanke" path="res://components/level_item.gd" id="1_atdoe"]
 [ext_resource type="Texture2D" uid="uid://qranu7is4cgp" path="res://assets/images/_debug/level_item_Frame.png" id="2_atdoe"]
+[ext_resource type="Texture2D" uid="uid://fhh6regki86l" path="res://assets/images/ui/mini_button.png" id="3_vj5ks"]
+[ext_resource type="LabelSettings" uid="uid://b8mhxmsla83cm" path="res://scenes/ui/menu_h1_label_settings.tres" id="4_n3d5c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qha0s"]
 bg_color = Color(0, 0.501961, 1, 0.113725)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atdoe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vj5ks"]
 
 [node name="Level_Item" type="MarginContainer"]
 offset_right = 252.0
@@ -41,11 +47,13 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_atdoe")
 
 [node name="level_Label" type="Label" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
 text = "Level 01 - Dusty Springs"
+horizontal_alignment = 1
 
 [node name="PanelContainer4" type="PanelContainer" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer"]
 layout_mode = 2
@@ -61,9 +69,32 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer"]
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer"]
+position = Vector2(80, 161)
+scale = Vector2(0.425, 0.425)
+texture = ExtResource("3_vj5ks")
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer/PanelContainer3"]
-layout_mode = 2
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Content_Margin/Setting_Margin/VBoxContainer/Sprite2D"]
+offset_left = -32.9412
+offset_top = -21.1765
+offset_right = 38.0588
+offset_bottom = 29.8235
 text = "Start"
+label_settings = ExtResource("4_n3d5c")
+
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/Content_Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vj5ks")
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer/VBoxContainer/Content_Margin/Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(192, 153)
+layout_mode = 2
+offset_left = -1.0
+offset_top = 5.0
+offset_right = 254.0
+offset_bottom = 158.0
+scale = Vector2(0.785, 1.249)
+disabled = true
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Content_Margin/Panel/TextureButton" to="." method="_pressed"]

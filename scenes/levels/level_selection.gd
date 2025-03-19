@@ -1,30 +1,29 @@
 extends Node2D
 
 #### LOCKED IMAGES
-@onready var _level_01_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item/level1_locked
-@onready var _level_02_locked : TextureRect  = $Level_button_Control/HBoxContainer/Level_Item2/level2_locked
-@onready var _level_03_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item3/level3_locked
-@onready var _level_04_locked : TextureRect = $Level_button_Control/HBoxContainer/Level_Item4/level4_locked
-@onready var _level_05_locked  : TextureRect = $Level_button_Control/HBoxContainer/Level_Item5/level5_locked
+
+@onready var _level_02_locked : Node2D  = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item2/level2_locked
+@onready var _level_03_locked : Node2D = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item3/level3_locked
+@onready var _level_04_locked : Node2D = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item4/level4_locked
+@onready var _level_05_locked  : Node2D = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item5/level5_locked
 ###### LEVEL ITEMS for button signal 
-@onready var _level_01_item : MarginContainer =$Level_button_Control/HBoxContainer/Level_Item
-@onready var _level_02_item : MarginContainer =$Level_button_Control/HBoxContainer/Level_Item2
-@onready var _level_03_item : MarginContainer = $Level_button_Control/HBoxContainer/Level_Item3
-@onready var _level_04_item :  MarginContainer = $Level_button_Control/HBoxContainer/Level_Item4
-@onready var _level_05_item : MarginContainer =$Level_button_Control/HBoxContainer/Level_Item5
+@onready var _level_01_item : MarginContainer =$CanvasLayer/Level_button_Control/HBoxContainer/Level_Item
+@onready var _level_02_item : MarginContainer =$CanvasLayer/Level_button_Control/HBoxContainer/Level_Item2
+@onready var _level_03_item : MarginContainer = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item3
+@onready var _level_04_item :  MarginContainer = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item4
+@onready var _level_05_item : MarginContainer =$CanvasLayer/Level_button_Control/HBoxContainer/Level_Item5
 ### highscore labels
-@onready var _level_01_highscore : Label = $Level_button_Control/HBoxContainer/Level_Item/level_01_highscore
-@onready var _level_02_highscore : Label = $Level_button_Control/HBoxContainer/Level_Item2/level_02_highscore2
-@onready var _level_03_highscore : Label = $Level_button_Control/HBoxContainer/Level_Item3/level_03_highscore3
-@onready var _level_04_highscore : Label = $Level_button_Control/HBoxContainer/Level_Item4/level_04_highscore4
-@onready var _level_05_highscore : Label = $Level_button_Control/HBoxContainer/Level_Item5/level_05_highscore5
+@onready var _level_01_highscore : Label = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item/level_01_highscore
+@onready var _level_02_highscore : Label = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item2/level_02_highscore2
+@onready var _level_03_highscore : Label = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item3/level_03_highscore3
+@onready var _level_04_highscore : Label = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item4/level_04_highscore4
+@onready var _level_05_highscore : Label = $CanvasLayer/Level_button_Control/HBoxContainer/Level_Item5/level_05_highscore5
 ### player
 @onready var _player_node : AnimatedSprite2D =$Player_anim/AnimatedSprite2D
 func _ready() -> void:
     GameManager.current_scene = self
     ## unlock levels
     var _level_settings = ConfigManager.load_level_setting()
-    _level_01_locked.visible = !_level_settings.level_01
     _level_02_locked.visible = !_level_settings.level_02
     _level_03_locked.visible  = !_level_settings.level_03
     _level_04_locked.visible  = !_level_settings.level_04
