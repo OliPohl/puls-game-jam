@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://bmnfvoy6txq1l"]
+[gd_scene load_steps=74 format=4 uid="uid://bmnfvoy6txq1l"]
 
 [ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_1aykq"]
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_7008j"]
@@ -11,12 +11,12 @@
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="6_6vou7"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="7_1aykq"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_ihw8d"]
-[ext_resource type="Script" uid="uid://etrinscdgt8p" path="res://scenes/etc/flag_object.gd" id="9_llam7"]
 [ext_resource type="PackedScene" path="res://scenes/_player/camera.tscn" id="9_ywuur"]
 [ext_resource type="Texture2D" uid="uid://4bf3m7vq4njt" path="res://assets/images/flag.png" id="10_vmcep"]
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="11_cdacf"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="12_3inni"]
 [ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="12_ctlnc"]
+[ext_resource type="Script" uid="uid://46gpg8674245" path="res://scenes/objects/flag_level05/flag_particle_effect_on_enter.gd" id="13_ihw8d"]
 [ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="14_6vou7"]
 [ext_resource type="PackedScene" uid="uid://b5pnekujnem83" path="res://scenes/enemy/weapon.tscn" id="15_1aykq"]
 [ext_resource type="Texture2D" uid="uid://b862t8l3itjax" path="res://assets/images/spike.png" id="17_ctlnc"]
@@ -43,7 +43,7 @@ radius = 18.13
 height = 202.51
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aiu8b"]
-radius = 129.542
+radius = 45.7056
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvc87"]
 radius = 91.92
@@ -130,7 +130,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 13.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vou7"]
@@ -344,18 +344,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CPUParticles2D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_3tl01"]
 resource_name = "wiggle"
@@ -385,32 +373,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 0.0523599, -0.0523599, 0.0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CPUParticles2D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 8, 8.9, 9.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, true, true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6hwsr"]
 _data = {
 &"RESET": SubResource("Animation_axtbi"),
 &"wiggle": SubResource("Animation_3tl01")
 }
-
-[sub_resource type="Curve" id="Curve_8w6pi"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.991304, 0.0337079), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_kucl6"]
-offsets = PackedFloat32Array(0, 0.352941, 0.54902, 0.710784, 0.818627, 0.980392)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.180392, 0.180392, 1, 1, 0.698039, 0.12549, 1, 0, 0.435294, 0.0784314, 1, 0, 0.262745, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aiu8b"]
 texture = ExtResource("12_3inni")
@@ -628,10 +596,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
+position = Vector2(-11, 117)
 shape = SubResource("CircleShape2D_aiu8b")
 
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("9_ywuur")]
@@ -644,12 +613,11 @@ enabled = false
 texture = ExtResource("8_ihw8d")
 texture_scale = 2.13
 
-[node name="FLAG_OBJECT3" type="Area2D" parent="." node_paths=PackedStringArray("flag")]
+[node name="FLAG_OBJECT3" type="Area2D" parent="."]
 position = Vector2(4092, 1166)
 collision_layer = 0
-collision_mask = 0
-script = ExtResource("9_llam7")
-flag = NodePath("Visuals/AnimatedSprite2D")
+collision_mask = 8
+script = ExtResource("13_ihw8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT3"]
 shape = SubResource("CircleShape2D_uvc87")
@@ -665,7 +633,7 @@ modulate = Color(0.634666, 0, 0.195131, 1)
 position = Vector2(73.505, -127.415)
 sprite_frames = SubResource("SpriteFrames_ihpxj")
 autoplay = "default"
-frame_progress = 0.349664
+frame_progress = 0.504376
 
 [node name="LogicArea" type="Area2D" parent="FLAG_OBJECT3/Visuals/AnimatedSprite2D"]
 script = ExtResource("5_ctlnc")
@@ -697,8 +665,10 @@ autoplay = "wiggle"
 [node name="CPUParticles2D" type="CPUParticles2D" parent="FLAG_OBJECT3"]
 position = Vector2(64, -148)
 emitting = false
+amount = 50
 texture = ExtResource("12_ctlnc")
-lifetime = 0.3
+lifetime = 2.66
+one_shot = true
 randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 58.46
@@ -708,12 +678,11 @@ scale_amount_curve = SubResource("Curve_53y00")
 color = Color(1, 1, 1, 0.0862745)
 color_initial_ramp = SubResource("Gradient_2qpm4")
 
-[node name="FLAG_OBJECT" type="Area2D" parent="." node_paths=PackedStringArray("flag")]
+[node name="FLAG_OBJECT" type="Area2D" parent="."]
 position = Vector2(723, -757)
 collision_layer = 0
-collision_mask = 0
-script = ExtResource("9_llam7")
-flag = NodePath("Visuals/AnimatedSprite2D")
+collision_mask = 8
+script = ExtResource("13_ihw8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT"]
 shape = SubResource("CircleShape2D_6vou7")
@@ -740,23 +709,24 @@ autoplay = "wiggle"
 [node name="CPUParticles2D" type="CPUParticles2D" parent="FLAG_OBJECT"]
 position = Vector2(64, -148)
 emitting = false
+amount = 50
 texture = ExtResource("12_ctlnc")
-lifetime = 0.3
+lifetime = 2.66
 one_shot = true
 randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 58.46
 gravity = Vector2(0, 150)
 angle_max = 720.0
-scale_amount_curve = SubResource("Curve_8w6pi")
-color_initial_ramp = SubResource("Gradient_kucl6")
+scale_amount_curve = SubResource("Curve_53y00")
+color = Color(1, 1, 1, 0.0862745)
+color_initial_ramp = SubResource("Gradient_2qpm4")
 
-[node name="FLAG_OBJECT2" type="Area2D" parent="." node_paths=PackedStringArray("flag")]
+[node name="FLAG_OBJECT2" type="Area2D" parent="."]
 position = Vector2(-564, -508)
 collision_layer = 0
-collision_mask = 0
-script = ExtResource("9_llam7")
-flag = NodePath("Visuals/AnimatedSprite2D")
+collision_mask = 8
+script = ExtResource("13_ihw8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FLAG_OBJECT2"]
 shape = SubResource("CircleShape2D_6vou7")
@@ -783,16 +753,18 @@ autoplay = "wiggle"
 [node name="CPUParticles2D" type="CPUParticles2D" parent="FLAG_OBJECT2"]
 position = Vector2(64, -148)
 emitting = false
+amount = 50
 texture = ExtResource("12_ctlnc")
-lifetime = 0.3
+lifetime = 2.66
 one_shot = true
 randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 58.46
 gravity = Vector2(0, 150)
 angle_max = 720.0
-scale_amount_curve = SubResource("Curve_8w6pi")
-color_initial_ramp = SubResource("Gradient_kucl6")
+scale_amount_curve = SubResource("Curve_53y00")
+color = Color(1, 1, 1, 0.0862745)
+color_initial_ramp = SubResource("Gradient_2qpm4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.31204, 0.68929, 0.871163, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://b0sn50pwyrljv"]
+[gd_scene load_steps=31 format=4 uid="uid://b0sn50pwyrljv"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_5uhya"]
 [ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_oroar"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b6p11375y1w2l" path="res://scenes/objects/spikes/spikes.tscn" id="8_noxre"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="9_4jytg"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="11_n8rqn"]
+[ext_resource type="Script" uid="uid://c1qfpk6mnunph" path="res://scenes/_player/hurt_box_component.gd" id="13_yxy0l"]
 [ext_resource type="Texture2D" uid="uid://b3e7i8asjkqgg" path="res://assets/images/klickmich.png" id="15_xchol"]
 [ext_resource type="Script" uid="uid://ral47gla7q4p" path="res://scenes/objects/klickmich.gd" id="16_n8rqn"]
 
@@ -42,7 +43,7 @@ radius = 18.13
 height = 202.51
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
-radius = 129.542
+radius = 45.0111
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_noxre"]
 tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 131072, 2, 65537, 196608, 2)
@@ -169,7 +170,7 @@ scale_amount_min = 0.3
 scale_amount_curve = SubResource("Curve_g0gcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node"]
-position = Vector2(-9, 23)
+position = Vector2(-9, 27)
 shape = SubResource("CapsuleShape2D_qkbid")
 
 [node name="Coyote_Timer" type="Timer" parent="Player_Node"]
@@ -183,8 +184,10 @@ one_shot = true
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("13_yxy0l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
+position = Vector2(-8, 99)
 shape = SubResource("CircleShape2D_abu21")
 
 [node name="Camera2D" parent="Player_Node" instance=ExtResource("4_xv1ub")]

@@ -1,12 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=44 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
 [ext_resource type="Texture2D" uid="uid://c2mnliquaklgr" path="res://assets/images/clock.png" id="2_mai3r"]
 [ext_resource type="Texture2D" uid="uid://dglay7b4doic2" path="res://assets/images/logo_main.png" id="3_3t4xl"]
-[ext_resource type="Script" uid="uid://tm5m6rchcvsh" path="res://scenes/ui/debug_control.gd" id="3_8t74x"]
 [ext_resource type="Texture2D" uid="uid://d0wg23f2yi03o" path="res://assets/images/document_0.png" id="3_etnpp"]
-[ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
 [ext_resource type="Script" uid="uid://5uot8tc3cum6" path="res://scenes/ui/game_result.gd" id="4_7rmiq"]
 [ext_resource type="SpriteFrames" uid="uid://cdy2k83nyd7c7" path="res://scenes/ui/ui_flag_button.tres" id="5_mpd4i"]
@@ -130,9 +128,6 @@ modulate_color = Color(0.611765, 0.835294, 0.823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3alx1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
-texture = ExtResource("3_oo2yl")
-
 [sub_resource type="LabelSettings" id="LabelSettings_ngihc"]
 line_spacing = 15.43
 font = ExtResource("20_y7fyd")
@@ -190,82 +185,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "00:00:000"
 autowrap_mode = 3
-
-[node name="Debug_Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 180.0
-offset_bottom = 120.0
-script = ExtResource("3_8t74x")
-
-[node name="Debug_Margin" type="MarginContainer" parent="Debug_Control"]
-layout_mode = 1
-offset_right = 147.0
-offset_bottom = 114.0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="Panel" type="Panel" parent="Debug_Control/Debug_Margin"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug_Control/Debug_Margin"]
-layout_mode = 2
-
-[node name="debug_label" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
-layout_mode = 2
-
-[node name="debug_on" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 9
-text = "Debug_Mode:"
-
-[node name="frames_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 9
-text = "FPS:"
-
-[node name="ram_Label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 9
-text = "RAM:"
-
-[node name="Gpu_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 9
-text = "GPU"
-
-[node name="debug_values" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
-layout_mode = 2
-
-[node name="debug_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
-theme_override_font_sizes/font_size = 9
-text = "On"
-
-[node name="frames_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
-theme_override_font_sizes/font_size = 9
-text = "66"
-
-[node name="ram_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
-theme_override_font_sizes/font_size = 9
-text = "120 MB"
-
-[node name="gpu_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
-theme_override_font_sizes/font_size = 9
-text = "16°"
-
-[node name="Debug_Interval" type="Timer" parent="Debug_Control"]
-wait_time = 0.3
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -803,7 +722,83 @@ offset_bottom = 236.0
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("3_etnpp")
 
+[node name="Debug_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 120.0
+mouse_filter = 1
+
+[node name="Debug_Margin" type="MarginContainer" parent="Debug_Control"]
+layout_mode = 1
+offset_right = 147.0
+offset_bottom = 114.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="Debug_Control/Debug_Margin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug_Control/Debug_Margin"]
+layout_mode = 2
+
+[node name="debug_label" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
+layout_mode = 2
+
+[node name="debug_on" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Debug_Mode:"
+
+[node name="frames_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "FPS:"
+
+[node name="ram_Label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "RAM:"
+
+[node name="Gpu_label" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "GPU"
+
+[node name="debug_values" type="VBoxContainer" parent="Debug_Control/Debug_Margin/HBoxContainer"]
+layout_mode = 2
+
+[node name="debug_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
+theme_override_font_sizes/font_size = 9
+text = "On"
+
+[node name="frames_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
+theme_override_font_sizes/font_size = 9
+text = "66"
+
+[node name="ram_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
+theme_override_font_sizes/font_size = 9
+text = "120 MB"
+
+[node name="gpu_value" type="Label" parent="Debug_Control/Debug_Margin/HBoxContainer/debug_values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.415686, 0.745098, 0.188235, 1)
+theme_override_font_sizes/font_size = 9
+text = "16°"
+
+[node name="Debug_Interval" type="Timer" parent="Debug_Control"]
+wait_time = 0.3
+
 [node name="Win_Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -843,7 +838,7 @@ size_flags_vertical = 4
 [node name="Label2" type="Label" parent="Win_Control/Content_Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
-text = "GAME RESULT"
+text = "GAME RESULT  - WIN"
 label_settings = ExtResource("8_m2gsp")
 horizontal_alignment = 1
 
@@ -984,7 +979,12 @@ button = NodePath("../Button_next")
 
 [node name="Button_next" type="Button" parent="Win_Control/Content_Margin/VBox/PanelContainer"]
 layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 27
 theme_override_styles/hover = SubResource("StyleBoxEmpty_qxd1k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jlso2")
@@ -1007,10 +1007,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -115.5
-offset_right = 150.0
-offset_bottom = 115.5
+offset_left = -335.0
+offset_top = -275.0
+offset_right = 335.0
+offset_bottom = 275.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 25
@@ -1018,148 +1018,146 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Setting_Margin" type="MarginContainer" parent="Game_Over_Control/Content_Margin"]
+[node name="Panel_background" type="Panel" parent="Game_Over_Control/Content_Margin"]
+custom_minimum_size = Vector2(620, 500)
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_styles/panel = SubResource("StyleBoxTexture_m2gsp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin"]
+[node name="VBox" type="VBoxContainer" parent="Game_Over_Control/Content_Margin"]
+custom_minimum_size = Vector2(420, 300)
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Settings_Header" type="Panel" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-custom_minimum_size = Vector2(100, 25)
+[node name="Label2" type="Label" parent="Game_Over_Control/Content_Margin/VBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7rmiq")
-
-[node name="Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Settings_Header"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.784314, 1, 1, 1)
-text = "GAME RESULT                                      LOSE"
-
-[node name="Setting_P" type="Panel" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-custom_minimum_size = Vector2(310, 250)
-layout_mode = 2
-
-[node name="VBox" type="VBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P"]
-custom_minimum_size = Vector2(300, 50)
-layout_mode = 2
-offset_left = 4.0
-offset_right = 304.0
-offset_bottom = 231.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="time_s_header" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-layout_mode = 2
-text = "Time Score:"
-
-[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 105
-
-[node name="time_s_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer"]
-custom_minimum_size = Vector2(85.68, 0)
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="time_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-editable = false
-scrollable = false
-
-[node name="HSeparator" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="used_objects_header" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-layout_mode = 2
-text = "Used Objects:"
-
-[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 70
-
-[node name="used_objects_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer2"]
-custom_minimum_size = Vector2(104.38, 0)
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="used_objects_silder" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-editable = false
-scrollable = false
-
-[node name="HSeparator2" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="death_count_Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-layout_mode = 2
-text = "Deaths:"
-
-[node name="VSeparator" type="VSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-layout_mode = 2
-theme_override_constants/separation = 160
-
-[node name="death_count_value" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer3"]
-custom_minimum_size = Vector2(61.575, 0)
-layout_mode = 2
-text = "0"
-horizontal_alignment = 2
-
-[node name="death_count_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-editable = false
-scrollable = false
-
-[node name="HSeparator3" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
-layout_mode = 2
-text = "Total:  0"
+text = "GAME OVER"
+label_settings = ExtResource("8_m2gsp")
 horizontal_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HSeparator" type="HSeparator" parent="Game_Over_Control/Content_Margin/VBox"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_347yf")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="time_s_header" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Time Score:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="time_s_value" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="time_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+editable = false
+scrollable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="used_objects_header" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Used Objects:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="used_objects_value" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="used_objects_silder" type="HSlider" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+editable = false
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="death_count_Label" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "Deaths:"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 2
+
+[node name="death_count_value" type="Label" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = ExtResource("9_tu02a")
+horizontal_alignment = 1
+
+[node name="death_count_slider" type="HSlider" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+theme = ExtResource("17_y7fyd")
+theme_override_icons/grabber = ExtResource("10_2whxp")
+theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
+max_value = 1.0
+step = 0.01
+editable = false
+scrollable = false
+
+[node name="total_Label" type="Label" parent="Game_Over_Control/Content_Margin/VBox"]
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+text = "Total:  0"
+label_settings = ExtResource("8_m2gsp")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Game_Over_Control/Content_Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 28
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2ljg2")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Game_Over_Control/Content_Margin/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Button_restart" type="Button" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+[node name="Button_restart" type="Button" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer4"]
+custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("17_y7fyd")
 text = "Restart"
 
-[node name="Button_menu" type="Button" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4"]
+[node name="Button_menu" type="Button" parent="Game_Over_Control/Content_Margin/VBox/HBoxContainer4"]
+custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 20
-text = "menu"
-
-[node name="PanelContainer" type="PanelContainer" parent="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer"]
-layout_mode = 2
+theme = ExtResource("17_y7fyd")
+text = "Menu"
 
 [node name="Pause_rect" type="ColorRect" parent="."]
 process_mode = 3
@@ -1169,7 +1167,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0784314, 0.0784314, 0.0784314, 0.733333)
 
 [node name="TextureRect" parent="Pause_rect" instance=ExtResource("23_4pss4")]
 process_mode = 3
@@ -1182,65 +1179,65 @@ offset_bottom = 3000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2292, 1793)
+position = Vector2(630, 293)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2218, 1775)
+position = Vector2(556, 275)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2079, 1743)
+position = Vector2(417, 243)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2062, 1842)
+position = Vector2(400, 342)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D5" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2194, 1918)
+position = Vector2(532, 418)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2298, 1923)
+position = Vector2(636, 423)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2432, 1921)
+position = Vector2(770, 421)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D8" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2533, 1918)
+position = Vector2(871, 418)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D9" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2574, 1848)
+position = Vector2(912, 348)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D10" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2512, 1806)
+position = Vector2(850, 306)
 texture = ExtResource("19_8t74x")
 
 [node name="Sprite2D11" type="Sprite2D" parent="Pause_rect/TextureRect"]
 z_index = 1
-position = Vector2(2396, 1782)
+position = Vector2(734, 282)
 texture = ExtResource("19_8t74x")
 
 [node name="Label" type="Label" parent="Pause_rect/TextureRect"]
 layout_mode = 0
-offset_left = 2125.0
-offset_top = 1754.0
-offset_right = 2504.0
-offset_bottom = 1932.0
+offset_left = 463.0
+offset_top = 254.0
+offset_right = 842.0
+offset_bottom = 432.0
 text = "PAUSED"
 label_settings = SubResource("LabelSettings_ngihc")
 
@@ -1258,5 +1255,5 @@ label_settings = SubResource("LabelSettings_ngihc")
 [connection signal="pressed" from="Win_Control/Content_Margin/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="pressed" from="Win_Control/Content_Margin/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="Win_Control/Content_Margin/VBox/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]
-[connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
-[connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="Game_Over_Control/Content_Margin/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Game_Over_Control/Content_Margin/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]

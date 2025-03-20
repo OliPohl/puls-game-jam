@@ -41,7 +41,7 @@ radius = 18.13
 height = 202.51
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_abu21"]
-radius = 129.542
+radius = 48.1664
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk47u"]
 size = Vector2(10755.5, 5357)
@@ -217,6 +217,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
+position = Vector2(-11, 99)
 shape = SubResource("CircleShape2D_abu21")
 
 [node name="Colors" parent="Player_Node" instance=ExtResource("7_obopg")]
@@ -358,6 +359,8 @@ interactable = false
 
 [node name="FLAG_OBJECT" parent="." instance=ExtResource("14_u8txp")]
 position = Vector2(5634, 518)
+collision_layer = 8
+collision_mask = 0
 
 [node name="angry_spike3" parent="." instance=ExtResource("7_q33g2")]
 position = Vector2(6023, 71)

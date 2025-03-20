@@ -27,7 +27,6 @@ func add_ui(_node: Node) -> void:
 func confirm(_activate = true) -> void:
   if self not in logic_used:
     logic_used.append(self)
-    GameManager.gameresult_objects +=1
   for child in get_children():
     if child is Logic:
       child.confirm(_activate)

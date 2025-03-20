@@ -14,7 +14,7 @@ class_name LogicUi extends CanvasLayer
 ## A node that holds templates and temp logic nodes
 @export var logic_template_holder: Node
 @export var pause_shader: PauseShader
-@export var background : Panel = null
+@export var background: Panel = null
 
 
 @export_group("Tempaltes")
@@ -32,9 +32,9 @@ class_name LogicUi extends CanvasLayer
 @export var edit_float: Theme
 @export var edit_string: Theme
 @export var edit_var: Theme
-@export var interaction_mat : ShaderMaterial
+@export var interaction_mat: ShaderMaterial
 
-var current_logic_base : LogicBase = null
+var current_logic_base: LogicBase = null
 var current_focus: TextEdit = null
 var animating: bool = false
 
@@ -57,7 +57,6 @@ func _on_cancel_button_pressed() -> void:
   change_visibility(false)
 
 
-
 # Adds a logic node to the logic holder
 func add_logic_node(node: Node) -> void:
   logic_holder.add_child(node)
@@ -72,7 +71,7 @@ func reset() -> void:
 
 
 # Creates a new LogicIfUi
-func create_logic_if_ui(var_name: String, condition: String, value_name: String, value_type: String, interactable:bool) -> LogicIfUi:
+func create_logic_if_ui(var_name: String, condition: String, value_name: String, value_type: String, interactable: bool) -> LogicIfUi:
   var node = logic_if_ui_node.duplicate()
   var new_logic_if_ui = node as LogicIfUi
 
@@ -87,7 +86,7 @@ func create_logic_if_ui(var_name: String, condition: String, value_name: String,
 
 
 # Creates a new LogicOperationUi
-func create_logic_operation_ui(var_name: String, operator: String, value_name: String, value_type: String, interactable:bool) -> LogicOperationUi:
+func create_logic_operation_ui(var_name: String, operator: String, value_name: String, value_type: String, interactable: bool) -> LogicOperationUi:
   var node = logic_operation_ui_node.duplicate()
   var new_logic_operation_ui = node as LogicOperationUi
 
@@ -102,7 +101,7 @@ func create_logic_operation_ui(var_name: String, operator: String, value_name: S
 
 
 # Creates a new LogicTimerUi
-func create_logic_timer_ui(var_name: String, value_name: String, interactable:bool) -> LogicTimerUi:
+func create_logic_timer_ui(var_name: String, value_name: String, interactable: bool) -> LogicTimerUi:
   var node = logic_timer_ui_node.duplicate()
   var new_logic_timer_ui = node as LogicTimerUi
 
@@ -114,9 +113,9 @@ func create_logic_timer_ui(var_name: String, value_name: String, interactable:bo
   return new_logic_timer_ui
 
 
-func change_visibility(value :bool) -> void:
+func change_visibility(value: bool) -> void:
   if value:
-    print(" LOGIC UI SHOW")
+    UiManager.logic_enabled = true
     AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 700.0
@@ -131,7 +130,7 @@ func change_visibility(value :bool) -> void:
     await tween.finished
     animating = false
   else:
-    print(" LOGIC UI HIDE")
+    UiManager.logic_enabled = false
     AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 0.0
@@ -147,13 +146,12 @@ func change_visibility(value :bool) -> void:
     animating = false
 
 
-
 func _input(event: InputEvent) -> void:
   if animating or not visible:
     return
   if event is InputEventKey and event.pressed:
     ### NEW LINE
-    if event.keycode == KEY_ENTER or event.keycode  == KEY_SPACE:
+    if event.keycode == KEY_ENTER or event.keycode == KEY_SPACE:
       _on_confirm_button_pressed()
     elif event.keycode == KEY_ESCAPE:
       change_visibility(false)

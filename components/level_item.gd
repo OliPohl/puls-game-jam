@@ -12,6 +12,7 @@ signal level_selected()
 
 func is_enabled()-> void:
     button.visible  =true
+    ConfigManager.save_level_settings("level_0" + str(level_id), true)
 
 var _is_allready_pressed: bool = false
 

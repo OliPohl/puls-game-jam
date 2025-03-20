@@ -22,13 +22,13 @@ func _ready() -> void:
 
 
 func _on_area_mouse_entered() -> void:
-  print(" LOGIC UI - MOUSE ENTERED")
+
   _parent.use_parent_material = false
   _mouse_inside = true
 
 
 func _on_area_mouse_exited() -> void:
-  print(" LOGIC UI - MOUSE EXITED")
+
   _parent.use_parent_material = true
   _mouse_inside = false
 
@@ -39,3 +39,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
   if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
     logic_base.show_logic()
+    GameManager.gameresult_objects +=1

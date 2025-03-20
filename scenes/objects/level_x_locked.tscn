@@ -12,24 +12,23 @@ size = Vector2(126.282, 165.385)
 [node name="insane_lock_mechanic" type="Node2D"]
 script = ExtResource("2_s3nto")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Isane_lock_mechanism_256_AES" type="Sprite2D" parent="."]
 scale = Vector2(1.56, 1.56)
 texture = ExtResource("1_1551r")
 
-[node name="LogicArea2" type="Area2D" parent="Sprite2D"]
-z_index = 5
+[node name="LogicArea2" type="Area2D" parent="Isane_lock_mechanism_256_AES"]
 script = ExtResource("2_43vqm")
 metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LogicArea2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Isane_lock_mechanism_256_AES/LogicArea2"]
 position = Vector2(-2.24359, 3.82081e-07)
 shape = SubResource("RectangleShape2D_s3nto")
 
-[node name="LogicBase" type="Node" parent="Sprite2D"]
+[node name="LogicBase" type="Node" parent="Isane_lock_mechanism_256_AES"]
 script = ExtResource("3_s3nto")
 metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
 
-[node name="LogicOperation" type="Node" parent="Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+[node name="LogicOperation" type="Node" parent="Isane_lock_mechanism_256_AES/LogicBase" node_paths=PackedStringArray("variable_node")]
 script = ExtResource("4_tcuau")
 variable_node = NodePath("../../..")
 variable_name = "unlocked"

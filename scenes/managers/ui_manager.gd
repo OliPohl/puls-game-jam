@@ -43,6 +43,7 @@ var _is_timer_running : bool  = false
 var _is_debug_running : bool = true
 var _level_timer : float  = 0
 var _level_time_start : float  = 0
+var logic_enabled :bool = false
 func _ready() -> void:
 
 	GameManager.game_win.connect(_on_game_win)
@@ -67,9 +68,10 @@ func _ready() -> void:
 
 ################### INPUT
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		get_tree().paused = !get_tree().paused
-		_pause_panel.visible = !_pause_panel.visible
+	if event.is_action_pressed("pause"):
+		if !logic_enabled:
+			get_tree().paused = !get_tree().paused
+			_pause_panel.visible = !_pause_panel.visible
 	if event.is_action_pressed("restart") and !get_tree().paused:
 		start_menu()
 		GameManager.start_level(GameManager.current_level)
@@ -84,8 +86,11 @@ func set_level_timer_start(_value: float) -> void:
 	_level_time_start = _value
 func set_level_timer(_value: float) -> void:
 	_level_timer = _value
+	if _level_timer < 0:
+		_on_gametimer_timeout()
 	if _is_timer_running:
 		_game_timer_text.text = _format_decimal_float(_level_timer)
+		GameManager.gameresult_time = _value
 ############################### / TIMER ####################
 func _on_game_in_level_selection() -> void:
 	_game_hud.visible= false
@@ -149,6 +154,8 @@ func _on_debug_enabled(_value : bool)-> void:
 		### wait 0.5 s 
 		_debug_control.visible = false
 		_debug_timer.stop()
+		await get_tree().process_frame
+		_menu.visible =true
 
 func _debug_data_update() -> void:
 	_debug_fps_value.text = str(Engine.get_frames_per_second())
@@ -171,9 +178,6 @@ func _on_game_win() -> void:
 	_game_over_control.visible = false
 	_game_hud.visible= false
 	_menu.visible =false
-	#### SET GAMERESULT_new  level time - current time_left *100
-	GameManager.gameresult_time=_level_time_start -(_level_time_start - _level_timer) *100
-	#GameManager.gameresult_time= Time.get_ticks_msec() - _level_started_time
 	_win_control.set_sliders()
 
 func _on_fullscreen_toggle_toggled(_toggled_on:bool) -> void:
