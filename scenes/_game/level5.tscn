@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://bmnfvoy6txq1l"]
+[gd_scene load_steps=75 format=4 uid="uid://bmnfvoy6txq1l"]
 
 [ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_1aykq"]
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_7008j"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bhpcgpv70uvdx" path="res://assets/images/flag_color.png" id="11_cdacf"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="12_3inni"]
 [ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="12_ctlnc"]
+[ext_resource type="Script" uid="uid://c1qfpk6mnunph" path="res://scenes/_player/hurt_box_component.gd" id="12_ihw8d"]
 [ext_resource type="Script" uid="uid://46gpg8674245" path="res://scenes/objects/flag_level05/flag_particle_effect_on_enter.gd" id="13_ihw8d"]
 [ext_resource type="SpriteFrames" uid="uid://ba3kksls0pm0f" path="res://resources/enemy/enemy_01.tres" id="14_6vou7"]
 [ext_resource type="PackedScene" uid="uid://b5pnekujnem83" path="res://scenes/enemy/weapon.tscn" id="15_1aykq"]
@@ -598,6 +599,7 @@ one_shot = true
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("12_ihw8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
 position = Vector2(-11, 117)
@@ -633,7 +635,7 @@ modulate = Color(0.634666, 0, 0.195131, 1)
 position = Vector2(73.505, -127.415)
 sprite_frames = SubResource("SpriteFrames_ihpxj")
 autoplay = "default"
-frame_progress = 0.504376
+frame_progress = 0.95569
 
 [node name="LogicArea" type="Area2D" parent="FLAG_OBJECT3/Visuals/AnimatedSprite2D"]
 script = ExtResource("5_ctlnc")

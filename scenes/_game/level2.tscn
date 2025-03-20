@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ckh8fmb461xj0"]
+[gd_scene load_steps=39 format=4 uid="uid://ckh8fmb461xj0"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_0ydjg"]
 [ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_4vmkb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="8_f7i38"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="8_hrcjy"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="9_h7j42"]
+[ext_resource type="Script" uid="uid://c1qfpk6mnunph" path="res://scenes/_player/hurt_box_component.gd" id="10_cs8av"]
 [ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="10_dl5py"]
 [ext_resource type="Script" uid="uid://beb2x43exogbb" path="res://components/logic/logic-if.gd" id="11_dl5py"]
 [ext_resource type="Script" uid="uid://bcsgsnu8u0j23" path="res://scenes/objects/moving_plattform/moving_plattform.gd" id="11_yk47u"]
@@ -215,6 +216,7 @@ one_shot = true
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("10_cs8av")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
 position = Vector2(-11, 99)
@@ -359,8 +361,6 @@ interactable = false
 
 [node name="FLAG_OBJECT" parent="." instance=ExtResource("14_u8txp")]
 position = Vector2(5634, 518)
-collision_layer = 8
-collision_mask = 0
 
 [node name="angry_spike3" parent="." instance=ExtResource("7_q33g2")]
 position = Vector2(6023, 71)

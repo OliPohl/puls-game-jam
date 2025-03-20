@@ -74,7 +74,7 @@ func _input(event: InputEvent) -> void:
 			_pause_panel.visible = !_pause_panel.visible
 	if event.is_action_pressed("restart") and !get_tree().paused:
 		start_menu()
-		GameManager.start_level(GameManager.current_level)
+		GameManager.restart_level()
 ############################### TIMER ###############
 func _format_decimal_float(_float : float) ->String:
 	var _minutes = _float /60
@@ -279,7 +279,6 @@ func _on_button_WIN_next_pressed() -> void:
 	AudioManager.play_sound(AudioManager.Sound.CLICK)
 	_win_control.visible =false
 	_game_over_control.visible = false
-	GameManager.reset_gameresults()
 	GameManager.start_level(GameManager.current_level+1)
 	
 func _on_button_restart_pressed() -> void:

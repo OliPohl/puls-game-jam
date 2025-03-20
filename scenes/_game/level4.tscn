@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://5sg3l3gjujy4"]
+[gd_scene load_steps=34 format=4 uid="uid://5sg3l3gjujy4"]
 
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="1_6ntpm"]
 [ext_resource type="PackedScene" uid="uid://dhpb82q6pb8s6" path="res://components/level_timer.tscn" id="1_ypmr1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://djtdb1yy5116n" path="res://scenes/_player/deathbox.gd" id="8_jqehj"]
 [ext_resource type="Texture2D" uid="uid://cfdm76nv4xgnt" path="res://assets/images/Tileset-grass.png" id="9_jqehj"]
 [ext_resource type="Texture2D" uid="uid://b5ccmwe5btpow" path="res://assets/images/error.png" id="9_xwo4s"]
+[ext_resource type="Script" uid="uid://c1qfpk6mnunph" path="res://scenes/_player/hurt_box_component.gd" id="10_q3kgi"]
 [ext_resource type="Script" uid="uid://d3sdvl0ok0kxy" path="res://scenes/objects/breathtaking_wall/breathtaking_wall_texture.gd" id="10_uehbh"]
 [ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="11_nny3x"]
 [ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="12_ypmr1"]
@@ -186,6 +187,7 @@ one_shot = true
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("10_q3kgi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
 position = Vector2(0, 101)

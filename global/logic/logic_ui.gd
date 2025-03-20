@@ -152,7 +152,8 @@ func _input(event: InputEvent) -> void:
   if event is InputEventKey and event.pressed:
     ### NEW LINE
     if event.keycode == KEY_ENTER or event.keycode == KEY_SPACE:
-      _on_confirm_button_pressed()
+      if GameManager.current_level != 3:
+        _on_confirm_button_pressed()
     elif event.keycode == KEY_ESCAPE:
       change_visibility(false)
   if event is InputEventMouseButton and event.pressed:
