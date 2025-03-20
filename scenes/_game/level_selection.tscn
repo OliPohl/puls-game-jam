@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fb2g7h1t7r8k"]
+[gd_scene load_steps=25 format=3 uid="uid://fb2g7h1t7r8k"]
 
 [ext_resource type="Script" uid="uid://kdore7yjx8ue" path="res://scenes/levels/level_selection.gd" id="1_7n0cu"]
 [ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="2_87vkh"]
@@ -16,11 +16,19 @@
 [ext_resource type="FontFile" uid="uid://bx71l7hqs525p" path="res://assets/fonts/PatrickHand-Regular.ttf" id="15_f2hcf"]
 [ext_resource type="Script" uid="uid://c5fe6wdh0kov8" path="res://scenes/ui/check_button_delete_data.gd" id="16_sobg8"]
 [ext_resource type="Script" uid="uid://blyvxteahtneq" path="res://scenes/ui/check_button_sure_delete.gd" id="17_5tccg"]
+[ext_resource type="Script" uid="uid://clpsmpfe6h8y2" path="res://scenes/objects/level_x_locked.gd" id="17_6mniu"]
+[ext_resource type="Texture2D" uid="uid://clar6ops8w1hy" path="res://assets/images/_debug/level_lock.png" id="18_hpnmq"]
+[ext_resource type="Script" uid="uid://clqf1lxsxo2dq" path="res://components/logic/logic-area.gd" id="19_60n31"]
+[ext_resource type="Script" uid="uid://ckuvnrnw0rigg" path="res://components/logic/logic-base.gd" id="20_30jld"]
+[ext_resource type="Script" uid="uid://6t1rnc37yi2h" path="res://components/logic/logic-operation.gd" id="21_qxw41"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exv5h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buh0u"]
 bg_color = Color(0.129412, 0.145098, 0.168627, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3nto"]
+size = Vector2(126.282, 165.385)
 
 [node name="Level_Selection" type="Node2D"]
 script = ExtResource("1_7n0cu")
@@ -191,6 +199,36 @@ script = ExtResource("17_5tccg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(570, 384)
+
+[node name="level2_locked" type="Node2D" parent="."]
+position = Vector2(104.785, 156.03)
+script = ExtResource("17_6mniu")
+
+[node name="Sprite2D" type="Sprite2D" parent="level2_locked"]
+scale = Vector2(1.56, 1.56)
+texture = ExtResource("18_hpnmq")
+
+[node name="LogicArea2" type="Area2D" parent="level2_locked/Sprite2D"]
+z_index = 5
+script = ExtResource("19_60n31")
+metadata/_custom_type_script = "uid://clqf1lxsxo2dq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level2_locked/Sprite2D/LogicArea2"]
+position = Vector2(-2.24359, 3.82081e-07)
+shape = SubResource("RectangleShape2D_s3nto")
+
+[node name="LogicBase" type="Node" parent="level2_locked/Sprite2D"]
+script = ExtResource("20_30jld")
+metadata/_custom_type_script = "uid://ckuvnrnw0rigg"
+
+[node name="LogicOperation" type="Node" parent="level2_locked/Sprite2D/LogicBase" node_paths=PackedStringArray("variable_node")]
+script = ExtResource("21_qxw41")
+variable_node = NodePath("../../..")
+variable_name = "unlocked"
+value_type = "bool"
+value_name = "false"
+interactable = true
+metadata/_custom_type_script = "uid://6t1rnc37yi2h"
 
 [connection signal="pressed" from="CanvasLayer/Level_button_Control/Panel/PanelContainer/Button" to="." method="_on_button_menu_pressed"]
 [connection signal="toggled" from="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_delete" to="CanvasLayer/Level_button_Control/MarginContainer/Panel/HBoxContainer/CheckButton_delete" method="_ontoggle_changed"]

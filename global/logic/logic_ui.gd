@@ -116,6 +116,7 @@ func create_logic_timer_ui(var_name: String, value_name: String, interactable:bo
 
 func change_visibility(value :bool) -> void:
   if value:
+    print(" LOGIC UI SHOW")
     AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 700.0
@@ -130,6 +131,7 @@ func change_visibility(value :bool) -> void:
     await tween.finished
     animating = false
   else:
+    print(" LOGIC UI HIDE")
     AudioManager.play_sound(AudioManager.Sound.CLICK)
     animating = true
     offset.y = 0.0
@@ -150,8 +152,9 @@ func _input(event: InputEvent) -> void:
   if animating or not visible:
     return
   if event is InputEventKey and event.pressed:
-    if event.keycode == KEY_ENTER:
-      current_focus.release_focus()
+    ### NEW LINE
+    if event.keycode == KEY_ENTER or event.keycode  == KEY_SPACE:
+      _on_confirm_button_pressed()
     elif event.keycode == KEY_ESCAPE:
       change_visibility(false)
   if event is InputEventMouseButton and event.pressed:

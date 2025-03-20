@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d35gq840pcm2l"]
+[gd_scene load_steps=8 format=3 uid="uid://d35gq840pcm2l"]
 
 [ext_resource type="Script" uid="uid://cvc8sg35b15o4" path="res://scenes/_player/player_node.gd" id="1_abu21"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="2_abu21"]
 [ext_resource type="Texture2D" uid="uid://bm6w0t5krkmkv" path="res://assets/images/particles/jump_dust.png" id="3_p6qsx"]
+[ext_resource type="Script" uid="uid://c1qfpk6mnunph" path="res://scenes/_player/hurt_box_component.gd" id="4_g0gcu"]
 
 [sub_resource type="Curve" id="Curve_g0gcu"]
 _data = [Vector2(0.0166667, 0.0449438), 0.0, 0.0, 0, 0, Vector2(1, 0.921348), 0.0, 0.0, 0, 0]
@@ -57,6 +58,7 @@ one_shot = true
 [node name="Hurt_Box_Component" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("4_g0gcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box_Component"]
 shape = SubResource("CircleShape2D_abu21")

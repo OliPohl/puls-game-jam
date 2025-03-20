@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var flag: Node
+@export var color_changed : bool  = false
 ### ADD TO AREA ENTERED 
 func _ready() -> void:
   area_entered.connect(on_collect_area_entered)
@@ -37,4 +38,10 @@ func check_player_and_red()->void:
   GameManager.Win_Game()
 func on_collect_area_entered(_area : Area2D)-> void:
   ### PLAYER ENTERED 
-  player_is_nearby = true
+  if _area is Hurtbox_Component:
+    ### is player
+    player_is_nearby = true
+    ### DEFAULT FLAG FUNCTION
+    if !color_changed:
+      AudioManager.play_sound(AudioManager.Sound.FLAG)
+      GameManager.Win_Game()

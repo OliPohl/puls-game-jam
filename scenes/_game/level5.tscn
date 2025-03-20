@@ -646,7 +646,7 @@ texture_scale = 2.13
 
 [node name="FLAG_OBJECT3" type="Area2D" parent="." node_paths=PackedStringArray("flag")]
 position = Vector2(4092, 1166)
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("9_llam7")
 flag = NodePath("Visuals/AnimatedSprite2D")

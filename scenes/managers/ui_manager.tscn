@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://bdd8sctn6g0hv"]
+[gd_scene load_steps=47 format=3 uid="uid://bdd8sctn6g0hv"]
 
 [ext_resource type="Texture2D" uid="uid://dl2iw44yno0k0" path="res://icon.svg" id="1_aag8p"]
 [ext_resource type="Script" uid="uid://dw6ai5n4udna" path="res://scenes/managers/ui_manager.gd" id="1_xetle"]
 [ext_resource type="Texture2D" uid="uid://c2mnliquaklgr" path="res://assets/images/clock.png" id="2_mai3r"]
 [ext_resource type="Texture2D" uid="uid://dglay7b4doic2" path="res://assets/images/logo_main.png" id="3_3t4xl"]
+[ext_resource type="Script" uid="uid://tm5m6rchcvsh" path="res://scenes/ui/debug_control.gd" id="3_8t74x"]
 [ext_resource type="Texture2D" uid="uid://d0wg23f2yi03o" path="res://assets/images/document_0.png" id="3_etnpp"]
 [ext_resource type="Texture2D" uid="uid://6heg54jq2qra" path="res://assets/images/_debug/frame_header.png" id="3_oo2yl"]
 [ext_resource type="SpriteFrames" uid="uid://dhhttptuhm7fr" path="res://resources/player/player_visuals.tres" id="4_7f570"]
@@ -16,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://djrtdnb1ivmek" path="res://assets/images/ui/knob.png" id="10_2whxp"]
 [ext_resource type="Texture2D" uid="uid://4b74k57ge6bt" path="res://assets/images/ui/knob_highlighted.png" id="11_0d6jp"]
 [ext_resource type="Texture2D" uid="uid://dj4gbjadfsbq2" path="res://assets/images/ui/panel_512.png" id="15_tu02a"]
+[ext_resource type="Theme" uid="uid://dqy5f7lc3q763" path="res://resources/theme/default.tres" id="17_y7fyd"]
+[ext_resource type="Texture2D" uid="uid://sq1hsgi8y1n8" path="res://assets/images/particles/star.png" id="19_8t74x"]
+[ext_resource type="FontFile" uid="uid://bx71l7hqs525p" path="res://assets/fonts/PatrickHand-Regular.ttf" id="20_y7fyd"]
+[ext_resource type="PackedScene" uid="uid://mkr8jexkunje" path="res://scenes/backgrounds/background_01.tscn" id="23_4pss4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_id3g5"]
 
@@ -128,6 +133,11 @@ modulate_color = Color(0.611765, 0.835294, 0.823529, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmiq"]
 texture = ExtResource("3_oo2yl")
 
+[sub_resource type="LabelSettings" id="LabelSettings_ngihc"]
+line_spacing = 15.43
+font = ExtResource("20_y7fyd")
+font_size = 131
+
 [node name="UI_Manager" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_xetle")
@@ -143,21 +153,23 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="Game_HUD"]
-layout_mode = 2
-offset_left = 1149.33
-offset_top = 32.055
-offset_right = 1270.22
-offset_bottom = 72.285
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -348.0
+offset_top = 15.0
+offset_right = -108.0
+offset_bottom = 107.0
+grow_horizontal = 0
 
 [node name="Timer_Margin" type="MarginContainer" parent="Game_HUD"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -216.595
-offset_top = -11.17
-offset_right = 98.405
-offset_bottom = 141.83
+offset_left = -337.0
+offset_bottom = 153.0
 grow_horizontal = 0
 scale = Vector2(0.69, 0.69)
 theme_override_constants/margin_top = 25
@@ -167,21 +179,25 @@ theme_override_constants/margin_right = 25
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Game_HUD/Timer_Margin/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("2_mai3r")
 
 [node name="Timer_value" type="Label" parent="Game_HUD/Timer_Margin/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "00:00:000"
-horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Debug_Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 180.0
 offset_bottom = 120.0
+script = ExtResource("3_8t74x")
 
 [node name="Debug_Margin" type="MarginContainer" parent="Debug_Control"]
 layout_mode = 1
@@ -249,7 +265,7 @@ theme_override_font_sizes/font_size = 9
 text = "16°"
 
 [node name="Debug_Interval" type="Timer" parent="Debug_Control"]
-wait_time = 0.5
+wait_time = 0.3
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -787,12 +803,7 @@ offset_bottom = 236.0
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("3_etnpp")
 
-[node name="Game_Timer" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
 [node name="Win_Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -922,6 +933,7 @@ horizontal_alignment = 1
 [node name="death_count_slider" type="HSlider" parent="Win_Control/Content_Margin/VBox/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+theme = ExtResource("17_y7fyd")
 theme_override_icons/grabber = ExtResource("10_2whxp")
 theme_override_icons/grabber_highlight = ExtResource("11_0d6jp")
 max_value = 1.0
@@ -929,6 +941,24 @@ step = 0.01
 value = 0.41
 editable = false
 scrollable = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Win_Control/Content_Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button_restart" type="Button" parent="Win_Control/Content_Margin/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("17_y7fyd")
+text = "Restart"
+
+[node name="Button_menu" type="Button" parent="Win_Control/Content_Margin/VBox/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("17_y7fyd")
+text = "Menu"
 
 [node name="total_Label" type="Label" parent="Win_Control/Content_Margin/VBox"]
 custom_minimum_size = Vector2(210, 50)
@@ -960,31 +990,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_qxd1k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jlso2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3alx1")
 text = "NEXT LEVEL"
-
-[node name="Content_Buttons" type="MarginContainer" parent="Win_Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Win_Control/Content_Buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Button_restart" type="Button" parent="Win_Control/Content_Buttons/HBoxContainer4"]
-layout_mode = 2
-size_flags_vertical = 4
-text = "Restart"
-
-[node name="Button_menu" type="Button" parent="Win_Control/Content_Buttons/HBoxContainer4"]
-layout_mode = 2
-size_flags_vertical = 4
-text = "Menu"
 
 [node name="Game_Over_Control" type="Control" parent="."]
 visible = false
@@ -1166,6 +1171,79 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0.0784314, 0.0784314, 0.733333)
 
+[node name="TextureRect" parent="Pause_rect" instance=ExtResource("23_4pss4")]
+process_mode = 3
+self_modulate = Color(0.611765, 0.611765, 0.611765, 1)
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 5000.0
+offset_bottom = 3000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2292, 1793)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2218, 1775)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2079, 1743)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2062, 1842)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2194, 1918)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2298, 1923)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2432, 1921)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2533, 1918)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2574, 1848)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2512, 1806)
+texture = ExtResource("19_8t74x")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Pause_rect/TextureRect"]
+z_index = 1
+position = Vector2(2396, 1782)
+texture = ExtResource("19_8t74x")
+
+[node name="Label" type="Label" parent="Pause_rect/TextureRect"]
+layout_mode = 0
+offset_left = 2125.0
+offset_top = 1754.0
+offset_right = 2504.0
+offset_bottom = 1932.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_ngihc")
+
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Start" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer/Start_Button/Button_Resume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="Menu/Menu_button_Margin/VBoxContainer/PanelContainer2/Setting_Button/Button_Settings" to="." method="_on_button_settings_pressed"]
@@ -1177,8 +1255,8 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 0.733333)
 [connection signal="drag_ended" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/music_v_slider" to="." method="_on_music_v_slider_drag_ended"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/fullscreen_toggle" to="." method="_on_fullscreen_toggle_toggled"]
 [connection signal="toggled" from="Menu/Content_Margin/Setting_Margin/Panel/VBoxContainer/Setting_P/VBox/vsync_toggle" to="." method="_on_vsync_toggle_toggled"]
+[connection signal="pressed" from="Win_Control/Content_Margin/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Win_Control/Content_Margin/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="Win_Control/Content_Margin/VBox/PanelContainer/Button_next" to="." method="_on_button_WIN_next_pressed"]
-[connection signal="pressed" from="Win_Control/Content_Buttons/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
-[connection signal="pressed" from="Win_Control/Content_Buttons/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="pressed" from="Game_Over_Control/Content_Margin/Setting_Margin/VBoxContainer/Setting_P/VBox/HBoxContainer4/Button_menu" to="." method="_on_button_menu_pressed"]

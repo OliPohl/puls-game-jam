@@ -184,8 +184,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Hurt_Box_Component" type="Area2D" parent="Player_Node"]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Node/Hurt_Box_Component"]
 shape = SubResource("CircleShape2D_aiu8b")
